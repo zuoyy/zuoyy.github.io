@@ -40,12 +40,12 @@
 
     
   <url>
-    <loc>http://zuoyy.com/2015/07/24/redis-list/</loc>
+    <loc>http://zuoyy.com/2015/07/25/redis-set/</loc>
     <lastmod>2018-05-18T02:47:02.508Z</lastmod>
     <data>
         <display>
-        <title>Redis系列-存储篇list操作</title>
-        <pubTime>2015-07-24T05:45:53.000Z</pubTime>
+        <title>Redis系列-存储篇set操作</title>
+        <pubTime>2015-07-25T10:34:39.000Z</pubTime>
         
         <tag>redis</tag>
          
@@ -60,12 +60,12 @@
 
     
   <url>
-    <loc>http://zuoyy.com/2015/07/25/redis-set/</loc>
+    <loc>http://zuoyy.com/2015/07/24/redis-list/</loc>
     <lastmod>2018-05-18T02:47:02.508Z</lastmod>
     <data>
         <display>
-        <title>Redis系列-存储篇set操作</title>
-        <pubTime>2015-07-25T10:34:39.000Z</pubTime>
+        <title>Redis系列-存储篇list操作</title>
+        <pubTime>2015-07-24T05:45:53.000Z</pubTime>
         
         <tag>redis</tag>
          
@@ -117,16 +117,14 @@
 
     
   <url>
-    <loc>http://zuoyy.com/2014/06/12/ios-mdm/</loc>
+    <loc>http://zuoyy.com/2015/08/23/mongodb-api/</loc>
     <lastmod>2018-05-18T02:47:02.507Z</lastmod>
     <data>
         <display>
-        <title>ios-mdm介绍与实现</title>
-        <pubTime>2014-06-12T14:52:03.000Z</pubTime>
+        <title>MongoDB常用API总结</title>
+        <pubTime>2015-08-23T10:27:41.000Z</pubTime>
         
-        <tag>ios</tag>
-         
-        <tag>mdm</tag>
+        <tag>mongodb</tag>
          
          
            
@@ -203,14 +201,16 @@
 
     
   <url>
-    <loc>http://zuoyy.com/2015/08/23/mongodb-api/</loc>
+    <loc>http://zuoyy.com/2014/06/12/ios-mdm/</loc>
     <lastmod>2018-05-18T02:47:02.507Z</lastmod>
     <data>
         <display>
-        <title>MongoDB常用API总结</title>
-        <pubTime>2015-08-23T10:27:41.000Z</pubTime>
+        <title>ios-mdm介绍与实现</title>
+        <pubTime>2014-06-12T14:52:03.000Z</pubTime>
         
-        <tag>mongodb</tag>
+        <tag>ios</tag>
+         
+        <tag>mdm</tag>
          
          
            
