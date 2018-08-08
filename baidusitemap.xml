@@ -40,12 +40,12 @@
 
     
   <url>
-    <loc>http://zuoyy.com/2015/07/25/redis-set/</loc>
+    <loc>http://zuoyy.com/2015/07/24/redis-list/</loc>
     <lastmod>2018-05-18T02:47:02.508Z</lastmod>
     <data>
         <display>
-        <title>Redis系列-存储篇set操作</title>
-        <pubTime>2015-07-25T10:34:39.000Z</pubTime>
+        <title>Redis系列-存储篇list操作</title>
+        <pubTime>2015-07-24T05:45:53.000Z</pubTime>
         
         <tag>redis</tag>
          
@@ -60,12 +60,12 @@
 
     
   <url>
-    <loc>http://zuoyy.com/2015/07/24/redis-list/</loc>
+    <loc>http://zuoyy.com/2015/07/25/redis-set/</loc>
     <lastmod>2018-05-18T02:47:02.508Z</lastmod>
     <data>
         <display>
-        <title>Redis系列-存储篇list操作</title>
-        <pubTime>2015-07-24T05:45:53.000Z</pubTime>
+        <title>Redis系列-存储篇set操作</title>
+        <pubTime>2015-07-25T10:34:39.000Z</pubTime>
         
         <tag>redis</tag>
          

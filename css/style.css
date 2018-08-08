@@ -839,7 +839,7 @@ a {
   background-size: 90%;
 }
 #header .header-nav .social .GitHub {
-  background: url("//cdn.bootcss.com/logos/0.2.0/github-octocat.svg") no-repeat #fff;
+  background: url("//assets-cdn.github.com/pinned-octocat.svg") no-repeat #fff;
   -webkit-background-size: 90%;
   -moz-background-size: 90%;
   background-size: 90%;
