@@ -1,0 +1,387 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Redis系列-存储篇set操作 | 左哥的记事本</title>
+  <meta name="author" content="zuoyy">
+  
+  <meta name="description" content="redis set 是string类型对象的无序集合，set不管存储多少对象，对存储对象的add，remove和test操作的时间复杂度是O(1)。set最多能包含 232 - 1 个member。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Redis系列-存储篇set操作"/>
+  <meta property="og:site_name" content="左哥的记事本"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="左哥的记事本" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">左哥的记事本</a><span class="split"></span><span class="title">Redis系列-存储篇set操作</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2015-07-25</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <blockquote>
+<p>redis set 是string类型对象的无序集合，set不管存储多少对象，对存储对象的add，remove和test操作的时间复杂度是O(1)。set最多能包含 232 - 1 个member。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="1-增加"><a href="#1-增加" class="headerlink" title="1.增加"></a>1.增加</h2><blockquote>
+<p>语法：sadd key member[member…]</p>
+</blockquote>
+<p>解释：对特定key的set增加一个或多个值，返回是增加元素的个数。注意：对同一个member多次add，set中只会保留一份。</p>
+<pre><code>[root@xsf001 ~]# redis-cli   
+redis 127.0.0.1:6379&gt; sadd stu zhangsan lisi wangwu #新增  
+(integer) 3  
+redis 127.0.0.1:6379&gt; smembers stu    #得到set的所有member  
+1) &quot;wangwu&quot;  
+2) &quot;lisi&quot;  
+3) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; sadd stu zhangsan #增加存在的member  
+(integer) 0  
+redis 127.0.0.1:6379&gt; smembers stu  
+1) &quot;wangwu&quot;  
+2) &quot;lisi&quot;  
+3) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; sadd tech wangwu liming joe  
+(integer) 3  
+redis 127.0.0.1:6379&gt; sadd tech jim  
+(integer) 1  
+redis 127.0.0.1:6379&gt; smembers tech  
+1) &quot;jim&quot;  
+2) &quot;liming&quot;  
+3) &quot;wangwu&quot;  
+4) &quot;joe&quot;
+</code></pre>
+<h2 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h2><blockquote>
+<p>smembers<br>语法：smembers key</p>
+</blockquote>
+<p>解释：获取set中的所有member</p>
+<pre><code>redis 127.0.0.1:6379&gt; smembers stu  
+1) &quot;wangwu&quot;  
+2) &quot;lisi&quot;  
+3) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; smembers tech  
+1) &quot;jim&quot;  
+2) &quot;liming&quot;  
+3) &quot;wangwu&quot;  
+4) &quot;joe&quot; 
+</code></pre>
+<blockquote>
+<p>sismember<br>语法：sismember key member</p>
+</blockquote>
+<p>解释：判断值是否是set的member。如果值是set的member返回1，否则，返回0</p>
+<pre><code>redis 127.0.0.1:6379&gt; sismember tech jim #jim 是set的member  
+(integer) 1  
+redis 127.0.0.1:6379&gt; sismember tech jim001 #jim001 不是set的member  
+(integer) 0 
+</code></pre>
+<blockquote>
+<p>scard<br>语法：scard key</p>
+</blockquote>
+<p>解释：返回set的member个数，如果set不存在，返回0</p>
+<pre><code>redis 127.0.0.1:6379&gt; scard tech  # tech 存在  
+(integer) 4  
+redis 127.0.0.1:6379&gt; scard stud #stud 不存在  
+(integer) 0  
+redis 127.0.0.1:6379&gt; scard stu  
+(integer) 4
+</code></pre>
+<blockquote>
+<p>srandmember<br>语法：srandmember key</p>
+</blockquote>
+<p>解释：从set中返回一个随机member</p>
+<pre><code>redis 127.0.0.1:6379&gt; srandmember stu  
+&quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; srandmember stu  
+&quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; srandmember stu  
+&quot;wangwu&quot;  
+redis 127.0.0.1:6379&gt; srandmember stu  
+&quot;zhangsan01&quot; 
+</code></pre>
+<h2 id="3-删除"><a href="#3-删除" class="headerlink" title="3.删除"></a>3.删除</h2><blockquote>
+<p>spop<br>语法：spop key</p>
+</blockquote>
+<p>解释：移除并返回一个随机member</p>
+<pre><code>redis 127.0.0.1:6379&gt; smembers stu #pop前  
+1) &quot;zhangsan01&quot;  
+2) &quot;wangwu&quot;  
+3) &quot;lisi&quot;  
+4) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; spop stu  #移除一个随机member  
+&quot;lisi&quot;  
+redis 127.0.0.1:6379&gt; smembers stu #pop后  
+1) &quot;zhangsan01&quot;&lt;span style=&quot;white-space:pre&quot;&gt;   &lt;/span&gt;  
+2) &quot;wangwu&quot;  
+3) &quot;zhangsan&quot;
+</code></pre>
+<blockquote>
+<p>srem<br>语法：srem key member [member …]</p>
+</blockquote>
+<p>解释：移除一个或多个member</p>
+<pre><code>redis 127.0.0.1:6379&gt; smembers tech  
+1) &quot;jim&quot;  
+2) &quot;liming&quot;  
+3) &quot;wangwu&quot;  
+4) &quot;joe&quot;  
+redis 127.0.0.1:6379&gt; srem tech jim   #移除jim  
+(integer) 1  
+redis 127.0.0.1:6379&gt; smembers tech     
+1) &quot;liming&quot;  
+2) &quot;wangwu&quot;  
+3) &quot;joe&quot;  
+redis 127.0.0.1:6379&gt; srem tech liming joe #移除多个member  
+(integer) 2  
+redis 127.0.0.1:6379&gt; smembers tech  
+1) &quot;wangwu&quot;
+</code></pre>
+<blockquote>
+<p>smove<br>语法：smove source destination member</p>
+</blockquote>
+<p>解释：将source中的member移动到destination</p>
+<pre><code>redis 127.0.0.1:6379&gt; smembers tech   #smove前  
+1) &quot;wangwu&quot;  
+redis 127.0.0.1:6379&gt; smembers stu  
+1) &quot;zhangsan01&quot;  
+2) &quot;wangwu&quot;  
+3) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; smove stu tech zhangsan  #将zhangsan 从stu移动到tech  
+(integer) 1  
+redis 127.0.0.1:6379&gt; smembers stu #smove后  
+1) &quot;zhangsan01&quot;  
+2) &quot;wangwu&quot;  
+redis 127.0.0.1:6379&gt; smembers tech  
+1) &quot;wangwu&quot;  
+2) &quot;zhangsan&quot;
+</code></pre>
+<h2 id="4-其他"><a href="#4-其他" class="headerlink" title="4.其他"></a>4.其他</h2><blockquote>
+<p>并集<br>语法：sunion key[key…]</p>
+</blockquote>
+<p>解释：多个set的并集</p>
+<pre><code>redis 127.0.0.1:6379&gt; smembers stu  
+1) &quot;zhangsan01&quot;  
+2) &quot;wangwu&quot;  
+redis 127.0.0.1:6379&gt; sunion stu  
+1) &quot;zhangsan01&quot;  
+2) &quot;wangwu&quot;  
+redis 127.0.0.1:6379&gt; smembers tech  
+1) &quot;wangwu&quot;  
+2) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; sunion stu tech  
+1) &quot;zhangsan01&quot;  
+2) &quot;wangwu&quot;  
+3) &quot;zhangsan&quot;
+</code></pre>
+<blockquote>
+<p>把并集结果存储到set<br>语法：sunionstore destination key [key …]</p>
+</blockquote>
+<p>解释：求多个set并集，并把结果存储到destination </p>
+<pre><code>redis 127.0.0.1:6379&gt; sunionstore same stu tech #把stu tech并集结果存储在union  
+(integer) 3  
+redis 127.0.0.1:6379&gt; smembers union  
+1) &quot;zhangsan01&quot;  
+2) &quot;wangwu&quot;  
+3) &quot;zhangsan&quot;
+</code></pre>
+<blockquote>
+<p>交集<br>语法：sinter key[key…]</p>
+</blockquote>
+<p>解释：多个set的交集</p>
+<pre><code>redis 127.0.0.1:6379&gt; smembers stu  
+1) &quot;zhangsan01&quot;  
+2) &quot;wangwu&quot;  
+redis 127.0.0.1:6379&gt; smembers tech  
+1) &quot;wangwu&quot;  
+2) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; sinter stu tech  
+1) &quot;wangwu&quot;
+</code></pre>
+<blockquote>
+<p>把交集结果存储到指定set<br>语法：sinterstore destination key [key …]</p>
+</blockquote>
+<p>解释：把多个set的交集结果存储到destination </p>
+<pre><code>redis 127.0.0.1:6379&gt; sinterstore inter stu tech  
+(integer) 1  
+redis 127.0.0.1:6379&gt; smembers inter  
+1) &quot;wangwu&quot;
+</code></pre>
+<blockquote>
+<p>set中在其他set中不存在member<br>语法：sdiff key[key …]</p>
+</blockquote>
+<pre><code>redis 127.0.0.1:6379&gt;   
+redis 127.0.0.1:6379&gt; smembers stu  
+1) &quot;zhangsan01&quot;  
+2) &quot;wangwu&quot;  
+redis 127.0.0.1:6379&gt; smembers tech  
+1) &quot;wangwu&quot;  
+2) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; sdiff stu tech  
+1) &quot;zhangsan01&quot;  
+redis 127.0.0.1:6379&gt; sdiff tech stu  
+1) &quot;zhangsan&quot;
+</code></pre>
+<blockquote>
+<p>把set中在其他set中不存在的member存储到新的set<br>语法：sdiffstore key[key…]</p>
+</blockquote>
+<pre><code>redis 127.0.0.1:6379&gt; sdiffstore diff stu tech  
+(integer) 1  
+redis 127.0.0.1:6379&gt; smembers diff  
+1) &quot;zhangsan01&quot;
+</code></pre>
+<p><a target="_blank" rel="noopener" href="http://redis.io/commands#set">http://redis.io/commands#set</a></p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2015/07/26/redis-command/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2015/07/24/redis-list/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2024 zuoyy
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> .
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

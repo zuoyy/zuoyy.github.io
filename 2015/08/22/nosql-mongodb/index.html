@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>NoSQL数据库-MongoDB | 左哥的记事本</title>
+  <meta name="author" content="zuoyy">
+  
+  <meta name="description" content="NoSQL简述
+
+&amp;#160; &amp;#160; &amp;#160; &amp;#160;CAP（Consistency，Availabiity，Partitiontolerance)理论告诉我们，一个分布式系统不可能满足一致性，可用性和分区容错性这三个需求，最多只能同时满足两个。关系型数据库通过把更新操作写到事务型日志里实现了部分耐用性，但带来的是写性能的下降。MongoDB等NoSQL数据库背后蕴涵的哲学是不同的平台应该使用不同类型的数据库，MongoDB通过降低一些特性来达到性能的提高，这在很多大型站点中是可行的。因为MongoDB是非原子性的，所以如果如果应用需要事务，还是需要选择MySQL等关系数据库。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="NoSQL数据库-MongoDB"/>
+  <meta property="og:site_name" content="左哥的记事本"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="左哥的记事本" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">左哥的记事本</a><span class="split"></span><span class="title">NoSQL数据库-MongoDB</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2015-08-22</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <blockquote>
+<p>NoSQL简述</p>
+</blockquote>
+<p>&#160; &#160; &#160; &#160;CAP（Consistency，Availabiity，Partitiontolerance)理论告诉我们，一个分布式系统不可能满足一致性，可用性和分区容错性这三个需求，最多只能同时满足两个。关系型数据库通过把更新操作写到事务型日志里实现了部分耐用性，但带来的是写性能的下降。MongoDB等NoSQL数据库背后蕴涵的哲学是不同的平台应该使用不同类型的数据库，MongoDB通过降低一些特性来达到性能的提高，这在很多大型站点中是可行的。因为MongoDB是非原子性的，所以如果如果应用需要事务，还是需要选择MySQL等关系数据库。</p>
+<span id="more"></span>
+
+<p>&#160; &#160; &#160; &#160;NoSQL数据库，顾名思义就是打破了传统关系型数据库的范式约束。很多NoSQL数据库从数据存储的角度看也不是关系型数据库，而是key-value数据格式的hash数据库。由于放弃了关系数据库强大的SQL查询语言和事务一致性以及范式约束，NoSQL数据库在很大程度上解决了传统关系型数据库面临的诸多挑战。</p>
+<p>&#160; &#160; &#160; &#160;在社区中，NoSQL是指“notonly sql”，其特点是非关系型，分布式，开源，可水平扩展，模式自由，支持replication，简单的API，最终一致性（相对于即时一致性，最终一致性允许有一个“不一致性窗口”，但能保证最终的客户都能看到最新的值）。</p>
+<blockquote>
+<p>MongoDB简介</p>
+</blockquote>
+<p>&#160; &#160; &#160; &#160;mongo取自“humongous”（海量的），是开源的文档数据库──nosql数据库的一种。</p>
+<p>&#160; &#160; &#160; &#160;MongoDB是一种面向集合（collection）的，模式自由的文档（document）数据库。</p>
+<p>&#160; &#160; &#160; &#160;面向集合是说数据被分成集合的形式，每个集合在数据库中有惟一的名称，集合可以包含不限数目的文档。除了模式不是预先定义好的，集合与RDBMS中的表概念类似，虽然二者并不是完全对等。数据库和集合的创建是“lazy”的，即只有在第一个document被插入时集合和数据库才真正创建——这时在磁盘的文件系统里才能看见。</p>
+<p>&#160; &#160; &#160; &#160;模式自由是说数据库不需要知道存放在集合中的文档的结构，完全可以在同一个集合中存放不同结构的文档，支持嵌入子文档。</p>
+<p>&#160; &#160; &#160; &#160;文档类似于RDBMS中的记录，以BSON的格式保存。BSON是BinaryJSON的简称，是对JSON-like文档的二进制编码序列化。像JSON（JavaScriptObject Notation）一样，BSON支持在对象和数组内嵌入其它的对象和数组。有些数据类型在JSON里不能表示，但可以在BSON里表示，如Date类型和BinData（二进制数据），Python原生的类型都可以表示。与ProtocalBuffers（Google开发的用以处理对索引服务器请求&#x2F;应答的协议）相比，BSON模式更自由，所以更灵活，但这样也使得每个文档都要保存字段名，所以空间压缩上不如ProtocolBuffers。</p>
+<p>&#160; &#160; &#160; &#160;BSON第一眼看上去像BLOB，但MongoDB理解BSON的内部机制，所以MongoDB可以深入BSON对象的内部，即使是嵌套的对象，这样MongoDB就可以在顶层和嵌套的BSON对象上建立索引来应对各种查询了。</p>
+<p>&#160; &#160; &#160; &#160;MongoDB可运行在Linux、Windows和OSX平台，支持32位和64位应用，默认端口为27017。推荐运行在64位平台，因为MongoDB为了提高性能使用了内存映射文件进行数据管理，而在32位模式运行时支持的最大文件为2GB。</p>
+<p>&#160; &#160; &#160; &#160;MongoDB查询速度比MySQL要快，因为它cache了尽可能多的数据到RAM中，即使是non-cached数据也非常快。当前MongoDB官方支持的客户端API语言就多达8种（C|C++|Java|Javascript|Perl|PHP|Python|Ruby），社区开发的客户端API还有Erlang、Go、Haskell……</p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2015/08/23/mongodb-api/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2015/07/26/redis-command/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2024 zuoyy
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> .
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

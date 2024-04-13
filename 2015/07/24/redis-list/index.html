@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Redis系列-存储篇list操作 | 左哥的记事本</title>
+  <meta name="author" content="zuoyy">
+  
+  <meta name="description" content="list相关概念
+
+列表：一个从左到右的队列，类似于一个栈，常规模式下，先进列表的元素，后出。
+表头元素：列表最左端第一个元素。
+表尾元素：列表最右端的最后一个元素。不包含任何元素的列表成为空列表。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Redis系列-存储篇list操作"/>
+  <meta property="og:site_name" content="左哥的记事本"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="左哥的记事本" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">左哥的记事本</a><span class="split"></span><span class="title">Redis系列-存储篇list操作</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2015-07-24</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <p>list相关概念</p>
+<ul>
+<li>列表：一个从左到右的队列，类似于一个栈，常规模式下，先进列表的元素，后出。</li>
+<li>表头元素：列表最左端第一个元素。</li>
+<li>表尾元素：列表最右端的最后一个元素。不包含任何元素的列表成为空列表。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="1-新增"><a href="#1-新增" class="headerlink" title="1.新增"></a>1.新增</h2><blockquote>
+<p>lpush<br>语法：lpush key value[value]</p>
+</blockquote>
+<p>解释：把一个或多个元素插入表头。如果是多个value时，按照从左到右的次序插。返回插入元素的个数</p>
+<pre><code>[root@xsf001 ~]# redis-cli  
+redis 127.0.0.1:6379&gt; lpush lst.user zhangsan   #插入一个元素  
+(integer) 1  
+redis 127.0.0.1:6379&gt; lpush lst.user zhangsan lisi   #插入多个元素，list中允许插入重复的元素  
+(integer) 3 
+</code></pre>
+<blockquote>
+<p>lpushx<br>语法：lpushx key value</p>
+</blockquote>
+<p>解释：插入一个表头元素，当且仅当列表key存在时，才能插入。返回列表中元素的个数</p>
+<pre><code>redis 127.0.0.1:6379&gt; lpushx lst.user wangwu   #列表存在  
+(integer) 4  
+redis 127.0.0.1:6379&gt; lpushx lst.tech wangwu   #列表不存在，不插入  
+(integer) 0 
+</code></pre>
+<blockquote>
+<p>rpush<br>语法：rpush key [value]</p>
+</blockquote>
+<p>解释：将一个或多个值插入到队列的队尾。多值时，从左到右依次添加。返回列表中元素个数</p>
+<pre><code>redis 127.0.0.1:6379&gt; rpush lst.user ls005     #列表存在  
+(integer) 5  
+redis 127.0.0.1:6379&gt; rpush lst.tech tec01 tec02 tec03  #列表不存在  
+(integer) 3 
+</code></pre>
+<blockquote>
+<p>rpushx<br>语法：rpushx key value</p>
+</blockquote>
+<p>解释：讲值插入到列表队尾，当且仅当列表key存在时，才添加。返回列表元素个数</p>
+<pre><code>redis 127.0.0.1:6379&gt; rpushx lst.tech tec04  #key 存在  
+(integer) 4  
+redis 127.0.0.1:6379&gt; rpushx lst.sub englist #key 不存在  
+(integer) 0
+</code></pre>
+<blockquote>
+<p>linsert<br>语法：linsert key before|after pivot value</p>
+</blockquote>
+<p>解释：将值插入到pivot的前面或后面。返回列表元素个数。如果参照点pivot不存在不插入。如果有多个pivot，以离表头最近的为准</p>
+<pre><code>redis 127.0.0.1:6379&gt; linsert lst.tech after tec04 tec06  #后面插  
+(integer) 5   
+redis 127.0.0.1:6379&gt; linsert lst.tech before tec06 tec05 #前面插  
+(integer) 6   
+redis 127.0.0.1:6379&gt; linsert lst.tech before tec08 tec07 #参照点不存在，不插  
+(integer) -1  
+redis 127.0.0.1:6379&gt; linsert lst.user after zhangsan zhangsan01  #列表中有多个pivot，以从左到右的第一个为准  
+(integer) 6
+</code></pre>
+<h2 id="2-查询"><a href="#2-查询" class="headerlink" title="2.查询"></a>2.查询</h2><blockquote>
+<p>lindex<br>语法：lindex key index</p>
+</blockquote>
+<p>解释：通过索引index获取列表的元素。 index&gt;&#x3D;0时， 0 表头，1 第二个元素，依次类推；index&lt;0时，-1，表尾，-2倒数第二个元素，依次类推</p>
+<pre><code>redis 127.0.0.1:6379&gt; lindex lst.user 0  #表头  
+&quot;wangwu&quot;   
+redis 127.0.0.1:6379&gt; lindex lst.user -1 #表尾  
+&quot;ls005&quot;  
+redis 127.0.0.1:6379&gt; lindex lst.user 2 #第三个元素  
+&quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; lindex lst.user -2 #倒数第二个元素  
+&quot;zhangsan&quot; 
+</code></pre>
+<blockquote>
+<p>lrange<br>语法：lrange key start stop</p>
+</blockquote>
+<p>解释：获取指定开始和结束范围的一些列元素。0：表头，-1：表尾。如果stop指定的元素在start的左边，返回空列表</p>
+<pre><code>redis 127.0.0.1:6379&gt; lrange lst.user 0 -1 #返回所有  
+1) &quot;wangwu&quot;  
+2) &quot;lisi&quot;  
+3) &quot;zhangsan&quot;  
+4) &quot;zhangsan01&quot;  
+5) &quot;zhangsan&quot;  
+6) &quot;ls005&quot;  
+redis 127.0.0.1:6379&gt; lrange lst.user -1 0  #返回空  
+(empty list or set)  
+redis 127.0.0.1:6379&gt; lrange lst.user 1 2  #返回多个  
+1) &quot;lisi&quot;  
+2) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; lrange lst.user 1 1   #返回一个元素  
+1) &quot;lisi&quot;
+</code></pre>
+<h2 id="3-修改"><a href="#3-修改" class="headerlink" title="3.修改"></a>3.修改</h2><blockquote>
+<p>lset<br>语法：lset key index value</p>
+</blockquote>
+<p>解释：设置列表指定索引的值，如果指定索引不存在则报错</p>
+<pre><code>redis 127.0.0.1:6379&gt; lset lst.user 2 zhangsan1  #设置第三个元素为zhangsan1  
+OK  
+redis 127.0.0.1:6379&gt; lrange lst.user 0 -1  
+1) &quot;wangwu&quot;  
+2) &quot;lisi&quot;  
+3) &quot;zhangsan1&quot;  
+4) &quot;zhangsan01&quot;  
+5) &quot;zhangsan&quot;  
+6) &quot;ls005&quot;  
+redis 127.0.0.1:6379&gt; lset lst.user 6 ls006  #指定索引不存在  
+(error) ERR index out of range
+</code></pre>
+<h2 id="4-删除"><a href="#4-删除" class="headerlink" title="4.删除"></a>4.删除</h2><blockquote>
+<p>ltrim<br>语法：ltrim key start stop</p>
+</blockquote>
+<p>解释：保留指定区域的元素，其他元素全部删除</p>
+<pre><code>redis 127.0.0.1:6379&gt; ltrim lst.user 0 -2  
+OK  
+redis 127.0.0.1:6379&gt; lrange lst.user 0 -1  
+1) &quot;wangwu&quot;  
+2) &quot;lisi&quot;  
+3) &quot;zhangsan1&quot;  
+4) &quot;zhangsan01&quot;  
+5) &quot;zhangsan&quot;
+</code></pre>
+<blockquote>
+<p>lrem<br>语法：lrem key count value</p>
+</blockquote>
+<p>解释：移除等于value的元素，当count&gt;0时，从表头开始查找，移除count个；当count&#x3D;0时，从表头开始查找，移除所有等于value的；当count&lt;0时，从表尾开始查找，移除|count| 个。</p>
+<pre><code>redis 127.0.0.1:6379&gt; lrange lst.user 0 -1  
+1) &quot;zhangsan&quot;  
+2) &quot;wangwu&quot;  
+3) &quot;lisi&quot;  
+4) &quot;zhangsan1&quot;  
+5) &quot;zhangsan01&quot;  
+6) &quot;zhangsan&quot;  
+7) &quot;lisi&quot;  
+8) &quot;zhangsan&quot;  
+9) &quot;lisi&quot;  
+10) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; lrem lst.user 2 zhangsan #移除前两个zhangsan  
+(integer) 2  
+redis 127.0.0.1:6379&gt; lrange lst.user 0 -1  
+1) &quot;wangwu&quot;  
+2) &quot;lisi&quot;  
+3) &quot;zhangsan1&quot;  
+4) &quot;zhangsan01&quot;  
+5) &quot;lisi&quot;  
+6) &quot;zhangsan&quot;  
+7) &quot;lisi&quot;  
+8) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; lrange lst.user -1 zhangsan #移除最后一个zhangsan  
+(empty list or set)  
+redis 127.0.0.1:6379&gt; lrange lst.user 0 -1  
+1) &quot;wangwu&quot;  
+2) &quot;lisi&quot;  
+3) &quot;zhangsan1&quot;  
+4) &quot;zhangsan01&quot;  
+5) &quot;lisi&quot;  
+6) &quot;zhangsan&quot;  
+7) &quot;lisi&quot;  
+redis 127.0.0.1:6379&gt; lrem lst.user 0 lisi  #移除所有lisi  
+(integer) 3  
+redis 127.0.0.1:6379&gt; lrange lst.user 0 -1  
+1) &quot;wangwu&quot;  
+2) &quot;zhangsan1&quot;  
+3) &quot;zhangsan01&quot;  
+4) &quot;zhangsan&quot;  
+redis 127.0.0.1:6379&gt; 
+</code></pre>
+<blockquote>
+<p>rpop<br>语法：rpop key</p>
+</blockquote>
+<p>解释：移除并返回表尾元素</p>
+<pre><code>redis 127.0.0.1:6379&gt; rpop lst.user  
+&quot;zhangsan&quot;
+</code></pre>
+<blockquote>
+<p>lpop<br>语法：lpop key </p>
+</blockquote>
+<p>解释：移除并返回表尾元素</p>
+<pre><code>redis 127.0.0.1:6379&gt; lpop lst.user  
+&quot;wangwu&quot;
+</code></pre>
+<h2 id="5-其他"><a href="#5-其他" class="headerlink" title="5.其他"></a>5.其他</h2><blockquote>
+<p>llen<br>语法：llen key</p>
+</blockquote>
+<p>解释：获取列表长度</p>
+<pre><code>redis 127.0.0.1:6379&gt; llen lst.user  
+(integer) 2
+</code></pre>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2015/07/25/redis-set/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2014/06/12/ios-mdm/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2024 zuoyy
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> .
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

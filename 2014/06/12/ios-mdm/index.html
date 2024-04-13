@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ios-mdm介绍与实现 | 左哥的记事本</title>
+  <meta name="author" content="zuoyy">
+  
+  <meta name="description" content="最近一直在研究mdm系统，首先从ios下手，自己也写了一个demo，目前把学习和实践过程中总结的东西记录下。
+
+MDM介绍MDM的全称是Mobile Device Management，顾名思义是移动设备管理，帮助企业将IT管理能力从传统的PC延伸到移动设备甚至移动应用APP。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="ios-mdm介绍与实现"/>
+  <meta property="og:site_name" content="左哥的记事本"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="左哥的记事本" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">左哥的记事本</a><span class="split"></span><span class="title">ios-mdm介绍与实现</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2014-06-12</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <hr>
+<blockquote>
+<p>最近一直在研究mdm系统，首先从ios下手，自己也写了一个demo，目前把学习和实践过程中总结的东西记录下。</p>
+</blockquote>
+<h2 id="MDM介绍"><a href="#MDM介绍" class="headerlink" title="MDM介绍"></a>MDM介绍</h2><p>MDM的全称是Mobile Device Management，顾名思义是移动设备管理，帮助企业将IT管理能力从传统的PC延伸到移动设备甚至移动应用APP。</p>
+<span id="more"></span>
+
+<h2 id="MDM能够做些什么？"><a href="#MDM能够做些什么？" class="headerlink" title="MDM能够做些什么？"></a>MDM能够做些什么？</h2><ul>
+<li><p>配置</p>
+<p>  账户配置（wifi、vpn、email等）</p>
+<p>  密码策略（密码复杂度等配置）</p>
+<p>  安全与隐私（是否允许发送诊断数据到Apple等）</p>
+<p>  设备功能限制（是否允许摄像头，是否允许siri）</p>
+<p>  应用限制（是否允许用iTunesstore，Safari等）</p>
+<p>  云（是否允许云备份、照片流等）</p>
+<p>  内容分级</p>
+</li>
+<li><p>信息查询</p>
+<p>  基本信息（UDID、设备名、imei等）</p>
+<p>  网络信息（iccid、蓝牙和wifi的mac、手机号等）</p>
+<p>  合规性和安全性(安装的profile、是否有密码保护等）</p>
+<p>  应用（已安装应用id、已安装应用名称等）</p>
+</li>
+<li><p>管理</p>
+<p>  管理配置（安装和删除一个profile）</p>
+<p>  管理Apps（安装和删除一个in-houseApp）</p>
+<p>  擦除设备、清除密码、锁屏</p>
+</li>
+</ul>
+<h2 id="如何实现MDM服务？"><a href="#如何实现MDM服务？" class="headerlink" title="如何实现MDM服务？"></a>如何实现MDM服务？</h2><p><img src="http://i11.tietuku.com/b2b78b6218ecfa76.png" alt="mdm"></p>
+<p>根据iOS mdm 架构图，我们知道我们要做些工作:</p>
+<ol>
+<li>搭建一个MDM Server与设备之间通过HTTPS连接下发mdm指令到设备。</li>
+<li>配置MDM Push证书来向设备发送mdm 推送消息通知。</li>
+</ol>
+<h2 id="搭建一个MDM-Server"><a href="#搭建一个MDM-Server" class="headerlink" title="搭建一个MDM Server"></a>搭建一个MDM Server</h2><ol>
+<li>配置tomcat https支持（配置证书）</li>
+<li>处理checkin及server请求</li>
+<li>根据mdm协议实现所有mdm命令</li>
+<li>配置消息推送Java-apns<a target="_blank" rel="noopener" href="https://github.com/notnoop/java-apns">(https://github.com/notnoop/java-apns)</a></li>
+</ol>
+<p>我自己写了一个Server。<a target="_blank" rel="noopener" href="https://github.com/zuoyy/IOS-MDM-Server">github链接</a></p>
+<h2 id="配置MDM-Push证书"><a href="#配置MDM-Push证书" class="headerlink" title="配置MDM Push证书"></a>配置MDM Push证书</h2><p><img src="http://i11.tietuku.com/3c8183ed7fa0ddae.png" alt="mdm"></p>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+	
+	
+		<li class="prev"><a href="/2015/07/24/redis-list/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2014/05/28/ssl-ca/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2024 zuoyy
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> .
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MongoDB常用API总结 | 左哥的记事本</title>
+  <meta name="author" content="zuoyy">
+  
+  <meta name="description" content="类转换
+
+当把一个类对象存到mongoDB后，从mongoDB取出来时使用setObjectClass()将其转换回原来的类。
+public class Tweet implements DBObject &amp;#123; 
+    /* ... */ 
+&amp;#125; 
+Tweet myTweet = new Tweet(); 
+myTweet.put(&amp;quot;user&amp;quot;, &amp;quot;bruce&amp;quot;); 
+myTweet.put(&amp;quot;message&amp;quot;, &amp;quot;fun&amp;quot;); 
+myTweet.put(&amp;quot;date&amp;quot;, new Date()); 
+collection.insert(myTweet); 
+//转换 
+collection.setObjectClass(Tweet.class); 
+Tweet myTweet = (Tweet)collection.findOne();">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="MongoDB常用API总结"/>
+  <meta property="og:site_name" content="左哥的记事本"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="左哥的记事本" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">左哥的记事本</a><span class="split"></span><span class="title">MongoDB常用API总结</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2015-08-23</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <blockquote>
+<p>类转换</p>
+</blockquote>
+<p>当把一个类对象存到mongoDB后，从mongoDB取出来时使用setObjectClass()将其转换回原来的类。</p>
+<pre><code>public class Tweet implements DBObject &#123; 
+    /* ... */ 
+&#125; 
+Tweet myTweet = new Tweet(); 
+myTweet.put(&quot;user&quot;, &quot;bruce&quot;); 
+myTweet.put(&quot;message&quot;, &quot;fun&quot;); 
+myTweet.put(&quot;date&quot;, new Date()); 
+collection.insert(myTweet); 
+//转换 
+collection.setObjectClass(Tweet.class); 
+Tweet myTweet = (Tweet)collection.findOne(); 
+</code></pre>
+<span id="more"></span>
+
+<blockquote>
+<p>默认ID</p>
+</blockquote>
+<p>当保存的对象没有设置ID时，mongoDB会默认给该条记录设置一个ID（”_id”）。<br>当然你也可以设置自己指定的ID，如：(在mongoDB中执行用db.users.save({_id:1,name:’bruce’});)</p>
+<pre><code>BasicDBObject bo = new BasicDBObject();
+bo.put(&#39;_id&#39;, 1);
+bo.put(&#39;name&#39;, &#39;bruce&#39;);
+collection.insert(bo);
+</code></pre>
+<blockquote>
+<p>权限</p>
+</blockquote>
+<p>判断是否有mongoDB的访问权限，有就返回true，否则返回false。</p>
+<pre><code>boolean auth = db.authenticate(myUserName, myPassword);
+</code></pre>
+<blockquote>
+<p>查看mongoDB数据库列表</p>
+</blockquote>
+<pre><code>Mongo m = new Mongo(); 
+for (String s : m.getDatabaseNames()) &#123; 
+    System.out.println(s); 
+&#125;
+</code></pre>
+<blockquote>
+<p>查看当前库下所有的表名，等于在mongoDB中执行showtables;</p>
+</blockquote>
+<pre><code>Set colls = db.getCollectionNames(); 
+for (String s : colls) &#123; 
+    System.out.println(s); 
+&#125;
+</code></pre>
+<blockquote>
+<p>查看一个表的索引</p>
+</blockquote>
+<pre><code>List list = coll.getIndexInfo(); 
+for (DBObject o : list) &#123; 
+    System.out.println(o); 
+&#125; 
+</code></pre>
+<blockquote>
+<p>删除一个数据库</p>
+</blockquote>
+<pre><code>Mongo m = new Mongo(); 
+m.dropDatabase(&quot;myDatabaseName&quot;);
+</code></pre>
+<blockquote>
+<p>建立mongoDB的链接</p>
+</blockquote>
+<pre><code>Mongo m = new Mongo(&quot;localhost&quot;, 27017); //有多个重载方法，可根据需要选择
+DB db = m.getDB(&quot;myDatabaseName&quot;); //相当于库名 
+DBCollection coll = db.getCollection(&quot;myUsersTable&quot;)；//相当于表名 
+</code></pre>
+<p>查询数据</p>
+<blockquote>
+<p>查询第一条记录</p>
+</blockquote>
+<pre><code>DBObject firstDoc = coll.findOne(); 
+</code></pre>
+<p>findOne()返回一个记录，而find()返回的是DBCursor游标对象。</p>
+<blockquote>
+<p>查询全部数据</p>
+</blockquote>
+<pre><code>DBCursor cur = coll.find(); 
+while(cur.hasNext()) &#123; 
+    System.out.println(cur.next()); 
+&#125;
+</code></pre>
+<blockquote>
+<p>查询记录数量</p>
+</blockquote>
+<pre><code>coll.find().count(); 
+coll.find(new BasicDBObject(&quot;age&quot;, 26)).count();
+</code></pre>
+<blockquote>
+<p>条件查询</p>
+</blockquote>
+<pre><code>BasicDBObject condition = new BasicDBObject(); 
+condition.put(&quot;name&quot;, &quot;bruce&quot;); 
+condition.put(&quot;age&quot;, 26); 
+coll.find(condition);
+</code></pre>
+<blockquote>
+<p>查询部分数据块</p>
+</blockquote>
+<pre><code>DBCursor cursor = coll.find().skip(0).limit(10); 
+while(cursor.hasNext()) &#123; 
+    System.out.println(cursor.next()); 
+&#125; 
+</code></pre>
+<blockquote>
+<p>比较查询(age &gt;50)</p>
+</blockquote>
+<pre><code>BasicDBObject condition = new BasicDBObject(); 
+condition.put(&quot;age&quot;, new BasicDBObject(&quot;$gt&quot;,50)); 
+coll.find(condition);
+</code></pre>
+<blockquote>
+<p>比较符</p>
+</blockquote>
+<pre><code>&quot;$gt&quot;： 大于
+&quot;$gte&quot;：大于等于
+&quot;$lt&quot;： 小于
+&quot;$lte&quot;：小于等于
+&quot;$in&quot;： 包含
+//以下条件查询20&lt;age&lt;=30
+condition.put(&quot;age&quot;, new BasicDBObject(&quot;$gt&quot;,20).append(&quot;$lte&quot;, 30));
+</code></pre>
+<p>插入数据</p>
+<blockquote>
+<p>批量插入</p>
+</blockquote>
+<pre><code>List datas = new ArrayList(); 
+for (int i=0; i &lt; 100; i++) &#123; 
+    BasicDBObject bo = new BasicDBObject(); 
+    bo.put(&quot;name&quot;, &quot;bruce&quot;); 
+    bo.append(&quot;age&quot;, i); 
+    datas.add(bo); 
+&#125; 
+coll.insert(datas); 
+</code></pre>
+<p>又如：</p>
+<pre><code>DBCollection coll = db.getCollection(&quot;testCollection&quot;);   
+for(int i=1; i&lt;=100; i++) &#123;//插入100条记录   
+    User user = new User();   
+    user.setName(&quot;user_&quot;+i);  
+    user.setPoint(i);   
+    coll.insert(user);
+&#125;
+</code></pre>
+<blockquote>
+<p>正则表达式</p>
+</blockquote>
+<p>查询所有名字匹配 &#x2F;joh?n&#x2F;i 的记录</p>
+<pre><code>Pattern pattern = Pattern.compile(&quot;joh?n&quot;,CASE_INSENSITIVE); 
+BasicDBObject query = new BasicDBObject(&quot;name&quot;, pattern); 
+DBCursor cursor = coll.find(query);
+</code></pre>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+		
+			
+			
+			
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2015/09/26/scrum/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next"><a href="/2015/08/22/nosql-mongodb/" class="alignright next">next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2024 zuoyy
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> .
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>

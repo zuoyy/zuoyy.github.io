@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>用Keytool和OpenSSL生成和签发数字证书 | 左哥的记事本</title>
+  <meta name="author" content="zuoyy">
+  
+  <meta name="description" content="JAVA Keytool
+JDK目录%JAVA_HOME%&amp;#x2F;bin提供了密钥库管理工具Keytool，用于管理密钥、证书和证书链。Keytool也可以用来管理对称加密算法中的密钥。
+
+最简单的命令是生成一个自签名的证书，并把它放到指定的keystore文件中：
+keytool -genkey -alias tomcat -keyalg RSA -keystore c:/mykey
+
+注意，公共名称(cn)应该是服务器的域名。这样keystore中就存在一个别名为tomcat的实体，它包括公钥、私钥和证书。这个证书是自签名的。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="用Keytool和OpenSSL生成和签发数字证书"/>
+  <meta property="og:site_name" content="左哥的记事本"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="左哥的记事本" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">  
+  <link rel="stylesheet" href="/css/sidenav.css" media="screen" type="text/css">  
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+<body id="body" data-spy="scroll" data-target=".toc">
+  <div class="container" id="container">
+	<div class="content">
+	  <div class="page-header">		
+  <h1><a class="brand" href="/">左哥的记事本</a><span class="split"></span><span class="title">用Keytool和OpenSSL生成和签发数字证书</span><span class="date" id="title-date"><i class="fa fa-clock-o"></i> 2014-05-28</span></h1>
+</div>		
+
+<div class="row page">
+  <!-- cols -->	
+  
+  
+
+  
+	<div class="col-md-12">
+	  
+
+	  <!-- content -->
+	  <hr>
+<h2 id="JAVA-Keytool"><a href="#JAVA-Keytool" class="headerlink" title="JAVA Keytool"></a>JAVA Keytool</h2><blockquote>
+<p>JDK目录%JAVA_HOME%&#x2F;bin提供了密钥库管理工具Keytool，用于管理密钥、证书和证书链。Keytool也可以用来管理对称加密算法中的密钥。</p>
+</blockquote>
+<p>最简单的命令是生成一个自签名的证书，并把它放到指定的keystore文件中：</p>
+<pre><code>keytool -genkey -alias tomcat -keyalg RSA -keystore c:/mykey
+</code></pre>
+<p>注意，公共名称(cn)应该是服务器的域名。这样keystore中就存在一个别名为tomcat的实体，它包括公钥、私钥和证书。这个证书是自签名的。</p>
+<span id="more"></span>
+
+<p>下面用Keytool生成CSR（Certificate Signing Request），并用OpenSSL生成CA签名的证书,OpenSSL就不在这介绍了。</p>
+<ol>
+<li>准备</li>
+</ol>
+<hr>
+<pre><code>1) 在bin目录下新建目录 demoCA、demoCA/certs、demoCA/newcerts
+2) 在demoCA建立一个空文件 index.txt
+3) 在demoCA建立一个文本文件 serial, 没有扩展名，内容是一个合法的16进制数字，例如 0000
+4) 配置环境变量PATH，加入%JAVA_HOME%/bin，本文用的JavaSDK1.6
+</code></pre>
+<ol start="2">
+<li>生成CA的自签名证书</li>
+</ol>
+<hr>
+<pre><code>openssl req -new -x509 -keyout ca.key -out ca.crt -config openssl.cnf
+</code></pre>
+<ol start="3">
+<li>生成server端证书</li>
+</ol>
+<hr>
+<p>1)生成KeyPair生成密钥对</p>
+<pre><code>keytool -genkey -alias tomcat_server -validity 365 -keyalg RSA -keysize 1024 -keypass 123456  -storepass 123456 -keystore server_keystore
+</code></pre>
+<p>输入common name时，要和服务器的域名保持一致。</p>
+<p>2)生成证书签名请求</p>
+<pre><code>keytool -certreq -alias tomcat_server -sigalg MD5withRSA -file tomcat_server.csr -keypass 123456 -storepass 123456 -keystore server_keystore
+</code></pre>
+<p>3)用CA私钥进行签名，也可以到权威机构申请CA签名。</p>
+<pre><code>openssl ca -in tomcat_server.csr -out tomcat_server.crt -cert ca.crt -keyfile ca.key -notext -config openssl.cnf
+</code></pre>
+<p>其中-notext表示不要把证书文件的明文内容输出到文件中去，否则在后面用keytool导入到keystore时会出错。</p>
+<p>4)导入信任的CA根证书到keystore</p>
+<pre><code>keytool -import -v -trustcacerts  -alias my_ca_root -file ca.crt -storepass 123456 -keystore server_keystore
+</code></pre>
+<p>5)把CA签名后的server端证书导入keystore</p>
+<pre><code>keytool -import -v -alias tomcat_server -file tomcat_server.crt -storepass 123456 -keystore server_keystore
+</code></pre>
+<p>6)查看server端证书</p>
+<pre><code>keytool -list -v -keystore server_keystore
+</code></pre>
+<p>可以看到tomcat_server的证书链长度是2</p>
+<ol start="4">
+<li>生成client端证书</li>
+</ol>
+<hr>
+<p>1)生成客户端CSR</p>
+<pre><code>openssl genrsa -des3 -out tomcat_client.key 1024
+openssl req -new -key tomcat_client.key -out tomcat_client.csr -confi openssl.cnf
+</code></pre>
+<p>2)用CA私钥进行签名，也可以到权威机构申请CA签名</p>
+<pre><code>openssl ca -in tomcat_client.csr -out tomcat_client.crt -cert ca.crt -keyfile ca.key -notext -config openssl.cnf
+</code></pre>
+<p>3)生成PKCS12格式证书</p>
+<pre><code>openssl pkcs12 -export -inkey tomcat_client.key -in tomcat_client.crt -out  tomcat_client.p12
+</code></pre>
+<p>4)使用Keytool列出pkcs12证书的内容</p>
+<pre><code>keytool -rfc -list -keystore tomcat_client.p12 -storetype pkcs12
+</code></pre>
+	  
+
+	  <div>
+  		<center>
+		  <div class="pagination">
+<ul class="pagination">
+	
+	
+	
+	
+	
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+		
+	
+		
+			
+			
+		
+	
+	
+	
+		<li class="prev"><a href="/2014/06/12/ios-mdm/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>prev</a></li>
+	
+	<li><a href="/"><i class="fa fa-archive"></i>Home</a></li>
+	
+		<li class="next disabled"><a>next<i class="fa fa-arrow-circle-o-right"></i></a></li>
+	
+</ul>
+</div>
+
+		</center>
+	  </div>
+	  
+	</div> <!-- col-md-9/col-md-12 -->
+	
+  </div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+	<footer> <p>
+  &copy; 2024 zuoyy
+  
+      with help from <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a> .
+</p> </footer>
+  </div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.tableofcontents.min.js"></script>
+<script src="/js/tocgenerator.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+
+</body>
+</html>
