@@ -1,0 +1,705 @@
+/* =============================================================================
+   Header Menu (Integrated)
+   ========================================================================== */
+
+/* 头部导航容器 - 用于首页和文章页 */
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: 15px;
+}
+
+/* 首页特定的header-nav调整 */
+.index-header .header-nav {
+  border-bottom: none;
+  margin-bottom: 20px;
+}
+
+.index-header .header-nav .site-title {
+  margin: 0;
+  font-size: 1.5em;
+  /* 稍微调小以适应单行 */
+  line-height: normal;
+}
+
+.header-nav .brand,
+.index-header .site-title a {
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: none;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+}
+
+.header-nav .brand:hover,
+.index-header .site-title a:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+/* 菜单列表样式 */
+.header-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+
+.header-menu ul li a {
+  color: #ccc;
+  font-size: 0.95em;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.header-menu ul li a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* 修复链接点击后的白框问题 */
+a:focus,
+.header-menu ul li a:focus,
+.header-nav .brand:focus {
+  outline: none;
+  background: transparent;
+  text-decoration: none;
+}
+
+/* 首页头部 - 调整副标题位置 */
+.index-header .site-subtitle {
+  color: #999;
+  font-size: 1em;
+  text-align: left;
+  margin-top: -10px;
+  padding-left: 2px;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 768px) {
+  .header-nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-menu ul {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .header-menu ul li a {
+    padding: 5px 8px;
+    font-size: 0.9em;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .index-header .site-subtitle {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+/* 首页头部样式 */
+.index-header {
+  text-align: center;
+  padding: 40px 20px !important;
+}
+
+.index-header .site-title {
+  font-size: 2.2em;
+  margin: 0 0 10px 0;
+  color: #fff;
+}
+
+/* 移动端导航适配 */
+@media screen and (max-width: 768px) {
+  .index-header {
+    padding: 25px 15px !important;
+  }
+
+  .index-header .site-title {
+    font-size: 1.6em;
+  }
+}
+
+/* =============================================================================
+   container
+   ========================================================================== */
+
+.container-narrow {
+  margin: 0 auto;
+  max-width: 970px;
+}
+
+.container-narrow>footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.container-narrow>footer p {
+  background-color: rgba(245, 245, 245, 0.75);
+  padding: 5px;
+  display: inline-block;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+/* =============================================================================
+   Body and structure
+   ========================================================================== */
+
+body {
+  position: relative;
+  background-color: #fff;
+  background-repeat: repeat-x;
+  background-position: 0 40px;
+  padding-bottom: 70px;
+}
+
+.content {
+  padding: 20px;
+  margin: 20px -20px;
+  /* negative indent the amount of the padding to maintain the grid system */
+  -webkit-border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px 6px 6px 6px;
+  border-radius: 6px 6px 6px 6px;
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, .75);
+  -moz-box-shadow: 0 2px 102px rgba(0, 0, 0, .75);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .75);
+}
+
+#sidebar {
+  margin-left: 5px;
+  padding-left: 15px;
+  border-left: 1px solid #e0e0e0;
+  font-size: 0.9em;
+}
+
+/* =============================================================================
+   page
+   ========================================================================== */
+
+.page {
+  margin: 1.0em 0em;
+  padding-top: 25px;
+  line-height: 1.5em;
+  font-family: 'Open Sans', "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
+}
+
+.page p {
+  margin: 1.0em 0em;
+}
+
+.page .panel-heading {
+  background-color: #eee;
+  font-weight: bold;
+}
+
+.page .panel-collapse .panel-body {
+  padding: 9px 15px;
+  background-color: #F5F5D5;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.note {
+  position: relative;
+  margin-top: -20px;
+}
+
+/* =============================================================================
+   pagination
+   ========================================================================== */
+
+.pagination {
+  margin: 10px 0;
+}
+
+.pagination a {
+  color: #555;
+}
+
+
+/* =============================================================================
+   List
+   ========================================================================== */
+
+li i {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.listing-item {
+  line-height: 24px;
+}
+
+/* =============================================================================
+   hyper links
+   ========================================================================== */
+
+a {
+  color: #1863a1
+}
+
+a:focus {
+  color: #0181eb
+}
+
+a:hover {
+  color: #0181eb
+}
+
+a:active {
+  color: #01579f
+}
+
+a.label-anchor {
+  position: relative;
+  display: block;
+  text-align: right;
+  width: 200px;
+  left: -210px;
+  font-family: 'PT Sans', sans-serif;
+}
+
+a.label-anchor:target span {
+  background-color: #b94a48;
+}
+
+a.label-anchor:hover {
+  text-decoration: none;
+}
+
+a.label-anchor span {
+  font-weight: bold;
+  line-height: 0px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  background-color: #666;
+  padding: 1px 4px 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+a.inline-ref {
+  border-bottom: dotted 1px #333;
+  color: black;
+}
+
+a.inline-ref:hover {
+  text-decoration: none;
+  border-bottom: solid 1px #000;
+}
+
+/* =============================================================================
+  blockquote
+   ========================================================================== */
+
+blockquote {
+  border-left: 5px solid #cccccc;
+  font-size: 1em;
+  background-color: #fff;
+  padding: 0px 20px;
+}
+
+blockquote p,
+blockquote ol,
+blockquote ul,
+blockquote li,
+.slogan {
+  font-family: 'Open Sans', "Helvetica Neue", '楷体', 'STKaiti', "Kai", "kaiti", Helvetica, "Segoe UI", Ubuntu, "Hiragino Sans GB";
+}
+
+/* =============================================================================
+   img, video
+   ========================================================================== */
+
+img,
+video {
+  max-width: 97.5%;
+  margin: 15px, auto;
+  display: block;
+  height: auto;
+}
+
+/* =============================================================================
+   scroll to top
+   ========================================================================== */
+
+#gotop {
+  display: block;
+  width: 36px;
+  height: 36px;
+  position: fixed;
+  bottom: 40px;
+  right: 30px;
+  border-radius: 7px;
+  text-decoration: none;
+  display: none;
+  background-color: #999999;
+}
+
+#gotop span {
+  display: block;
+  color: #dddddd;
+}
+
+#gotop span:hover {
+  color: #cccccc;
+}
+
+#gotop span {
+  font-size: 24px;
+  text-align: center;
+}
+
+/* =============================================================================
+   Headers
+   ========================================================================== */
+
+header h1 {
+  font-weight: normal;
+  line-height: 1.2em;
+  margin-bottom: 0.6667em;
+
+}
+
+.page-header h1 span.split {
+  margin-left: 10px;
+  margin-right: 10px;
+  border-right: solid #333 2px;
+}
+
+.page-header h1 span.title {
+  font-weight: normal;
+  font-family: "Droid Serif", "Kai", "KaiTi";
+}
+
+.page-header h1 span.date {
+  display: inline;
+  position: absolute;
+  font-size: 0.7em;
+  color: #555;
+  font-family: 'PT Sans Narrow', sans-serif;
+}
+
+h1 {
+  font-size: 2.6em;
+  line-height: 1.2em;
+  margin-bottom: 0.6667em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-rendering: optimizelegibility;
+  font-weight: bold;
+  font-family: 'Open Sans', "Helvetica Neue", "Helvetica", "Microsoft YaHei", "WenQuanYi Micro Hei", Arial, sans-serif;
+}
+
+h2 {
+  margin: 0.83em 0;
+  color: green;
+  border-bottom: 2px #ccc solid;
+  padding-top: 40px;
+  margin-top: -45px;
+}
+
+h3 {
+  border-bottom: 1.5px solid #dcdce9;
+  margin-top: -5px;
+  color: #9C4C17;
+}
+
+h4 {
+  color: #B94A48;
+}
+
+h2,
+section h1 {
+  font-size: 1.5em
+}
+
+h3,
+section h2,
+section section h1 {
+  font-size: 1.3em
+}
+
+h4,
+section h3,
+section section h2,
+section section section h1 {
+  font-size: 1em
+}
+
+h5,
+section h4,
+section section h3 {
+  font-size: .9em
+}
+
+h6,
+section h5,
+section section h4,
+section section section h3 {
+  font-size: .8em
+}
+
+.page-header {
+  -webkit-background-clip: border-box;
+  -webkit-background-origin: padding-box;
+  -webkit-background-size: cover;
+  /* background-color: #f5f5f5; */
+  padding: 10px 20px 0px 20px;
+  margin: -20px -20px 20px;
+  background: #333;
+  background: -moz-linear-gradient(top, #222, #000 50%);
+  background: -webkit-gradient(linear, 0 0, 0 50%, from(#222), to(#000));
+  color: #bbbbbb;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+h2,
+h3 {
+  margin: 0.5em 0px;
+}
+
+.page-header .brand {
+  color: #bbbbbb;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
+  -webkit-transition: all .2s linear;
+  -moz-transition: all .2s linear;
+  transition: all .2s linear;
+}
+
+.page-header .brand:hover {
+  color: #ffffff;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .4);
+}
+
+/* 新的头部布局样式 */
+.header-nav {
+  text-align: left;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.header-nav .brand {
+  font-size: 0.85em;
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+.header-nav .brand:hover {
+  opacity: 1;
+}
+
+.header-nav .brand i {
+  margin-right: 5px;
+}
+
+.header-title {
+  text-align: center;
+  padding: 25px 15px 20px 15px;
+}
+
+h1.article-title {
+  font-size: 1.8em;
+  line-height: 1.4;
+  margin: 0 0 15px 0;
+  padding: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  color: #fff;
+  font-family: "Microsoft YaHei", "WenQuanYi Micro Hei", "Helvetica Neue", Arial, sans-serif;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.article-meta {
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+.article-meta span {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.article-meta i {
+  margin-right: 5px;
+}
+
+.article-meta .category {
+  color: #8cb4ff;
+}
+
+/* 移动端响应式适配 */
+@media screen and (max-width: 768px) {
+  .page-header {
+    padding: 10px 15px 0 15px;
+    margin: -20px -20px 15px;
+  }
+
+  .header-nav {
+    padding-bottom: 10px;
+  }
+
+  .header-nav .brand {
+    font-size: 0.8em;
+  }
+
+  .header-title {
+    padding: 15px 5px;
+  }
+
+  h1.article-title {
+    font-size: 1.4em;
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+
+  .article-meta {
+    font-size: 0.8em;
+  }
+
+  .article-meta span {
+    display: inline-block;
+    margin: 0 5px;
+  }
+}
+
+/* =============================================================================
+   Codes
+   ========================================================================== */
+
+.line {
+  height: 20px;
+}
+
+/* =============================================================================
+   Tables
+   ========================================================================== */
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+
+th {
+  padding: 12px 10px 12px 10px;
+  border-bottom: 1px dashed #4088b8;
+}
+
+td {
+  padding: 7px 10px 7px 10px;
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+
+/* =============================================================================
+   Local search
+   ========================================================================== */
+
+
+#local-search-result {
+  scroll: auto;
+  overflow: auto;
+  max-height: 3in;
+  background-color: #fef;
+  margin-bottom: 10px;
+}
+
+ul.search-result-list {
+  padding-left: 10px;
+}
+
+a.search-result-title {
+  font-weight: bold;
+}
+
+p.search-result {
+  color=#555;
+}
+
+em.search-keyword {
+  border-bottom: 1px dashed #4088b8;
+  font-weight: bold;
+}
+
+
+/**
+ * 
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    contenteditable attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that are clearfixed.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+.cf:before,
+.cf:after {
+  content: "";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.cf:after {
+  clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+/* 移动端容器适配 */
+@media screen and (max-width: 768px) {
+  .content {
+    margin: 10px 0 !important;
+    padding: 15px;
+    border-radius: 8px !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .page-header {
+    margin: -15px -15px 15px;
+    border-radius: 8px 8px 0 0 !important;
+    padding: 15px !important;
+    /* 修复头部背景不完整 */
+    width: auto;
+  }
+
+  /* 修复容器可能的溢出 */
+  .container {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto !important;
+  }
+}
