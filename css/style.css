@@ -48,7 +48,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 20px;
+  gap: 10;
 }
 
 .header-menu ul li a {
