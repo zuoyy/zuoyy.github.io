@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>左哥</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>https://zuoyy.com/</id>
+  <link href="https://zuoyy.com/" rel="alternate"/>
+  <link href="https://zuoyy.com/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, 左哥</rights>
+  <title>左哥AI笔记</title>
+  <updated>2026-03-11T13:41:23.167Z</updated>
+  <entry>
+    <author>
+      <name>左哥</name>
+    </author>
+    <category term="OpenClaw" scheme="https://zuoyy.com/categories/OpenClaw/"/>
+    <category term="OpenClaw" scheme="https://zuoyy.com/tags/OpenClaw/"/>
+    <id>https://zuoyy.com/2026/03/11/openclaw-install-guide/</id>
+    <link href="https://zuoyy.com/2026/03/11/openclaw-install-guide/"/>
+    <published>2026-03-11T09:27:21.000Z</published>
+    <summary>
+      <![CDATA[<h2 id="✨-什么是-OpenClaw？"><a href="#✨-什么是-OpenClaw？" class="headerlink" title="✨ 什么是 OpenClaw？"></a>✨ 什么是 OpenClaw？</h2><p>OpenClaw 是一个强大的]]>
+    </summary>
+    <title>新手必看！OpenClaw AI 助手零基础安装指南</title>
+    <updated>2026-03-11T13:41:23.167Z</updated>
+  </entry>
+</feed>
