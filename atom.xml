@@ -9,7 +9,7 @@
   <link href="https://zuoyy.com/atom.xml" rel="self"/>
   <rights>All rights reserved 2026, 左哥</rights>
   <title>左哥AI笔记</title>
-  <updated>2026-03-11T13:41:23.167Z</updated>
+  <updated>2026-03-13T05:38:17.930Z</updated>
   <entry>
     <author>
       <name>左哥</name>
@@ -20,9 +20,13 @@
     <link href="https://zuoyy.com/2026/03/11/openclaw-install-guide/"/>
     <published>2026-03-11T09:27:21.000Z</published>
     <summary>
-      <![CDATA[<h2 id="✨-什么是-OpenClaw？"><a href="#✨-什么是-OpenClaw？" class="headerlink" title="✨ 什么是 OpenClaw？"></a>✨ 什么是 OpenClaw？</h2><p>OpenClaw 是一个强大的]]>
+      <![CDATA[<blockquote>
+<p>面向刚接触 OpenClaw 的开发者&#x2F;折腾党：从安装、配置、渠道接入，到 Skills、Workspace、常见问题排查，尽量一次讲清楚。</p>
+</blockquote>
+<hr>
+<h2]]>
     </summary>
-    <title>新手必看！OpenClaw AI 助手零基础安装指南</title>
-    <updated>2026-03-11T13:41:23.167Z</updated>
+    <title>新手必看！OpenClaw AI助手零基础安装指南</title>
+    <updated>2026-03-13T05:38:17.930Z</updated>
   </entry>
 </feed>
