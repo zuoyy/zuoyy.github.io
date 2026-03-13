@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>左哥</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>https://zuoyy.com/</id>
+  <link href="https://zuoyy.com/" rel="alternate"/>
+  <link href="https://zuoyy.com/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, 左哥</rights>
+  <title>左哥AI笔记</title>
+  <updated>2026-03-13T11:06:01.654Z</updated>
+  <entry>
+    <author>
+      <name>左哥</name>
+    </author>
+    <category term="AI教程" scheme="https://zuoyy.com/categories/AI%E6%95%99%E7%A8%8B/"/>
+    <category term="AI" scheme="https://zuoyy.com/tags/AI/"/>
+    <category term="MCP" scheme="https://zuoyy.com/tags/MCP/"/>
+    <category term="Agent" scheme="https://zuoyy.com/tags/Agent/"/>
+    <category term="OpenAI" scheme="https://zuoyy.com/tags/OpenAI/"/>
+    <category term="Claude" scheme="https://zuoyy.com/tags/Claude/"/>
+    <category term="VS Code" scheme="https://zuoyy.com/tags/VS-Code/"/>
+    <id>https://zuoyy.com/2026/03/13/mcp-practical-guide/</id>
+    <link href="https://zuoyy.com/2026/03/13/mcp-practical-guide/"/>
+    <published>2026-03-13T11:06:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>面向想做 AI Agent、工具调用、自动化工作流的开发者：这篇文章尽量用一篇讲清楚 MCP 是什么、为什么突然火了、适合解决什么问题，以及你该怎么开始上手。</p>
+</blockquote>
+<hr>
+<h2]]>
+    </summary>
+    <title>2026年最值得写的 AI 教程之一：MCP 从入门到实战指南</title>
+    <updated>2026-03-13T11:06:01.654Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>左哥</name>
+    </author>
+    <category term="OpenClaw" scheme="https://zuoyy.com/categories/OpenClaw/"/>
+    <category term="OpenClaw" scheme="https://zuoyy.com/tags/OpenClaw/"/>
+    <id>https://zuoyy.com/2026/03/11/openclaw-install-guide/</id>
+    <link href="https://zuoyy.com/2026/03/11/openclaw-install-guide/"/>
+    <published>2026-03-11T09:27:21.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>面向刚接触 OpenClaw 的开发者&#x2F;折腾党：从安装、配置、渠道接入，到 Skills、Workspace、常见问题排查，尽量一次讲清楚。</p>
+</blockquote>
+<hr>
+<h2]]>
+    </summary>
+    <title>新手必看！OpenClaw AI助手零基础安装指南</title>
+    <updated>2026-03-13T10:53:20.094Z</updated>
+  </entry>
+</feed>
