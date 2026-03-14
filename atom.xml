@@ -8,8 +8,29 @@
   <link href="https://zuoyy.com/" rel="alternate"/>
   <link href="https://zuoyy.com/atom.xml" rel="self"/>
   <rights>All rights reserved 2026, 左哥</rights>
+  <subtitle>在AI浪潮里，做一个清醒的记录者</subtitle>
   <title>左哥AI笔记</title>
-  <updated>2026-03-13T11:06:01.654Z</updated>
+  <updated>2026-03-14T04:29:02.452Z</updated>
+  <entry>
+    <author>
+      <name>左哥</name>
+    </author>
+    <category term="AI教程" scheme="https://zuoyy.com/categories/AI%E6%95%99%E7%A8%8B/"/>
+    <category term="MCP" scheme="https://zuoyy.com/tags/MCP/"/>
+    <category term="Agent" scheme="https://zuoyy.com/tags/Agent/"/>
+    <category term="OpenAI" scheme="https://zuoyy.com/tags/OpenAI/"/>
+    <category term="Function Calling" scheme="https://zuoyy.com/tags/Function-Calling/"/>
+    <category term="AI开发" scheme="https://zuoyy.com/tags/AI%E5%BC%80%E5%8F%91/"/>
+    <id>https://zuoyy.com/2026/03/14/mcp-vs-function-calling/</id>
+    <link href="https://zuoyy.com/2026/03/14/mcp-vs-function-calling/"/>
+    <published>2026-03-14T04:31:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>面向正在做 AI Agent、工具调用、自动化工作流的开发者：这篇文章不讲空概念，重点回答一个实际问题——MCP 和 function calling]]>
+    </summary>
+    <title>MCP 和 function calling 到底怎么选？给开发者的实用判断</title>
+    <updated>2026-03-14T04:29:02.452Z</updated>
+  </entry>
   <entry>
     <author>
       <name>左哥</name>
@@ -38,7 +59,8 @@
     <author>
       <name>左哥</name>
     </author>
-    <category term="OpenClaw" scheme="https://zuoyy.com/categories/OpenClaw/"/>
+    <category term="AI教程" scheme="https://zuoyy.com/categories/AI%E6%95%99%E7%A8%8B/"/>
+    <category term="AI" scheme="https://zuoyy.com/tags/AI/"/>
     <category term="OpenClaw" scheme="https://zuoyy.com/tags/OpenClaw/"/>
     <id>https://zuoyy.com/2026/03/11/openclaw-install-guide/</id>
     <link href="https://zuoyy.com/2026/03/11/openclaw-install-guide/"/>
@@ -51,6 +73,6 @@
 <h2]]>
     </summary>
     <title>新手必看！OpenClaw AI助手零基础安装指南</title>
-    <updated>2026-03-13T10:53:20.094Z</updated>
+    <updated>2026-03-14T04:20:54.041Z</updated>
   </entry>
 </feed>
