@@ -10,7 +10,30 @@
   <rights>All rights reserved 2026, 左哥</rights>
   <subtitle>在AI浪潮里，做一个清醒的记录者</subtitle>
   <title>左哥AI笔记</title>
-  <updated>2026-03-14T05:07:28.511Z</updated>
+  <updated>2026-03-15T11:40:38.032Z</updated>
+  <entry>
+    <author>
+      <name>左哥</name>
+    </author>
+    <category term="AI教程" scheme="https://zuoyy.com/categories/AI%E6%95%99%E7%A8%8B/"/>
+    <category term="Agent" scheme="https://zuoyy.com/tags/Agent/"/>
+    <category term="AI开发" scheme="https://zuoyy.com/tags/AI%E5%BC%80%E5%8F%91/"/>
+    <category term="教程" scheme="https://zuoyy.com/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="RAG" scheme="https://zuoyy.com/tags/RAG/"/>
+    <category term="知识库" scheme="https://zuoyy.com/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/"/>
+    <id>https://zuoyy.com/2026/03/15/when-to-use-rag/</id>
+    <link href="https://zuoyy.com/2026/03/15/when-to-use-rag/"/>
+    <published>2026-03-15T05:50:00.000Z</published>
+    <summary>
+      <![CDATA[<blockquote>
+<p>面向正在考虑是否上 RAG 的开发者：这篇文章不讲 RAG 是什么，也不堆概念，而是直接回答一个核心问题——什么情况下该用 RAG，什么情况下不该用，以及怎么判断自己需不需要 RAG。</p>
+</blockquote>
+<hr>
+<h2]]>
+    </summary>
+    <title>RAG 到底什么时候该用，什么时候不该用？给开发者的实用判断</title>
+    <updated>2026-03-15T11:40:38.032Z</updated>
+  </entry>
   <entry>
     <author>
       <name>左哥</name>
