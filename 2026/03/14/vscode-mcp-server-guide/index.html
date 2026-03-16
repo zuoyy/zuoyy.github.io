@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="2026年最值得写的 AI 教程之一：MCP 从入门到实战指南, AI, AI教程, MCP, Agent, 大模型, OpenAI, Claude, 编程, 程序员, 效率工具">
+    <meta name="keywords" content="VS Code 里怎么接入 MCP Server？给开发者的实战教程, AI, AI教程, MCP, Agent, 大模型, OpenAI, Claude, 编程, 程序员, 效率工具">
     <meta name="description" content="用写代码的严谨，记录AI时代的每一个脚印。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>2026年最值得写的 AI 教程之一：MCP 从入门到实战指南 | 左哥AI笔记</title>
+    <title>VS Code 里怎么接入 MCP Server？给开发者的实战教程 | 左哥AI笔记</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">2026年最值得写的 AI 教程之一：MCP 从入门到实战指南</h1>
+                    <h1 class="description center-align post-title">VS Code 里怎么接入 MCP Server？给开发者的实战教程</h1>
                 </div>
             </div>
         </div>
@@ -324,10 +324,6 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/AI/">
-                                <span class="chip bg-color">AI</span>
-                            </a>
-                        
                             <a href="/tags/MCP/">
                                 <span class="chip bg-color">MCP</span>
                             </a>
@@ -336,16 +332,16 @@
                                 <span class="chip bg-color">Agent</span>
                             </a>
                         
-                            <a href="/tags/OpenAI/">
-                                <span class="chip bg-color">OpenAI</span>
-                            </a>
-                        
-                            <a href="/tags/Claude/">
-                                <span class="chip bg-color">Claude</span>
-                            </a>
-                        
                             <a href="/tags/VS-Code/">
                                 <span class="chip bg-color">VS Code</span>
+                            </a>
+                        
+                            <a href="/tags/AI%E5%BC%80%E5%8F%91/">
+                                <span class="chip bg-color">AI开发</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%99%E7%A8%8B/">
+                                <span class="chip bg-color">教程</span>
                             </a>
                         
                     </div>
@@ -369,7 +365,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2026-03-13
+                    2026-03-14
                 </div>
                 
 
@@ -378,7 +374,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.4k
+                    2.8k
                 </div>
                 
 
@@ -399,341 +395,259 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>面向想做 AI Agent、工具调用、自动化工作流的开发者：这篇文章尽量用一篇讲清楚 MCP 是什么、为什么突然火了、适合解决什么问题，以及你该怎么开始上手。</p>
+<p>面向想在 VS Code 里真正用上 MCP 的开发者：这篇文章重点不是讲概念，而是讲你该怎么理解 VS Code 里的 MCP、怎么添加 server、怎么管理配置，以及上手时最容易踩的坑。</p>
 </blockquote>
 <hr>
-<h2 id="一、为什么最近大家都在聊-MCP？"><a href="#一、为什么最近大家都在聊-MCP？" class="headerlink" title="一、为什么最近大家都在聊 MCP？"></a>一、为什么最近大家都在聊 MCP？</h2><p>如果你最近在看 AI 开发、Agent、Claude Code、VS Code Copilot、OpenAI 工具调用这些话题，大概率已经频繁见到一个词：<strong>MCP</strong>。</p>
-<p>它全称是 <strong>Model Context Protocol</strong>，可以把它理解成：</p>
+<h2 id="一、先说结论：VS-Code-已经是当前最适合体验-MCP-的入口之一"><a href="#一、先说结论：VS-Code-已经是当前最适合体验-MCP-的入口之一" class="headerlink" title="一、先说结论：VS Code 已经是当前最适合体验 MCP 的入口之一"></a>一、先说结论：VS Code 已经是当前最适合体验 MCP 的入口之一</h2><p>如果你最近开始关注 MCP，最容易落地的入口之一，其实就是 <strong>VS Code</strong>。</p>
+<p>原因很简单：</p>
+<ul>
+<li>你本来就在开发环境里工作</li>
+<li>文件、终端、代码、聊天都在一个界面里</li>
+<li>MCP server 接进来之后，工具能力更容易直接用在实际任务里</li>
+<li>比起只看概念，VS Code 更适合你快速形成“这东西到底怎么工作”的直觉</li>
+</ul>
+<p>所以如果你问：</p>
 <blockquote>
-<p><strong>给 AI 应用连接外部工具、数据源和服务的一套通用协议。</strong></p>
+<p>我想先真正体验一下 MCP，而不是只看介绍，该从哪里上手？</p>
 </blockquote>
-<p>过去做 AI 工具接入时，常见情况是：</p>
-<ul>
-<li>这个客户端有自己的一套插件格式</li>
-<li>那个平台有另一套工具定义方式</li>
-<li>你为了接数据库、接浏览器、接文档库、接内部系统，要分别适配很多次</li>
-</ul>
-<p>结果就是：</p>
-<ul>
-<li>开发成本高</li>
-<li>重复接线很多</li>
-<li>同一套能力难复用</li>
-<li>工具生态很难长大</li>
-</ul>
-<p>MCP 之所以突然变热，不是因为它只是一个“新名词”，而是因为它正在把 AI 工具接入这件事，从“每家各搞一套”，推向“尽量按统一接口来做”。</p>
-<p>这对开发者的直接意义是：</p>
-<ul>
-<li>你可以更容易把一个工具能力暴露给多个 AI 客户端</li>
-<li>你可以把本地文件、数据库、浏览器、第三方 API 统一放进 Agent 工作流</li>
-<li>你做的工具，不再只服务一个孤立场景</li>
-</ul>
-<p>简单说，<strong>MCP 让 AI Agent 的“工具层”开始标准化了。</strong></p>
-<hr>
-<h2 id="二、MCP-到底解决了什么问题？"><a href="#二、MCP-到底解决了什么问题？" class="headerlink" title="二、MCP 到底解决了什么问题？"></a>二、MCP 到底解决了什么问题？</h2><p>要理解 MCP，先看一个常见场景。</p>
-<p>假设你想做一个能帮你完成工作的 AI 助手，它需要：</p>
-<ul>
-<li>读取本地项目文件</li>
-<li>查询 Notion 或知识库</li>
-<li>调 GitHub API</li>
-<li>控制浏览器做页面操作</li>
-<li>执行数据库查询</li>
-</ul>
-<p>如果没有标准协议，你通常会遇到三种麻烦：</p>
-<h3 id="1）每接一个工具，都要单独写一套适配"><a href="#1）每接一个工具，都要单独写一套适配" class="headerlink" title="1）每接一个工具，都要单独写一套适配"></a>1）每接一个工具，都要单独写一套适配</h3><p>模型本身不认识你的系统，你得自己定义：</p>
-<ul>
-<li>工具名字</li>
-<li>输入参数</li>
-<li>返回格式</li>
-<li>安全规则</li>
-<li>错误处理方式</li>
-</ul>
-<p>一两个工具还好，十几个工具之后，维护成本会明显上升。</p>
-<h3 id="2）工具只能在某个客户端里用"><a href="#2）工具只能在某个客户端里用" class="headerlink" title="2）工具只能在某个客户端里用"></a>2）工具只能在某个客户端里用</h3><p>你今天给 A 平台做了一套插件，明天换到 B 平台，很可能又得重写。</p>
-<p>这会导致一个问题：</p>
+<p>一个很务实的答案就是：</p>
 <blockquote>
-<p><strong>能力是一次次重新接出来的，而不是沉淀成可复用资产。</strong></p>
+<p><strong>先从 VS Code 开始。</strong></p>
 </blockquote>
-<h3 id="3）安全边界很容易被忽略"><a href="#3）安全边界很容易被忽略" class="headerlink" title="3）安全边界很容易被忽略"></a>3）安全边界很容易被忽略</h3><p>一旦 AI 能接外部系统，就不只是“回答问题”了，而是开始具备实际操作能力。</p>
-<p>比如：</p>
-<ul>
-<li>读敏感文件</li>
-<li>调内部接口</li>
-<li>操作浏览器</li>
-<li>改数据库数据</li>
-</ul>
-<p>这时候，工具接入方式越混乱，越容易留下风险点。</p>
-<p>而 MCP 的价值，就是尽量把这些事情标准化：</p>
-<ul>
-<li>怎么暴露工具</li>
-<li>怎么描述工具输入输出</li>
-<li>怎么让客户端发现可用工具</li>
-<li>怎么在调用前后做确认、审计和约束</li>
-</ul>
-<p>它不是自动帮你“解决所有安全问题”，但它至少把接口层统一了，后面更容易加治理。</p>
 <hr>
-<h2 id="三、你可以把-MCP-理解成-AI-世界里的“通用插口”"><a href="#三、你可以把-MCP-理解成-AI-世界里的“通用插口”" class="headerlink" title="三、你可以把 MCP 理解成 AI 世界里的“通用插口”"></a>三、你可以把 MCP 理解成 AI 世界里的“通用插口”</h2><p>官方文档里有一个很形象的说法：</p>
+<h2 id="二、先搞清楚：VS-Code-里的-MCP-到底是什么？"><a href="#二、先搞清楚：VS-Code-里的-MCP-到底是什么？" class="headerlink" title="二、先搞清楚：VS Code 里的 MCP 到底是什么？"></a>二、先搞清楚：VS Code 里的 MCP 到底是什么？</h2><p>先别把它想得太玄。</p>
+<p>在 VS Code 里，MCP server 可以理解成一类向 AI 提供工具能力的扩展入口。它可以把一些能力暴露给聊天&#x2F;Agent 场景，例如：</p>
+<ul>
+<li>文件操作</li>
+<li>浏览器自动化</li>
+<li>外部 API</li>
+<li>数据库访问</li>
+<li>其他本地或远程服务</li>
+</ul>
+<p>从公开文档看，VS Code 已经支持：</p>
+<ul>
+<li>安装 MCP server</li>
+<li>管理 MCP server</li>
+<li>配置本地和远程 server</li>
+<li>在聊天中使用这些工具</li>
+</ul>
+<p>这意味着你在 VS Code 里看到的，不只是“AI 帮你解释代码”，而是正在变成：</p>
 <blockquote>
-<p><strong>MCP 像 AI 应用和外部系统之间的 USB-C 接口。</strong></p>
+<p><strong>AI 可以在编辑器工作流里调用更真实的外部能力。</strong></p>
 </blockquote>
-<p>这个比喻为什么成立？</p>
-<p>因为它想做的事正是：</p>
+<p>这也是为什么 MCP 对开发者有吸引力：它不是再加一个概念，而是把“工具层”真正往 IDE 里接。</p>
+<hr>
+<h2 id="三、在-VS-Code-里，MCP-有两种常见接入方式"><a href="#三、在-VS-Code-里，MCP-有两种常见接入方式" class="headerlink" title="三、在 VS Code 里，MCP 有两种常见接入方式"></a>三、在 VS Code 里，MCP 有两种常见接入方式</h2><p>根据公开文档，VS Code 里主要有两种方式接 MCP server。</p>
+<h3 id="1）从-MCP-server-gallery-里安装"><a href="#1）从-MCP-server-gallery-里安装" class="headerlink" title="1）从 MCP server gallery 里安装"></a>1）从 MCP server gallery 里安装</h3><p>这是最适合新手的方式。</p>
+<p>大致流程是：</p>
 <ul>
-<li><strong>客户端</strong>按统一方式发现能力</li>
-<li><strong>服务端</strong>按统一方式暴露能力</li>
-<li>中间用统一协议传输上下文、工具定义和调用结果</li>
+<li>打开扩展视图</li>
+<li>搜索 <code>@mcp</code></li>
+<li>找到目标 MCP server</li>
+<li>安装到用户级或工作区级</li>
 </ul>
-<p>所以你可以把 MCP 里的两个角色理解为：</p>
-<h3 id="MCP-Client"><a href="#MCP-Client" class="headerlink" title="MCP Client"></a>MCP Client</h3><p>也就是“使用工具的一方”，例如：</p>
+<p>这种方式的好处是：</p>
 <ul>
-<li>AI 聊天客户端</li>
-<li>编码助手</li>
-<li>IDE 内的 Agent</li>
-<li>你的自定义 AI 应用</li>
+<li>进入门槛低</li>
+<li>不需要一开始就手写配置</li>
+<li>更适合先试用、先理解</li>
 </ul>
-<h3 id="MCP-Server"><a href="#MCP-Server" class="headerlink" title="MCP Server"></a>MCP Server</h3><p>也就是“提供能力的一方”，例如：</p>
+<p>如果你只是想先体验一下 MCP 到底能做什么，建议先走这条路。</p>
+<h3 id="2）手动配置-mcp-json"><a href="#2）手动配置-mcp-json" class="headerlink" title="2）手动配置 mcp.json"></a>2）手动配置 <code>mcp.json</code></h3><p>这是更适合进阶用户和团队协作的方式。</p>
+<p>VS Code 文档提到可以通过配置 <code>mcp.json</code> 来管理 MCP server。</p>
+<p>常见位置包括：</p>
 <ul>
-<li>文件系统工具</li>
-<li>浏览器自动化工具</li>
-<li>GitHub 工具</li>
-<li>数据库查询工具</li>
-<li>企业内部系统接口</li>
+<li><strong>工作区级配置</strong>：放在项目里的 <code>.vscode/mcp.json</code></li>
+<li><strong>用户级配置</strong>：放在个人配置范围内，跨工作区可用</li>
 </ul>
-<p>客户端不需要提前硬编码所有细节，而是可以先问：</p>
+<p>这种方式的好处是：</p>
 <ul>
-<li>你这里有哪些工具？</li>
-<li>每个工具要什么参数？</li>
-<li>返回什么结构？</li>
+<li>更可控</li>
+<li>适合团队共享配置</li>
+<li>适合长期维护</li>
+<li>更方便审查 server 定义</li>
 </ul>
-<p>然后再决定是否调用。</p>
-<p>这就是为什么 MCP 特别适合 Agent 场景：</p>
+<p>如果你打算把 MCP 真正纳入开发流程，而不是只试玩一下，那么后面大概率还是会走到手动配置这一步。</p>
+<hr>
+<h2 id="四、新手最推荐的上手路径"><a href="#四、新手最推荐的上手路径" class="headerlink" title="四、新手最推荐的上手路径"></a>四、新手最推荐的上手路径</h2><p>如果你是第一次接触，我建议按下面这条路径来，不容易乱。</p>
+<h3 id="第一步：先安装一个成熟的-MCP-server"><a href="#第一步：先安装一个成熟的-MCP-server" class="headerlink" title="第一步：先安装一个成熟的 MCP server"></a>第一步：先安装一个成熟的 MCP server</h3><p>不要一开始就自己写 server。</p>
+<p>更好的做法是：</p>
+<ul>
+<li>先找一个成熟、常见、文档清楚的 MCP server</li>
+<li>在 VS Code 里装上</li>
+<li>看它暴露了哪些工具</li>
+<li>看实际调用流程是什么样</li>
+</ul>
+<p>这样你会先理解“客户端—工具—结果”这条链路，而不是先陷进配置细节里。</p>
+<h3 id="第二步：先用一个低风险场景体验"><a href="#第二步：先用一个低风险场景体验" class="headerlink" title="第二步：先用一个低风险场景体验"></a>第二步：先用一个低风险场景体验</h3><p>例如：</p>
+<ul>
+<li>读文件</li>
+<li>浏览器自动化测试</li>
+<li>查公开 API</li>
+<li>非敏感数据源查询</li>
+</ul>
+<p>这样能更快建立感知，也不容易因为权限问题把环境搞乱。</p>
+<h3 id="第三步：再决定要不要共享到工作区"><a href="#第三步：再决定要不要共享到工作区" class="headerlink" title="第三步：再决定要不要共享到工作区"></a>第三步：再决定要不要共享到工作区</h3><p>如果只是个人试用，先装在用户级。</p>
+<p>如果你已经明确要团队协作，或者想把某套 server 配置跟项目一起维护，那再放到 <code>.vscode/mcp.json</code>。</p>
+<p>这个顺序很重要。</p>
+<p>因为很多人一开始就把“共享配置”搞得很重，结果最后发现团队根本还没走到那一步。</p>
+<hr>
+<h2 id="五、mcp-json-这件事，为什么值得重视？"><a href="#五、mcp-json-这件事，为什么值得重视？" class="headerlink" title="五、mcp.json 这件事，为什么值得重视？"></a>五、<code>mcp.json</code> 这件事，为什么值得重视？</h2><p>如果你后面会长期使用 MCP，那 <code>mcp.json</code> 基本上会变成一个关键文件。</p>
+<p>因为它不只是“写个配置”，而是在定义：</p>
+<ul>
+<li>这个项目允许接哪些 MCP server</li>
+<li>这些 server 的接入方式是什么</li>
+<li>这些能力是不是要跟着项目一起走</li>
+<li>团队成员是否应该共享这套工具能力</li>
+</ul>
+<p>从工程角度看，这其实很重要。</p>
+<p>因为一旦工具能力进入团队工作流，它就不再只是个人偏好了，而是会影响：</p>
+<ul>
+<li>项目可复现性</li>
+<li>团队一致性</li>
+<li>安全边界</li>
+<li>后续维护成本</li>
+</ul>
+<p>所以如果你准备在团队里正式用 MCP，最好把 <code>mcp.json</code> 当成一个需要被审查的配置文件，而不是随手塞进去就算了。</p>
+<hr>
+<h2 id="六、什么时候用用户级配置，什么时候用工作区级配置？"><a href="#六、什么时候用用户级配置，什么时候用工作区级配置？" class="headerlink" title="六、什么时候用用户级配置，什么时候用工作区级配置？"></a>六、什么时候用用户级配置，什么时候用工作区级配置？</h2><p>这是实际使用里很容易纠结的问题。</p>
+<h3 id="适合用户级配置的场景"><a href="#适合用户级配置的场景" class="headerlink" title="适合用户级配置的场景"></a>适合用户级配置的场景</h3><p>更适合放在个人配置里的，一般是：</p>
+<ul>
+<li>你个人长期都要用的通用 MCP server</li>
+<li>和某个具体项目无关</li>
+<li>属于个人开发环境增强</li>
+<li>不需要团队统一</li>
+</ul>
+<p>例如某些通用浏览器工具、个人知识工具、个人效率工具。</p>
+<h3 id="适合工作区级配置的场景"><a href="#适合工作区级配置的场景" class="headerlink" title="适合工作区级配置的场景"></a>适合工作区级配置的场景</h3><p>更适合放进 <code>.vscode/mcp.json</code> 的，一般是：</p>
+<ul>
+<li>和当前项目强相关</li>
+<li>团队成员需要统一使用</li>
+<li>需要跟项目一起版本管理</li>
+<li>希望别人拉下项目就能看到同样的 MCP 配置</li>
+</ul>
+<p>这类配置更像“项目基础设施的一部分”。</p>
+<h3 id="一个简单判断法"><a href="#一个简单判断法" class="headerlink" title="一个简单判断法"></a>一个简单判断法</h3><p>你可以直接问自己：</p>
 <blockquote>
-<p>它让“模型 + 工具”之间的连接方式更通用，而不是每次重新发明一遍。</p>
+<p>这个 server 是“我个人想用”，还是“这个项目需要它”？</p>
 </blockquote>
-<hr>
-<h2 id="四、为什么-2026-年这个方向很值得写教程？"><a href="#四、为什么-2026-年这个方向很值得写教程？" class="headerlink" title="四、为什么 2026 年这个方向很值得写教程？"></a>四、为什么 2026 年这个方向很值得写教程？</h2><p>从最近一段时间的公开文档和产品动作看，MCP 已经不是一个小圈子概念，而是在进入主流工具链：</p>
 <ul>
-<li>MCP 官方站把它定义为连接 AI 应用与外部系统的开放标准</li>
-<li>OpenAI 文档已经把 <strong>remote MCP servers &#x2F; connectors</strong> 纳入工具能力体系</li>
-<li>VS Code 文档已经在讲如何添加、管理和信任 MCP servers</li>
-<li>很多 Agent、IDE、自动化工具也开始把 MCP 当成一个通用扩展层</li>
+<li>前者 → 用户级配置</li>
+<li>后者 → 工作区级配置</li>
 </ul>
-<p>这说明两件事：</p>
-<h3 id="1）它已经从“概念讨论”走向“工程实践”"><a href="#1）它已经从“概念讨论”走向“工程实践”" class="headerlink" title="1）它已经从“概念讨论”走向“工程实践”"></a>1）它已经从“概念讨论”走向“工程实践”</h3><p>不是只有研究者在聊，真正做产品和开发工作流的人已经开始接。</p>
-<h3 id="2）它有持续内容空间"><a href="#2）它有持续内容空间" class="headerlink" title="2）它有持续内容空间"></a>2）它有持续内容空间</h3><p>MCP 不是一篇文章就写完的题材，而是天然适合拆成系列：</p>
-<ul>
-<li>MCP 是什么</li>
-<li>MCP 和 function calling 有什么区别</li>
-<li>怎么自己写一个 MCP server</li>
-<li>怎么把本地工具接进 Claude &#x2F; ChatGPT &#x2F; VS Code</li>
-<li>怎么做权限控制和安全审计</li>
-<li>哪些 MCP server 值得装，哪些风险高</li>
-</ul>
-<p>对技术博客来说，这类题材非常适合持续更新。</p>
+<p>这样通常就不会太纠结。</p>
 <hr>
-<h2 id="五、MCP-和-function-calling-有什么区别？"><a href="#五、MCP-和-function-calling-有什么区别？" class="headerlink" title="五、MCP 和 function calling 有什么区别？"></a>五、MCP 和 function calling 有什么区别？</h2><p>很多人第一次看到 MCP，会问：</p>
+<h2 id="七、VS-Code-里最容易踩的-5-个坑"><a href="#七、VS-Code-里最容易踩的-5-个坑" class="headerlink" title="七、VS Code 里最容易踩的 5 个坑"></a>七、VS Code 里最容易踩的 5 个坑</h2><h3 id="1）一上来就装很多-server"><a href="#1）一上来就装很多-server" class="headerlink" title="1）一上来就装很多 server"></a>1）一上来就装很多 server</h3><p>这是最常见的错误。</p>
+<p>MCP 看起来很酷，很多人第一反应是：</p>
+<ul>
+<li>这个也装</li>
+<li>那个也装</li>
+<li>工具越多越强</li>
+</ul>
+<p>但实际结果通常是：</p>
+<ul>
+<li>工具列表越来越乱</li>
+<li>不知道模型到底会用哪个</li>
+<li>排错变难</li>
+<li>风险面变大</li>
+</ul>
+<p>建议一开始只装 1 到 2 个最明确有价值的 server。</p>
+<h3 id="2）没搞清本地-server-的风险"><a href="#2）没搞清本地-server-的风险" class="headerlink" title="2）没搞清本地 server 的风险"></a>2）没搞清本地 server 的风险</h3><p>VS Code 文档已经明确提醒：</p>
 <blockquote>
-<p>这不就是 function calling 的另一种说法吗？</p>
+<p>本地 MCP server 可能在你的机器上执行任意代码。</p>
 </blockquote>
-<p>不是一回事，但它们关系很近。</p>
-<h3 id="function-calling-解决的是：模型如何调用某个函数"><a href="#function-calling-解决的是：模型如何调用某个函数" class="headerlink" title="function calling 解决的是：模型如何调用某个函数"></a>function calling 解决的是：模型如何调用某个函数</h3><p>它更像是：</p>
+<p>所以安装本地 server 时，别只看“功能强不强”，更要看：</p>
 <ul>
-<li>你提前告诉模型有哪些函数</li>
-<li>每个函数接收什么参数</li>
-<li>模型在对话中决定要不要调用</li>
+<li>来源可信不可信</li>
+<li>配置清不清楚</li>
+<li>是否真的需要这个权限</li>
 </ul>
-<p>这是“<strong>调用机制</strong>”层面的问题。</p>
-<h3 id="MCP-解决的是：外部能力如何被标准化暴露出来"><a href="#MCP-解决的是：外部能力如何被标准化暴露出来" class="headerlink" title="MCP 解决的是：外部能力如何被标准化暴露出来"></a>MCP 解决的是：外部能力如何被标准化暴露出来</h3><p>它更像是：</p>
-<ul>
-<li>工具能力如何组织</li>
-<li>客户端如何发现工具</li>
-<li>工具定义如何复用</li>
-<li>不同客户端如何共享同一套能力</li>
-</ul>
-<p>这是“<strong>能力接入协议</strong>”层面的问题。</p>
-<p>可以粗略理解成：</p>
-<ul>
-<li><strong>function calling</strong>：像告诉模型“你可以调用这些函数”</li>
-<li><strong>MCP</strong>：像建立一整套“工具市场的接线规范”</li>
-</ul>
-<p>所以两者不是互斥关系，反而经常会一起出现。</p>
-<hr>
-<h2 id="六、哪些场景特别适合-MCP？"><a href="#六、哪些场景特别适合-MCP？" class="headerlink" title="六、哪些场景特别适合 MCP？"></a>六、哪些场景特别适合 MCP？</h2><p>不是所有项目都必须上 MCP，但下面这些场景会非常适合。</p>
-<h3 id="1）你要接很多工具"><a href="#1）你要接很多工具" class="headerlink" title="1）你要接很多工具"></a>1）你要接很多工具</h3><p>如果你的 Agent 只会调用 1 到 2 个内部函数，直接 function calling 也许就够了。</p>
-<p>但如果你要接：</p>
-<ul>
-<li>文件系统</li>
-<li>浏览器</li>
-<li>GitHub</li>
-<li>数据库</li>
-<li>搜索</li>
-<li>企业 API</li>
-</ul>
-<p>那 MCP 的价值就会越来越明显。</p>
-<h3 id="2）你希望同一套工具能被多个客户端复用"><a href="#2）你希望同一套工具能被多个客户端复用" class="headerlink" title="2）你希望同一套工具能被多个客户端复用"></a>2）你希望同一套工具能被多个客户端复用</h3><p>例如你今天在 VS Code 里用，明天想接到另一个 AI 客户端，后天又想接入你自己的工作台。</p>
-<p>这时候标准化接入带来的复用价值会很高。</p>
-<h3 id="3）你在做长期可维护的-Agent-系统"><a href="#3）你在做长期可维护的-Agent-系统" class="headerlink" title="3）你在做长期可维护的 Agent 系统"></a>3）你在做长期可维护的 Agent 系统</h3><p>MCP 的核心优势，不只是“能跑起来”，而是更利于后续维护：</p>
-<ul>
-<li>工具清单更清楚</li>
-<li>能力边界更明确</li>
-<li>统一做权限控制更方便</li>
-<li>更适合团队协作</li>
-</ul>
-<hr>
-<h2 id="七、上手-MCP，建议按这条路径来"><a href="#七、上手-MCP，建议按这条路径来" class="headerlink" title="七、上手 MCP，建议按这条路径来"></a>七、上手 MCP，建议按这条路径来</h2><p>如果你是第一次接触，我不建议一上来就写复杂 server。更稳的路径是下面这样。</p>
-<h3 id="第一步：先弄懂它的工作流"><a href="#第一步：先弄懂它的工作流" class="headerlink" title="第一步：先弄懂它的工作流"></a>第一步：先弄懂它的工作流</h3><p>先理解最小闭环：</p>
-<ol>
-<li>客户端连接 MCP server</li>
-<li>客户端列出可用工具</li>
-<li>模型根据任务选择工具</li>
-<li>工具执行并返回结果</li>
-<li>模型基于结果继续回答或继续调用</li>
-</ol>
-<p>只要你理解这五步，后面看不同平台的配置就不会乱。</p>
-<h3 id="第二步：先用现成的-MCP-server"><a href="#第二步：先用现成的-MCP-server" class="headerlink" title="第二步：先用现成的 MCP server"></a>第二步：先用现成的 MCP server</h3><p>新手最容易掉进的坑，就是还没搞明白调用链路，就先自己造 server。</p>
-<p>更实用的做法是：</p>
-<ul>
-<li>先装一个成熟的 MCP server</li>
-<li>在现成客户端里跑通</li>
-<li>看工具列表、参数结构、调用过程</li>
-<li>再决定要不要自己写</li>
-</ul>
-<p>这样更容易形成直觉。</p>
-<h3 id="第三步：优先接“高价值、低风险”工具"><a href="#第三步：优先接“高价值、低风险”工具" class="headerlink" title="第三步：优先接“高价值、低风险”工具"></a>第三步：优先接“高价值、低风险”工具</h3><p>比如先接：</p>
-<ul>
-<li>只读型文档查询</li>
-<li>开发辅助工具</li>
-<li>浏览器测试工具</li>
-<li>非敏感数据源</li>
-</ul>
-<p>不要一上来就把高权限数据库、生产环境操作、内部敏感系统全暴露给 Agent。</p>
-<h3 id="第四步：补安全约束"><a href="#第四步：补安全约束" class="headerlink" title="第四步：补安全约束"></a>第四步：补安全约束</h3><p>这是最容易被忽略、但最应该尽早做的一步。</p>
-<p>至少要考虑：</p>
-<ul>
-<li>哪些工具允许自动调用</li>
-<li>哪些工具必须人工确认</li>
-<li>哪些参数范围需要限制</li>
-<li>是否记录调用日志</li>
-<li>是否隔离敏感凭证</li>
-</ul>
-<p>公开文档里也都反复提醒：</p>
-<blockquote>
-<p><strong>本地或远程 MCP server 可能带来代码执行、敏感信息泄露和越权操作风险，只应接入可信来源，并审查配置。</strong></p>
-</blockquote>
-<p>这不是形式主义，而是真问题。</p>
-<hr>
-<h2 id="八、MCP-的风险，千万别轻视"><a href="#八、MCP-的风险，千万别轻视" class="headerlink" title="八、MCP 的风险，千万别轻视"></a>八、MCP 的风险，千万别轻视</h2><p>MCP 越火，接下来“工具越多越好”的误区也会越明显。</p>
-<p>这里我直接给结论：</p>
-<blockquote>
-<p><strong>对 Agent 来说，工具不是越多越强，而是越清楚、越可信、越可控越好。</strong></p>
-</blockquote>
-<p>你至少要注意 4 类风险。</p>
-<h3 id="1）恶意或不可信的-MCP-server"><a href="#1）恶意或不可信的-MCP-server" class="headerlink" title="1）恶意或不可信的 MCP server"></a>1）恶意或不可信的 MCP server</h3><p>如果一个 server 本身就有问题，它可能：</p>
-<ul>
-<li>返回误导性工具描述</li>
-<li>诱导模型调用危险操作</li>
-<li>借上下文拿到敏感信息</li>
-</ul>
-<h3 id="2）高权限工具暴露过度"><a href="#2）高权限工具暴露过度" class="headerlink" title="2）高权限工具暴露过度"></a>2）高权限工具暴露过度</h3><p>例如：</p>
-<ul>
-<li>文件系统给了整个家目录</li>
-<li>数据库账号有写权限</li>
-<li>浏览器带着登录态跑生产环境</li>
-</ul>
-<p>这类问题在 Demo 阶段看不出来，一到真实工作流就容易出事。</p>
-<h3 id="3）把密钥直接写进配置"><a href="#3）把密钥直接写进配置" class="headerlink" title="3）把密钥直接写进配置"></a>3）把密钥直接写进配置</h3><p>文档里已经明确提醒，不要把 API Key、敏感令牌硬编码进共享配置。</p>
+<p>这一步不能图省事。</p>
+<h3 id="3）把敏感信息直接写死在配置里"><a href="#3）把敏感信息直接写死在配置里" class="headerlink" title="3）把敏感信息直接写死在配置里"></a>3）把敏感信息直接写死在配置里</h3><p>公开文档也提醒，不要把 API Key 这类敏感信息直接硬编码进共享配置。</p>
 <p>更稳妥的方式是：</p>
 <ul>
 <li>环境变量</li>
-<li>安全输入变量</li>
-<li>单独凭证管理</li>
+<li>输入变量</li>
+<li>独立凭证管理</li>
 </ul>
-<h3 id="4）默认信任自动执行"><a href="#4）默认信任自动执行" class="headerlink" title="4）默认信任自动执行"></a>4）默认信任自动执行</h3><p>很多人看到 Agent 可以自动完成任务会很兴奋，但越是能操作真实系统，越应该在关键动作前增加确认。</p>
-<p>尤其是：</p>
+<p>否则团队协作时很容易埋雷。</p>
+<h3 id="4）把工作区配置和个人配置混着用"><a href="#4）把工作区配置和个人配置混着用" class="headerlink" title="4）把工作区配置和个人配置混着用"></a>4）把工作区配置和个人配置混着用</h3><p>如果你今天随手装在用户级，明天又把另一套写进工作区，后面很容易搞不清：</p>
 <ul>
-<li>删除</li>
-<li>写入</li>
-<li>发布</li>
-<li>改库</li>
-<li>发消息</li>
-<li>调外部高权限 API</li>
+<li>到底哪个配置在生效</li>
+<li>哪个 server 是项目必需的</li>
+<li>哪个只是个人试验用</li>
 </ul>
-<p>这些都不应该轻率放开。</p>
+<p>所以最好从一开始就有边界意识。</p>
+<h3 id="5）没想清楚审批和权限控制"><a href="#5）没想清楚审批和权限控制" class="headerlink" title="5）没想清楚审批和权限控制"></a>5）没想清楚审批和权限控制</h3><p>MCP 真正进入实际工作流后，问题就不只是“能不能用”，而是：</p>
+<ul>
+<li>哪些工具可以自动跑</li>
+<li>哪些动作需要确认</li>
+<li>哪些 server 根本不该接入</li>
+</ul>
+<p>越是能力强的工具，越不应该默认全开放。</p>
 <hr>
-<h2 id="九、普通开发者现在最值得做的，不是“追热词”，而是跑通一个真实场景"><a href="#九、普通开发者现在最值得做的，不是“追热词”，而是跑通一个真实场景" class="headerlink" title="九、普通开发者现在最值得做的，不是“追热词”，而是跑通一个真实场景"></a>九、普通开发者现在最值得做的，不是“追热词”，而是跑通一个真实场景</h2><p>如果你现在想借 MCP 学 AI Agent，我最建议做的不是泛泛看概念，而是挑一个真实任务跑通。</p>
-<p>例如：</p>
-<h3 id="路线-A：开发效率型"><a href="#路线-A：开发效率型" class="headerlink" title="路线 A：开发效率型"></a>路线 A：开发效率型</h3><p>让 AI：</p>
-<ul>
-<li>读项目文件</li>
-<li>查文档</li>
-<li>生成代码修改建议</li>
-<li>调浏览器做页面验证</li>
-</ul>
-<h3 id="路线-B：知识工作流型"><a href="#路线-B：知识工作流型" class="headerlink" title="路线 B：知识工作流型"></a>路线 B：知识工作流型</h3><p>让 AI：</p>
-<ul>
-<li>查文档库</li>
-<li>读笔记系统</li>
-<li>整理信息</li>
-<li>输出结构化结论</li>
-</ul>
-<h3 id="路线-C：运营自动化型"><a href="#路线-C：运营自动化型" class="headerlink" title="路线 C：运营自动化型"></a>路线 C：运营自动化型</h3><p>让 AI：</p>
-<ul>
-<li>抓网页信息</li>
-<li>分类整理</li>
-<li>调内部接口</li>
-<li>生成日报或发布草稿</li>
-</ul>
-<p>一旦你真的跑通 1 个场景，你对 MCP 的理解会比看十篇概念文都深。</p>
-<hr>
-<h2 id="十、给新手的一个务实结论"><a href="#十、给新手的一个务实结论" class="headerlink" title="十、给新手的一个务实结论"></a>十、给新手的一个务实结论</h2><p>如果你只记住一句话，我希望是这句：</p>
-<blockquote>
-<p><strong>MCP 不是让模型“更聪明”，而是让模型“更容易接入现实工具世界”。</strong></p>
-</blockquote>
-<p>它火起来，不是因为它神秘，而是因为 AI 应用正在从“会聊天”走向“会做事”。</p>
-<p>而一旦 AI 要做事，就必须面对：</p>
-<ul>
-<li>工具怎么接</li>
-<li>权限怎么控</li>
-<li>风险怎么管</li>
-<li>能力怎么复用</li>
-</ul>
-<p>这正是 MCP 的价值所在。</p>
-<p>对技术博客写作来说，这也是一个非常好的长期栏目方向：</p>
-<ul>
-<li>读者需求真实</li>
-<li>搜索意图明确</li>
-<li>内容有系列空间</li>
-<li>兼具入门流量和进阶深度</li>
-</ul>
-<p>如果你是开发者，现在开始理解 MCP，不算晚，反而正是合适的时候。</p>
-<hr>
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>MCP 之所以值得关注，不是因为它代表某一家公司的新功能，而是因为它正在成为 AI 工具接入的共同语言之一。</p>
-<p>接下来，真正拉开差距的，不是谁先把“AI Agent”写进标题，而是谁能把：</p>
-<ul>
-<li>工具接入</li>
-<li>权限控制</li>
-<li>真实工作流</li>
-<li>可维护工程实践</li>
-</ul>
-<p>这几件事真正做扎实。</p>
-<p>如果你后续想继续深入，下一篇最值得写的方向可以是：</p>
+<h2 id="八、一个很实用的上手策略"><a href="#八、一个很实用的上手策略" class="headerlink" title="八、一个很实用的上手策略"></a>八、一个很实用的上手策略</h2><p>如果你现在就想开始，我建议用这个顺序：</p>
+<h3 id="路线-A：体验型上手"><a href="#路线-A：体验型上手" class="headerlink" title="路线 A：体验型上手"></a>路线 A：体验型上手</h3><p>适合第一次接触。</p>
 <ol>
-<li><strong>MCP 和 function calling 到底怎么选</strong></li>
-<li><strong>怎么自己写一个最小可用的 MCP server</strong></li>
-<li><strong>VS Code &#x2F; Claude &#x2F; OpenAI 场景下的 MCP 实战配置</strong></li>
-<li><strong>MCP 安全清单：哪些 server 能装，哪些不要乱装</strong></li>
+<li>在 VS Code 里搜索 <code>@mcp</code></li>
+<li>装一个成熟 server</li>
+<li>只做一个简单任务</li>
+<li>观察工具发现和调用过程</li>
+<li>判断这个能力值不值得留下</li>
 </ol>
+<h3 id="路线-B：项目型上手"><a href="#路线-B：项目型上手" class="headerlink" title="路线 B：项目型上手"></a>路线 B：项目型上手</h3><p>适合准备长期使用。</p>
+<ol>
+<li>先明确项目真正需要的 MCP 能力</li>
+<li>再决定放用户级还是工作区级</li>
+<li>使用 <code>.vscode/mcp.json</code> 管理项目相关配置</li>
+<li>把安全和凭证问题先处理好</li>
+<li>再考虑是否纳入团队工作流</li>
+</ol>
+<p>这两条路线的核心区别，不在技术本身，而在目标不同：</p>
+<ul>
+<li>体验型：先理解</li>
+<li>项目型：先治理</li>
+</ul>
+<hr>
+<h2 id="九、对开发者来说，VS-Code-MCP-的真正价值是什么？"><a href="#九、对开发者来说，VS-Code-MCP-的真正价值是什么？" class="headerlink" title="九、对开发者来说，VS Code + MCP 的真正价值是什么？"></a>九、对开发者来说，VS Code + MCP 的真正价值是什么？</h2><p>很多人看 MCP，容易只盯着“工具更多了”。</p>
+<p>但对开发者来说，更重要的其实是这三点：</p>
+<h3 id="1）工具能力离实际工作流更近了"><a href="#1）工具能力离实际工作流更近了" class="headerlink" title="1）工具能力离实际工作流更近了"></a>1）工具能力离实际工作流更近了</h3><p>不是在网页里演示，而是直接进到你写代码、看项目、跑任务的环境里。</p>
+<h3 id="2）工具层开始标准化"><a href="#2）工具层开始标准化" class="headerlink" title="2）工具层开始标准化"></a>2）工具层开始标准化</h3><p>如果越来越多客户端接受 MCP，那么开发者做一次能力接入，后面复用空间会更大。</p>
+<h3 id="3）AI-从“会聊天”往“会做事”又推进了一步"><a href="#3）AI-从“会聊天”往“会做事”又推进了一步" class="headerlink" title="3）AI 从“会聊天”往“会做事”又推进了一步"></a>3）AI 从“会聊天”往“会做事”又推进了一步</h3><p>这也是 MCP 值得关注的根本原因。</p>
+<p>因为它让 IDE 里的 AI 不只是解释代码，而是更可能参与真实任务。</p>
+<hr>
+<h2 id="十、最后给一个不容易错的建议"><a href="#十、最后给一个不容易错的建议" class="headerlink" title="十、最后给一个不容易错的建议"></a>十、最后给一个不容易错的建议</h2><p>如果你现在是第一次碰 VS Code 里的 MCP，最稳的做法不是：</p>
+<ul>
+<li>一上来造自己的 server</li>
+<li>一口气装十几个工具</li>
+<li>把所有高权限能力都放开</li>
+</ul>
+<p>而是：</p>
+<ol>
+<li>先装一个成熟 server</li>
+<li>先跑一个低风险任务</li>
+<li>先理解调用链路</li>
+<li>再决定是否写入工作区配置</li>
+<li>最后再谈团队共享和长期治理</li>
+</ol>
+<p>这个顺序会让你少踩很多坑。</p>
+<hr>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>VS Code 已经是当前体验 MCP 最自然的入口之一。</p>
+<p>如果你想真正理解 MCP 在开发工作流里的价值，最好的方式不是继续看抽象概念，而是：</p>
+<blockquote>
+<p><strong>在 VS Code 里实际装一个、跑一次、看一遍它怎么工作。</strong></p>
+</blockquote>
+<p>当你真的把它接进编辑器之后，很多原本抽象的问题——比如工具发现、权限边界、项目共享、配置管理——都会一下子变得具体。</p>
+<p>这也是技术教程真正该做的事：不是把概念讲得越来越大，而是把上手路径讲得越来越清楚。</p>
 <hr>
 <h2 id="关键词建议"><a href="#关键词建议" class="headerlink" title="关键词建议"></a>关键词建议</h2><ul>
-<li>MCP 教程</li>
-<li>Model Context Protocol</li>
-<li>AI Agent 教程</li>
-<li>MCP Server</li>
 <li>VS Code MCP</li>
-<li>OpenAI MCP</li>
-<li>Claude MCP</li>
-<li>AI 工具调用</li>
+<li>MCP Server 教程</li>
+<li>VS Code 接入 MCP</li>
+<li>MCP 教程</li>
+<li>AI Agent 工具调用</li>
 </ul>
-<h2 id="摘要建议"><a href="#摘要建议" class="headerlink" title="摘要建议"></a>摘要建议</h2><p>MCP（Model Context Protocol）为什么突然成为 AI 开发圈热词？这篇文章用开发者视角讲清楚 MCP 是什么、解决什么问题、和 function calling 有什么区别、哪些场景适合用，以及新手上手时最需要注意的风险与实践路径。</p>
+<h2 id="摘要建议"><a href="#摘要建议" class="headerlink" title="摘要建议"></a>摘要建议</h2><p>想在 VS Code 里真正用上 MCP Server，该怎么开始？这篇文章从开发者视角讲清楚 VS Code 里的 MCP 是什么、两种常见接入方式、<code>mcp.json</code> 的作用、用户级与工作区级配置怎么选，以及新手最容易踩的几个坑。</p>
 
                 
             </div>
@@ -760,7 +674,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zuoyy.com/2026/03/13/mcp-practical-guide/">https://zuoyy.com/2026/03/13/mcp-practical-guide/</a>
+                    <a href="https://zuoyy.com/2026/03/14/vscode-mcp-server-guide/">https://zuoyy.com/2026/03/14/vscode-mcp-server-guide/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -798,10 +712,6 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/AI/">
-                                    <span class="chip bg-color">AI</span>
-                                </a>
-                            
                                 <a href="/tags/MCP/">
                                     <span class="chip bg-color">MCP</span>
                                 </a>
@@ -810,16 +720,16 @@
                                     <span class="chip bg-color">Agent</span>
                                 </a>
                             
-                                <a href="/tags/OpenAI/">
-                                    <span class="chip bg-color">OpenAI</span>
-                                </a>
-                            
-                                <a href="/tags/Claude/">
-                                    <span class="chip bg-color">Claude</span>
-                                </a>
-                            
                                 <a href="/tags/VS-Code/">
                                     <span class="chip bg-color">VS Code</span>
+                                </a>
+                            
+                                <a href="/tags/AI%E5%BC%80%E5%8F%91/">
+                                    <span class="chip bg-color">AI开发</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%99%E7%A8%8B/">
+                                    <span class="chip bg-color">教程</span>
                                 </a>
                             
                         </div>
@@ -993,13 +903,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2026/03/14/vscode-mcp-server-guide/">
+                <a href="/2026/03/15/when-to-use-rag/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="VS Code 里怎么接入 MCP Server？给开发者的实战教程">
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="RAG 到底什么时候该用，什么时候不该用？给开发者的实用判断">
                         
-                        <span class="card-title">VS Code 里怎么接入 MCP Server？给开发者的实战教程</span>
+                        <span class="card-title">RAG 到底什么时候该用，什么时候不该用？给开发者的实用判断</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1010,7 +920,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2026-03-14
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-03-15
                         </span>
                         <span class="publish-author">
                             
@@ -1027,16 +937,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MCP/">
-                        <span class="chip bg-color">MCP</span>
-                    </a>
-                    
                     <a href="/tags/Agent/">
                         <span class="chip bg-color">Agent</span>
-                    </a>
-                    
-                    <a href="/tags/VS-Code/">
-                        <span class="chip bg-color">VS Code</span>
                     </a>
                     
                     <a href="/tags/AI%E5%BC%80%E5%8F%91/">
@@ -1045,6 +947,14 @@
                     
                     <a href="/tags/%E6%95%99%E7%A8%8B/">
                         <span class="chip bg-color">教程</span>
+                    </a>
+                    
+                    <a href="/tags/RAG/">
+                        <span class="chip bg-color">RAG</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/">
+                        <span class="chip bg-color">知识库</span>
                     </a>
                     
                 </div>
@@ -1058,13 +968,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2026/03/11/openclaw-install-guide/">
+                <a href="/2026/03/13/mcp-practical-guide/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="新手必看！OpenClaw AI助手零基础安装指南">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="2026年最值得写的 AI 教程之一：MCP 从入门到实战指南">
                         
-                        <span class="card-title">新手必看！OpenClaw AI助手零基础安装指南</span>
+                        <span class="card-title">2026年最值得写的 AI 教程之一：MCP 从入门到实战指南</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1075,7 +985,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-13
                             </span>
                         <span class="publish-author">
                             
@@ -1096,8 +1006,24 @@
                         <span class="chip bg-color">AI</span>
                     </a>
                     
-                    <a href="/tags/OpenClaw/">
-                        <span class="chip bg-color">OpenClaw</span>
+                    <a href="/tags/MCP/">
+                        <span class="chip bg-color">MCP</span>
+                    </a>
+                    
+                    <a href="/tags/Agent/">
+                        <span class="chip bg-color">Agent</span>
+                    </a>
+                    
+                    <a href="/tags/OpenAI/">
+                        <span class="chip bg-color">OpenAI</span>
+                    </a>
+                    
+                    <a href="/tags/Claude/">
+                        <span class="chip bg-color">Claude</span>
+                    </a>
+                    
+                    <a href="/tags/VS-Code/">
+                        <span class="chip bg-color">VS Code</span>
                     </a>
                     
                 </div>

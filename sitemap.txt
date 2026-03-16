@@ -1,3 +1,5 @@
+https://zuoyy.com/2026/03/14/vscode-mcp-server-guide/
+https://zuoyy.com/2026/03/15/when-to-use-rag/
 https://zuoyy.com/2026/03/13/mcp-practical-guide/
 https://zuoyy.com/2026/03/11/openclaw-install-guide/
 https://zuoyy.com/404.html
@@ -12,4 +14,8 @@ https://zuoyy.com/tags/OpenAI/
 https://zuoyy.com/tags/Claude/
 https://zuoyy.com/tags/VS-Code/
 https://zuoyy.com/tags/OpenClaw/
+https://zuoyy.com/tags/AI%E5%BC%80%E5%8F%91/
+https://zuoyy.com/tags/%E6%95%99%E7%A8%8B/
+https://zuoyy.com/tags/RAG/
+https://zuoyy.com/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/
 https://zuoyy.com/categories/AI%E6%95%99%E7%A8%8B/
