@@ -10,7 +10,27 @@
   <rights>All rights reserved 2026, 左哥</rights>
   <subtitle>在AI浪潮里，做一个清醒的记录者</subtitle>
   <title>左哥AI笔记</title>
-  <updated>2026-03-18T02:26:20.637Z</updated>
+  <updated>2026-03-18T04:15:21.553Z</updated>
+  <entry>
+    <author>
+      <name>左哥</name>
+    </author>
+    <category term="AI开发" scheme="https://zuoyy.com/categories/AI%E5%BC%80%E5%8F%91/"/>
+    <category term="RAG" scheme="https://zuoyy.com/tags/RAG/"/>
+    <category term="知识库问答" scheme="https://zuoyy.com/tags/%E7%9F%A5%E8%AF%86%E5%BA%93%E9%97%AE%E7%AD%94/"/>
+    <category term="向量检索" scheme="https://zuoyy.com/tags/%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2/"/>
+    <category term="重排" scheme="https://zuoyy.com/tags/%E9%87%8D%E6%8E%92/"/>
+    <category term="AI实战" scheme="https://zuoyy.com/tags/AI%E5%AE%9E%E6%88%98/"/>
+    <category term="检索增强" scheme="https://zuoyy.com/tags/%E6%A3%80%E7%B4%A2%E5%A2%9E%E5%BC%BA/"/>
+    <id>https://zuoyy.com/2026/03/18/rag-8/</id>
+    <link href="https://zuoyy.com/2026/03/18/rag-8/"/>
+    <published>2026-03-18T04:12:39.000Z</published>
+    <summary>
+      <![CDATA[<h1 id="RAG-为什么效果不稳定：从切片、召回到重排，拆解知识库问答最常见的-8-个问题"><a href="#RAG-为什么效果不稳定：从切片、召回到重排，拆解知识库问答最常见的-8-个问题" class="headerlink" title="RAG]]>
+    </summary>
+    <title>RAG 为什么效果不稳定：从切片、召回到重排，拆解知识库问答最常见的 8 个问题</title>
+    <updated>2026-03-18T04:15:21.553Z</updated>
+  </entry>
   <entry>
     <author>
       <name>左哥</name>
