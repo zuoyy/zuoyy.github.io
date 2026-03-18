@@ -1,0 +1,1380 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="AI Agent 的权限边界怎么设计？一份开发者安全清单, AI, AI教程, MCP, Agent, 大模型, OpenAI, Claude, 编程, 程序员, 效率工具">
+    <meta name="description" content="用写代码的严谨，记录AI时代的每一个脚印。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>AI Agent 的权限边界怎么设计？一份开发者安全清单 | 左哥AI笔记</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="左哥AI笔记" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    <span class="logo-span">
+                        左哥AI笔记
+                    </span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+  <div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+      
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+          <div class="logo-name">
+            左哥AI笔记
+          </div>
+          <div class="logo-desc">
+            
+              用写代码的严谨，记录AI时代的每一个脚印。
+                
+          </div>
+    </div>
+
+    
+
+      <ul class="menu-list mobile-menu-list">
+        
+          <li class="m-nav-item">
+            
+              <a href="/" class="waves-effect waves-light">
+                
+                  <i class="fa-fw fas fa-home"></i>
+                  
+                      首页
+              </a>
+              
+          </li>
+          
+          <li class="m-nav-item">
+            
+              <a href="/tags" class="waves-effect waves-light">
+                
+                  <i class="fa-fw fas fa-tags"></i>
+                  
+                      标签
+              </a>
+              
+          </li>
+          
+          <li class="m-nav-item">
+            
+              <a href="/categories" class="waves-effect waves-light">
+                
+                  <i class="fa-fw fas fa-bookmark"></i>
+                  
+                      分类
+              </a>
+              
+          </li>
+          
+          <li class="m-nav-item">
+            
+              <a href="/archives" class="waves-effect waves-light">
+                
+                  <i class="fa-fw fas fa-archive"></i>
+                  
+                      归档
+              </a>
+              
+          </li>
+          
+          <li class="m-nav-item">
+            
+              <a href="/about" class="waves-effect waves-light">
+                
+                  <i class="fa-fw fas fa-user-circle"></i>
+                  
+                      关于
+              </a>
+              
+          </li>
+          
+            
+      </ul>
+  </div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">AI Agent 的权限边界怎么设计？一份开发者安全清单</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Agent/">
+                                <span class="chip bg-color">Agent</span>
+                            </a>
+                        
+                            <a href="/tags/AI%E5%BC%80%E5%8F%91/">
+                                <span class="chip bg-color">AI开发</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%95%99%E7%A8%8B/">
+                                <span class="chip bg-color">教程</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">安全</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/">
+                                <span class="chip bg-color">权限控制</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/AI%E6%95%99%E7%A8%8B/" class="post-category">
+                                AI教程
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-03-16
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    1.8k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>面向正在设计 AI Agent 权限系统的开发者：这篇文章聚焦一个核心问题——Agent 的权限边界怎么设计，既能让 Agent 发挥价值，又能控制住风险。</p>
+</blockquote>
+<hr>
+<h2 id="一、为什么权限设计是-Agent-的核心问题"><a href="#一、为什么权限设计是-Agent-的核心问题" class="headerlink" title="一、为什么权限设计是 Agent 的核心问题"></a>一、为什么权限设计是 Agent 的核心问题</h2><p>Agent 和普通 AI 对话最大的区别在于：<strong>Agent 可能会真的做事。</strong></p>
+<p>它不只是回答问题，而是可能：</p>
+<ul>
+<li>调用外部 API</li>
+<li>读文件、写文件</li>
+<li>执行命令</li>
+<li>操作数据库</li>
+<li>访问敏感系统</li>
+</ul>
+<p>一旦 AI 能操作真实世界，权限就变成了一个不能绕开的问题。</p>
+<p>权限设计的核心矛盾是：</p>
+<blockquote>
+<p><strong>给 Agent 的权力越大，能力越强，风险也越高。</strong><br><strong>给 Agent 的权力越小，越安全，但可能什么都做不了。</strong></p>
+</blockquote>
+<p>找到这个平衡点，就是权限设计的全部意义。</p>
+<hr>
+<h2 id="二、Agent-权限的四个层次"><a href="#二、Agent-权限的四个层次" class="headerlink" title="二、Agent 权限的四个层次"></a>二、Agent 权限的四个层次</h2><p>大多数 Agent 系统的权限可以分为四个层次。</p>
+<h3 id="1）无权限"><a href="#1）无权限" class="headerlink" title="1）无权限"></a>1）无权限</h3><p>Agent 只能对话，不能调用任何工具。</p>
+<p>这相当于一个高级版的聊天机器人。安全，但几乎没什么实际价值。</p>
+<h3 id="2）只读权限"><a href="#2）只读权限" class="headerlink" title="2）只读权限"></a>2）只读权限</h3><p>Agent 可以读取信息，但不能修改或执行。</p>
+<p>典型场景：</p>
+<ul>
+<li>读文档</li>
+<li>查知识库</li>
+<li>搜索公开信息</li>
+</ul>
+<p>这是最安全的权限级别，适合需要 AI 提供信息但不涉及敏感操作的场景。</p>
+<h3 id="3）受限写权限"><a href="#3）受限写权限" class="headerlink" title="3）受限写权限"></a>3）受限写权限</h3><p>Agent 可以在特定范围内执行写操作。</p>
+<p>典型场景：</p>
+<ul>
+<li>写指定目录的文件</li>
+<li>调用特定白名单内的 API</li>
+<li>修改特定记录</li>
+</ul>
+<p>这是大多数实际应用的级别：在安全和能力之间取得平衡。</p>
+<h3 id="4）完全权限"><a href="#4）完全权限" class="headerlink" title="4）完全权限"></a>4）完全权限</h3><p>Agent 可以执行几乎任何操作。</p>
+<p>典型场景：</p>
+<ul>
+<li>内部 AI 助手</li>
+<li>自动化运维</li>
+<li>管理后台</li>
+</ul>
+<p>这个级别风险最高，通常需要配合审批流程、人工确认、审计日志来降低风险。</p>
+<hr>
+<h2 id="三、权限设计的基本原则"><a href="#三、权限设计的基本原则" class="headerlink" title="三、权限设计的基本原则"></a>三、权限设计的基本原则</h2><h3 id="1）最小权限原则"><a href="#1）最小权限原则" class="headerlink" title="1）最小权限原则"></a>1）最小权限原则</h3><p>只给 Agent 完成当前任务所需的最小权限。</p>
+<p>不要因为“以后可能用到”就先把权限放开。</p>
+<h3 id="2）分级控制"><a href="#2）分级控制" class="headerlink" title="2）分级控制"></a>2）分级控制</h3><p>把权限分成不同级别，不同任务用不同级别。</p>
+<p>不要让所有 Agent 都在同一个权限级别上运行。</p>
+<h3 id="3）动作分级"><a href="#3）动作分级" class="headerlink" title="3）动作分级"></a>3）动作分级</h3><p>不是所有动作都同样敏感。</p>
+<p>可以按风险把动作分成：</p>
+<ul>
+<li><strong>低风险</strong>：搜索、查询、读取公开信息</li>
+<li><strong>中风险</strong>：写文件、调用非敏感 API、生成内容</li>
+<li><strong>高风险</strong>：删数据、执行系统命令、调用支付或管理接口</li>
+</ul>
+<p>不同风险等级对应不同的控制策略。</p>
+<h3 id="4）可审计"><a href="#4）可审计" class="headerlink" title="4）可审计"></a>4）可审计</h3><p>所有关键操作最好留有日志，方便出问题回溯。</p>
+<hr>
+<h2 id="四、权限控制的常见实现方式"><a href="#四、权限控制的常见实现方式" class="headerlink" title="四、权限控制的常见实现方式"></a>四、权限控制的常见实现方式</h2><h3 id="1）白名单机制"><a href="#1）白名单机制" class="headerlink" title="1）白名单机制"></a>1）白名单机制</h3><p>只有 explicitly 允许的操作才能执行。</p>
+<p>这是最保守的方式，也是大多数场景推荐的方式。</p>
+<h3 id="2）黑名单机制"><a href="#2）黑名单机制" class="headerlink" title="2）黑名单机制"></a>2）黑名单机制</h3><p>禁止明确不安全的操作，其他默认放行。</p>
+<p>风险比白名单高，适合权限开放程度需要更高的场景。</p>
+<h3 id="3）审批确认"><a href="#3）审批确认" class="headerlink" title="3）审批确认"></a>3）审批确认</h3><p>Agent 要执行高风险操作前，需要人工确认。</p>
+<p>常见模式：</p>
+<ul>
+<li>执行前暂停</li>
+<li>发送确认请求</li>
+<li>用户同意后才执行</li>
+</ul>
+<h3 id="4）执行配额"><a href="#4）执行配额" class="headerlink" title="4）执行配额"></a>4）执行配额</h3><p>对特定操作设置配额或速率限制。</p>
+<p>比如：</p>
+<ul>
+<li>每小时最多调用 N 次 API</li>
+<li>每次最多处理 N 条记录</li>
+</ul>
+<h3 id="5）沙箱隔离"><a href="#5）沙箱隔离" class="headerlink" title="5）沙箱隔离"></a>5）沙箱隔离</h3><p>把 Agent 放在隔离环境里执行，降低对主系统的危害。</p>
+<p>比如：</p>
+<ul>
+<li>容器化运行</li>
+<li>临时目录隔离</li>
+<li>网络访问限制</li>
+</ul>
+<hr>
+<h2 id="五、常见的权限过度开放问题"><a href="#五、常见的权限过度开放问题" class="headerlink" title="五、常见的权限过度开放问题"></a>五、常见的权限过度开放问题</h2><h3 id="问题-1：文件权限放得太开"><a href="#问题-1：文件权限放得太开" class="headerlink" title="问题 1：文件权限放得太开"></a>问题 1：文件权限放得太开</h3><p>典型情况：Agent 可以访问整个文件系统。</p>
+<p>风险：</p>
+<ul>
+<li>误删重要文件</li>
+<li>读取敏感配置文件</li>
+<li>被注入后造成数据泄露</li>
+</ul>
+<p>建议：只给 Agent 访问特定目录的权限，敏感目录默认禁止。</p>
+<h3 id="问题-2：API-权限没有分级"><a href="#问题-2：API-权限没有分级" class="headerlink" title="问题 2：API 权限没有分级"></a>问题 2：API 权限没有分级</h3><p>典型情况：一个 API key 能调所有接口。</p>
+<p>风险：</p>
+<ul>
+<li>一旦泄露影响范围大</li>
+<li>无法精细控制不同接口的访问</li>
+</ul>
+<p>建议：按接口风险分级，用不同凭证或 token 控制。</p>
+<h3 id="问题-3：高风险操作没有人工确认"><a href="#问题-3：高风险操作没有人工确认" class="headerlink" title="问题 3：高风险操作没有人工确认"></a>问题 3：高风险操作没有人工确认</h3><p>典型情况：删除、支付、管理类操作也自动执行。</p>
+<p>风险：</p>
+<ul>
+<li>误操作造成不可逆后果</li>
+<li>被恶意指令利用</li>
+</ul>
+<p>建议：高风险操作强制走审批确认流程。</p>
+<h3 id="问题-4：没有会话隔离"><a href="#问题-4：没有会话隔离" class="headerlink" title="问题 4：没有会话隔离"></a>问题 4：没有会话隔离</h3><p>典型情况：不同用户&#x2F;会话共用同一个 Agent 上下文。</p>
+<p>风险：</p>
+<ul>
+<li>用户 A 的请求可能读到用户 B 的数据</li>
+<li>上下文污染</li>
+</ul>
+<p>建议：会话级别隔离，敏感数据不进入共享上下文。</p>
+<hr>
+<h2 id="六、不同场景下的权限设计建议"><a href="#六、不同场景下的权限设计建议" class="headerlink" title="六、不同场景下的权限设计建议"></a>六、不同场景下的权限设计建议</h2><h3 id="场景-1：面向外部用户的-Copilot"><a href="#场景-1：面向外部用户的-Copilot" class="headerlink" title="场景 1：面向外部用户的 Copilot"></a>场景 1：面向外部用户的 Copilot</h3><ul>
+<li>权限要严，能读不能写或只能写非敏感内容</li>
+<li>必须有审批或人工介入环节</li>
+<li>建议走白名单 + 有限配额</li>
+</ul>
+<h3 id="场景-2：内部开发助手"><a href="#场景-2：内部开发助手" class="headerlink" title="场景 2：内部开发助手"></a>场景 2：内部开发助手</h3><ul>
+<li>权限可以适当放宽，但仍需控制</li>
+<li>关键操作（删库、删生产环境）必须审批</li>
+<li>建议所有操作留审计日志</li>
+</ul>
+<h3 id="场景-3：自动化运维-Agent"><a href="#场景-3：自动化运维-Agent" class="headerlink" title="场景 3：自动化运维 Agent"></a>场景 3：自动化运维 Agent</h3><ul>
+<li>权限最敏感，必须与生产系统隔离</li>
+<li>关键操作必须人工确认</li>
+<li>建议走审批 + 沙箱 + 审计三重防护</li>
+</ul>
+<h3 id="场景-4：数据分析-Agent"><a href="#场景-4：数据分析-Agent" class="headerlink" title="场景 4：数据分析 Agent"></a>场景 4：数据分析 Agent</h3><ul>
+<li>只读权限为主</li>
+<li>如果需要写结果，建议写到独立且可删除的存储</li>
+<li>敏感数据脱敏处理</li>
+</ul>
+<hr>
+<h2 id="七、一个实用的权限设计检查清单"><a href="#七、一个实用的权限设计检查清单" class="headerlink" title="七、一个实用的权限设计检查清单"></a>七、一个实用的权限设计检查清单</h2><p>设计权限系统时，可以按这个清单过一遍：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 是否遵循最小权限原则</li>
+<li><input disabled="" type="checkbox"> 是否做了分级控制（读&#x2F;写&#x2F;执行分开）</li>
+<li><input disabled="" type="checkbox"> 高风险操作是否需要人工确认</li>
+<li><input disabled="" type="checkbox"> 敏感目录是否默认禁止访问</li>
+<li><input disabled="" type="checkbox"> 是否有限流或配额机制</li>
+<li><input disabled="" type="checkbox"> 所有关键操作是否可审计</li>
+<li><input disabled="" type="checkbox"> 会话之间是否隔离</li>
+<li><input disabled="" type="checkbox"> 凭证是否分级别管理</li>
+<li><input disabled="" type="checkbox"> 是否有沙箱或隔离环境</li>
+<li><input disabled="" type="checkbox"> 权限配置是否可被审查和修改</li>
+</ul>
+<hr>
+<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>Agent 的权限设计不是一个“技术上可以搞定”的问题，而是需要在多个维度上做权衡：</p>
+<ul>
+<li>安全性 vs 能力</li>
+<li>便利性 vs 控制</li>
+<li>灵活性 vs 管理成本</li>
+</ul>
+<p>没有绝对正确的权限设计，只有适合当前业务阶段的合理设计。</p>
+<p>我的建议是：<strong>从最小权限开始，根据实际需求逐步放开，并始终保留可收紧的能力。</strong></p>
+<hr>
+<h2 id="关键词建议"><a href="#关键词建议" class="headerlink" title="关键词建议"></a>关键词建议</h2><ul>
+<li>AI Agent 权限设计</li>
+<li>Agent 安全</li>
+<li>权限控制</li>
+<li>Agent 工程实践</li>
+<li>AI 安全 Checklist</li>
+</ul>
+<h2 id="摘要建议"><a href="#摘要建议" class="headerlink" title="摘要建议"></a>摘要建议</h2><p>AI Agent 的权限设计是一个容易被忽视但至关重要的议题。这篇文章从开发者视角出发，提供一份实用的权限设计清单，帮助你在安全与能力之间找到平衡。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">左哥</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zuoyy.com/2026/03/16/ai-agent-security-checklist/">https://zuoyy.com/2026/03/16/ai-agent-security-checklist/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">左哥</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Agent/">
+                                    <span class="chip bg-color">Agent</span>
+                                </a>
+                            
+                                <a href="/tags/AI%E5%BC%80%E5%8F%91/">
+                                    <span class="chip bg-color">AI开发</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%99%E7%A8%8B/">
+                                    <span class="chip bg-color">教程</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">安全</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/">
+                                    <span class="chip bg-color">权限控制</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2026/03/16/agent-looks-good-but-not-useful/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="为什么你的 Agent 总是“看起来很强，实际不好用”？">
+                        
+                        <span class="card-title">为什么你的 Agent 总是“看起来很强，实际不好用”？</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2026-03-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AI%E6%95%99%E7%A8%8B/" class="post-category">
+                                    AI教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Agent/">
+                        <span class="chip bg-color">Agent</span>
+                    </a>
+                    
+                    <a href="/tags/AI%E5%BC%80%E5%8F%91/">
+                        <span class="chip bg-color">AI开发</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">教程</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">
+                        <span class="chip bg-color">工程实践</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2026/03/15/when-to-use-rag/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="RAG 到底什么时候该用，什么时候不该用？给开发者的实用判断">
+                        
+                        <span class="card-title">RAG 到底什么时候该用，什么时候不该用？给开发者的实用判断</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AI%E6%95%99%E7%A8%8B/" class="post-category">
+                                    AI教程
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Agent/">
+                        <span class="chip bg-color">Agent</span>
+                    </a>
+                    
+                    <a href="/tags/AI%E5%BC%80%E5%8F%91/">
+                        <span class="chip bg-color">AI开发</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%95%99%E7%A8%8B/">
+                        <span class="chip bg-color">教程</span>
+                    </a>
+                    
+                    <a href="/tags/RAG/">
+                        <span class="chip bg-color">RAG</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/">
+                        <span class="chip bg-color">知识库</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 左哥AI笔记<br />'
+            + '文章作者: 左哥<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- Prism.js 需要在代码块处理之前加载 -->
+
+<script src="/libs/prism/prism.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+            
+                <div class="container row center-align" style="margin-bottom: 10px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                                <span id="year">2026</span>
+                                
+                                    <a href="/about" target="_blank">左哥</a>
+                                    
+                                        &nbsp;|&nbsp;
+                                        <span id="icp"><img
+                                                src="/medias/icp.png"
+                                                style="vertical-align: text-bottom;" />
+                                            <a href="https://beian.miit.gov.cn/" target="_blank">
+                                                陕ICP备2026001586号-2
+                                            </a>
+                                        </span>
+                                        
+                                            
+
+                                                
+                    </div>
+                    <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/zuoyy" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zuoge@live.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=11043150" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 11043150" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+
+                    </div>
+                </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
