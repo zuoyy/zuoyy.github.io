@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://zuoyy.com/2026/03/18/openclaw-2026-ai-agent/</loc>
+    <loc>https://zuoyy.com/2026/03/11/openclaw-install-guide/</loc>
     
     <lastmod>2026-03-18</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>https://zuoyy.com/2026/03/18/openclaw-agent/</loc>
+    <loc>https://zuoyy.com/2026/03/18/openclaw-nemoclaw-ai-agent/</loc>
     
     <lastmod>2026-03-18</lastmod>
     
@@ -56,15 +56,6 @@
   </url>
   
   <url>
-    <loc>https://zuoyy.com/2026/03/15/when-to-use-rag/</loc>
-    
-    <lastmod>2026-03-16</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://zuoyy.com/2026/03/14/vscode-mcp-server-guide/</loc>
     
     <lastmod>2026-03-16</lastmod>
@@ -74,16 +65,16 @@
   </url>
   
   <url>
-    <loc>https://zuoyy.com/2026/03/13/mcp-practical-guide/</loc>
+    <loc>https://zuoyy.com/2026/03/15/when-to-use-rag/</loc>
     
-    <lastmod>2026-03-14</lastmod>
+    <lastmod>2026-03-16</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://zuoyy.com/2026/03/11/openclaw-install-guide/</loc>
+    <loc>https://zuoyy.com/2026/03/13/mcp-practical-guide/</loc>
     
     <lastmod>2026-03-14</lastmod>
     
@@ -186,13 +177,6 @@
   </url>
   
   <url>
-    <loc>https://zuoyy.com/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://zuoyy.com/tags/AI/</loc>
     <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -235,6 +219,20 @@
   </url>
   
   <url>
+    <loc>https://zuoyy.com/tags/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://zuoyy.com/tags/NemoClaw/</loc>
+    <lastmod>2026-03-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://zuoyy.com/tags/AI-Agent/</loc>
     <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -242,7 +240,7 @@
   </url>
   
   <url>
-    <loc>https://zuoyy.com/tags/%E4%BC%81%E4%B8%9A%E9%83%A8%E7%BD%B2/</loc>
+    <loc>https://zuoyy.com/tags/%E4%BC%81%E4%B8%9A%E8%90%BD%E5%9C%B0/</loc>
     <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -256,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://zuoyy.com/tags/%E5%BC%80%E6%BA%90%E7%94%9F%E6%80%81/</loc>
+    <loc>https://zuoyy.com/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/</loc>
     <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -276,27 +274,6 @@
     <priority>0.2</priority>
   </url>
   
-  <url>
-    <loc>https://zuoyy.com/tags/Agent-%E5%AE%89%E5%85%A8/</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zuoyy.com/tags/%E5%BC%80%E6%BA%90%E9%83%A8%E7%BD%B2/</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://zuoyy.com/tags/%E4%BC%81%E4%B8%9A%E8%90%BD%E5%9C%B0/</loc>
-    <lastmod>2026-03-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
 
   
   <url>
@@ -307,7 +284,7 @@
   </url>
   
   <url>
-    <loc>https://zuoyy.com/categories/Agent/</loc>
+    <loc>https://zuoyy.com/categories/OpenClaw/</loc>
     <lastmod>2026-03-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

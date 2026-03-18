@@ -10,44 +10,25 @@
   <rights>All rights reserved 2026, 左哥</rights>
   <subtitle>在AI浪潮里，做一个清醒的记录者</subtitle>
   <title>左哥AI笔记</title>
-  <updated>2026-03-18T02:16:24.234Z</updated>
+  <updated>2026-03-18T02:26:20.637Z</updated>
   <entry>
     <author>
       <name>左哥</name>
     </author>
-    <category term="Agent" scheme="https://zuoyy.com/categories/Agent/"/>
+    <category term="OpenClaw" scheme="https://zuoyy.com/categories/OpenClaw/"/>
     <category term="OpenClaw" scheme="https://zuoyy.com/tags/OpenClaw/"/>
+    <category term="NemoClaw" scheme="https://zuoyy.com/tags/NemoClaw/"/>
     <category term="AI Agent" scheme="https://zuoyy.com/tags/AI-Agent/"/>
-    <category term="企业部署" scheme="https://zuoyy.com/tags/%E4%BC%81%E4%B8%9A%E9%83%A8%E7%BD%B2/"/>
-    <category term="安全治理" scheme="https://zuoyy.com/tags/%E5%AE%89%E5%85%A8%E6%B2%BB%E7%90%86/"/>
-    <category term="开源生态" scheme="https://zuoyy.com/tags/%E5%BC%80%E6%BA%90%E7%94%9F%E6%80%81/"/>
-    <id>https://zuoyy.com/2026/03/18/openclaw-2026-ai-agent/</id>
-    <link href="https://zuoyy.com/2026/03/18/openclaw-2026-ai-agent/"/>
-    <published>2026-03-18T02:14:59.000Z</published>
-    <summary>
-      <![CDATA[<h1 id="OpenClaw-热潮背后，为什么-2026-年会成为-AI-Agent-真正进入企业评估期的一年"><a href="#OpenClaw-热潮背后，为什么-2026-年会成为-AI-Agent-真正进入企业评估期的一年" class="headerlink"]]>
-    </summary>
-    <title>OpenClaw 热潮背后，为什么 2026 年会成为 AI Agent 真正进入企业评估期的一年</title>
-    <updated>2026-03-18T02:16:24.234Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>左哥</name>
-    </author>
-    <category term="Agent" scheme="https://zuoyy.com/categories/Agent/"/>
-    <category term="OpenClaw" scheme="https://zuoyy.com/tags/OpenClaw/"/>
-    <category term="AI Agent" scheme="https://zuoyy.com/tags/AI-Agent/"/>
-    <category term="Agent 安全" scheme="https://zuoyy.com/tags/Agent-%E5%AE%89%E5%85%A8/"/>
-    <category term="开源部署" scheme="https://zuoyy.com/tags/%E5%BC%80%E6%BA%90%E9%83%A8%E7%BD%B2/"/>
     <category term="企业落地" scheme="https://zuoyy.com/tags/%E4%BC%81%E4%B8%9A%E8%90%BD%E5%9C%B0/"/>
-    <id>https://zuoyy.com/2026/03/18/openclaw-agent/</id>
-    <link href="https://zuoyy.com/2026/03/18/openclaw-agent/"/>
-    <published>2026-03-18T02:12:28.000Z</published>
+    <category term="安全治理" scheme="https://zuoyy.com/tags/%E5%AE%89%E5%85%A8%E6%B2%BB%E7%90%86/"/>
+    <id>https://zuoyy.com/2026/03/18/openclaw-nemoclaw-ai-agent/</id>
+    <link href="https://zuoyy.com/2026/03/18/openclaw-nemoclaw-ai-agent/"/>
+    <published>2026-03-18T02:24:54.000Z</published>
     <summary>
-      <![CDATA[<h1 id="OpenClaw-爆红之后，技术团队为什么更该关注-Agent-安全与部署边界"><a href="#OpenClaw-爆红之后，技术团队为什么更该关注-Agent-安全与部署边界" class="headerlink" title="OpenClaw]]>
+      <![CDATA[<h1 id="OpenClaw-与-NemoClaw-同时升温，企业为什么该重新评估开源-AI-Agent-的落地路径"><a href="#OpenClaw-与-NemoClaw-同时升温，企业为什么该重新评估开源-AI-Agent-的落地路径"]]>
     </summary>
-    <title>OpenClaw 爆红之后，技术团队为什么更该关注 Agent 安全与部署边界</title>
-    <updated>2026-03-18T02:14:28.452Z</updated>
+    <title>OpenClaw 与 NemoClaw 同时升温，企业为什么该重新评估开源 AI Agent 的落地路径</title>
+    <updated>2026-03-18T02:26:20.637Z</updated>
   </entry>
   <entry>
     <author>
@@ -213,8 +194,10 @@
       <name>左哥</name>
     </author>
     <category term="AI教程" scheme="https://zuoyy.com/categories/AI%E6%95%99%E7%A8%8B/"/>
+    <category term="教程" scheme="https://zuoyy.com/tags/%E6%95%99%E7%A8%8B/"/>
     <category term="AI" scheme="https://zuoyy.com/tags/AI/"/>
     <category term="OpenClaw" scheme="https://zuoyy.com/tags/OpenClaw/"/>
+    <category term="安装指南" scheme="https://zuoyy.com/tags/%E5%AE%89%E8%A3%85%E6%8C%87%E5%8D%97/"/>
     <id>https://zuoyy.com/2026/03/11/openclaw-install-guide/</id>
     <link href="https://zuoyy.com/2026/03/11/openclaw-install-guide/"/>
     <published>2026-03-11T09:27:21.000Z</published>
@@ -226,6 +209,6 @@
 <h2]]>
     </summary>
     <title>新手必看！OpenClaw AI助手零基础安装指南</title>
-    <updated>2026-03-14T03:33:04.070Z</updated>
+    <updated>2026-03-18T02:53:11.319Z</updated>
   </entry>
 </feed>
