@@ -10,16 +10,35 @@
   <rights>All rights reserved 2026, 左哥</rights>
   <subtitle>在AI浪潮里，做一个清醒的记录者</subtitle>
   <title>左哥AI笔记</title>
-  <updated>2026-03-27T03:49:34.693Z</updated>
+  <updated>2026-03-30T05:45:50.921Z</updated>
+  <entry>
+    <author>
+      <name>左哥</name>
+    </author>
+    <category term="AI开发" scheme="https://zuoyy.com/categories/AI%E5%BC%80%E5%8F%91/"/>
+    <category term="Claude Code" scheme="https://zuoyy.com/tags/Claude-Code/"/>
+    <category term="Codex CLI" scheme="https://zuoyy.com/tags/Codex-CLI/"/>
+    <category term="Gemini CLI" scheme="https://zuoyy.com/tags/Gemini-CLI/"/>
+    <category term="AI Agent" scheme="https://zuoyy.com/tags/AI-Agent/"/>
+    <category term="开发工具" scheme="https://zuoyy.com/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    <id>https://zuoyy.com/2026/03/30/claude-code-codex-gemini-cli-comparison/</id>
+    <link href="https://zuoyy.com/2026/03/30/claude-code-codex-gemini-cli-comparison/"/>
+    <published>2026-03-30T05:45:00.000Z</published>
+    <summary>
+      <![CDATA[<p>2026 年，AI 编程工具的主战场已经从 IDE 插件转移到了终端。Claude Code、OpenAI Codex CLI、Google Gemini CLI 三款终端 AI Agent 几乎同期发力，都在强调同一个方向：让 AI]]>
+    </summary>
+    <title>Claude Code、Codex CLI、Gemini CLI：三大终端 AI Agent 怎么选，各自适合什么场景</title>
+    <updated>2026-03-30T05:45:50.921Z</updated>
+  </entry>
   <entry>
     <author>
       <name>左哥</name>
     </author>
     <category term="AI开发" scheme="https://zuoyy.com/categories/AI%E5%BC%80%E5%8F%91/"/>
     <category term="Agent" scheme="https://zuoyy.com/tags/Agent/"/>
+    <category term="AI开发" scheme="https://zuoyy.com/tags/AI%E5%BC%80%E5%8F%91/"/>
     <category term="架构设计" scheme="https://zuoyy.com/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
     <category term="工具调用" scheme="https://zuoyy.com/tags/%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8/"/>
-    <category term="AI开发" scheme="https://zuoyy.com/tags/AI%E5%BC%80%E5%8F%91/"/>
     <category term="项目复盘" scheme="https://zuoyy.com/tags/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/"/>
     <id>https://zuoyy.com/2026/03/27/agent-project-architecture-lessons/</id>
     <link href="https://zuoyy.com/2026/03/27/agent-project-architecture-lessons/"/>
@@ -37,9 +56,9 @@
     </author>
     <category term="AI开发" scheme="https://zuoyy.com/categories/AI%E5%BC%80%E5%8F%91/"/>
     <category term="Agent" scheme="https://zuoyy.com/tags/Agent/"/>
+    <category term="AI开发" scheme="https://zuoyy.com/tags/AI%E5%BC%80%E5%8F%91/"/>
     <category term="架构设计" scheme="https://zuoyy.com/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/"/>
     <category term="工具调用" scheme="https://zuoyy.com/tags/%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8/"/>
-    <category term="AI开发" scheme="https://zuoyy.com/tags/AI%E5%BC%80%E5%8F%91/"/>
     <category term="MCP" scheme="https://zuoyy.com/tags/MCP/"/>
     <id>https://zuoyy.com/2026/03/23/why-not-all-agents-need-mcp/</id>
     <link href="https://zuoyy.com/2026/03/23/why-not-all-agents-need-mcp/"/>
@@ -153,9 +172,9 @@
       <name>左哥</name>
     </author>
     <category term="OpenClaw" scheme="https://zuoyy.com/categories/OpenClaw/"/>
+    <category term="AI Agent" scheme="https://zuoyy.com/tags/AI-Agent/"/>
     <category term="OpenClaw" scheme="https://zuoyy.com/tags/OpenClaw/"/>
     <category term="NemoClaw" scheme="https://zuoyy.com/tags/NemoClaw/"/>
-    <category term="AI Agent" scheme="https://zuoyy.com/tags/AI-Agent/"/>
     <category term="企业落地" scheme="https://zuoyy.com/tags/%E4%BC%81%E4%B8%9A%E8%90%BD%E5%9C%B0/"/>
     <category term="安全治理" scheme="https://zuoyy.com/tags/%E5%AE%89%E5%85%A8%E6%B2%BB%E7%90%86/"/>
     <id>https://zuoyy.com/2026/03/18/openclaw-nemoclaw-ai-agent/</id>
@@ -174,8 +193,8 @@
     <category term="AI教程" scheme="https://zuoyy.com/categories/AI%E6%95%99%E7%A8%8B/"/>
     <category term="Agent" scheme="https://zuoyy.com/tags/Agent/"/>
     <category term="AI开发" scheme="https://zuoyy.com/tags/AI%E5%BC%80%E5%8F%91/"/>
-    <category term="工具设计" scheme="https://zuoyy.com/tags/%E5%B7%A5%E5%85%B7%E8%AE%BE%E8%AE%A1/"/>
     <category term="教程" scheme="https://zuoyy.com/tags/%E6%95%99%E7%A8%8B/"/>
+    <category term="工具设计" scheme="https://zuoyy.com/tags/%E5%B7%A5%E5%85%B7%E8%AE%BE%E8%AE%A1/"/>
     <id>https://zuoyy.com/2026/03/17/agent-tool-design-mistakes/</id>
     <link href="https://zuoyy.com/2026/03/17/agent-tool-design-mistakes/"/>
     <published>2026-03-17T04:52:00.000Z</published>
@@ -308,8 +327,8 @@
     </author>
     <category term="AI教程" scheme="https://zuoyy.com/categories/AI%E6%95%99%E7%A8%8B/"/>
     <category term="Agent" scheme="https://zuoyy.com/tags/Agent/"/>
-    <category term="AI" scheme="https://zuoyy.com/tags/AI/"/>
     <category term="MCP" scheme="https://zuoyy.com/tags/MCP/"/>
+    <category term="AI" scheme="https://zuoyy.com/tags/AI/"/>
     <category term="OpenAI" scheme="https://zuoyy.com/tags/OpenAI/"/>
     <category term="Claude" scheme="https://zuoyy.com/tags/Claude/"/>
     <category term="VS Code" scheme="https://zuoyy.com/tags/VS-Code/"/>

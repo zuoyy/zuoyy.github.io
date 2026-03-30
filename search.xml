@@ -4,6 +4,39 @@
   
     
     <entry>
+      <title>Claude Code、Codex CLI、Gemini CLI：三大终端 AI Agent 怎么选，各自适合什么场景</title>
+      <link href="/2026/03/30/claude-code-codex-gemini-cli-comparison/"/>
+      <url>/2026/03/30/claude-code-codex-gemini-cli-comparison/</url>
+      
+        <content type="html"><![CDATA[<p>2026 年，AI 编程工具的主战场已经从 IDE 插件转移到了终端。Claude Code、OpenAI Codex CLI、Google Gemini CLI 三款终端 AI Agent 几乎同期发力，都在强调同一个方向：让 AI 能在真实环境里持续推进任务，而不只是帮你补全几行代码。</p><p>这篇文章不讲虚的，重点回答一个问题：<strong>这三款工具各自适合什么场景，开发者该怎么选。</strong></p><p>读完你会得到三样东西：</p><ol><li>理解三款工具的核心定位和差异</li><li>知道不同使用场景下该优先选哪一个</li><li>一套判断自己是否需要终端 AI Agent 的方法</li></ol><h2 id="一、先说结论：不是谁都需要终端-AI-Agent"><a href="#一、先说结论：不是谁都需要终端-AI-Agent" class="headerlink" title="一、先说结论：不是谁都需要终端 AI Agent"></a>一、先说结论：不是谁都需要终端 AI Agent</h2><p>在比较这三款工具之前，先要回答一个更根本的问题：<strong>你真的需要终端 AI Agent 吗？</strong></p><p>如果你只是：</p><ul><li>偶尔写写脚本</li><li>改改配置文件</li><li>补全代码片段</li><li>需要解释某段代码</li></ul><p>那传统 IDE 插件或网页版 AI 已经够用。</p><p>终端 AI Agent 的价值，主要体现在这些场景：</p><ul><li>需要长时间、多步骤推进开发任务</li><li>需要读写整个仓库、跨文件修改</li><li>需要执行命令、跑测试、看结果再调整</li><li>需要 7×24 小时无人值守运行</li></ul><p>如果你没有这些需求，强行上终端 AI Agent，反而会增加学习成本。</p><h2 id="二、三款工具的定位差异"><a href="#二、三款工具的定位差异" class="headerlink" title="二、三款工具的定位差异"></a>二、三款工具的定位差异</h2><h3 id="Claude-Code：Anthropic-的”工程化-Agent”"><a href="#Claude-Code：Anthropic-的”工程化-Agent”" class="headerlink" title="Claude Code：Anthropic 的”工程化 Agent”"></a>Claude Code：Anthropic 的”工程化 Agent”</h3><p>Claude Code 是 Anthropic 官方推出的终端 AI 编程工具。它的核心定位非常明确：<strong>让 Claude 在真实开发环境中执行复杂任务。</strong></p><p>主要特点：</p><ul><li>能读取整个代码仓库</li><li>能修改文件、执行命令</li><li>内置 MCP 支持，可接入外部工具和数据源</li><li>支持 CLAUDE.md 配置文件，沉淀项目级规则</li><li>支持 subagent 机制，可拆分子任务并行处理</li><li>强调权限控制和审计能力</li></ul><p>适合场景：</p><ul><li>中大型项目的长期维护</li><li>需要跨文件、跨模块重构</li><li>需要将开发规则沉淀到仓库中</li><li>对安全性和审计有要求的企业环境</li></ul><h3 id="Codex-CLI：OpenAI-的”自主编码-Agent”"><a href="#Codex-CLI：OpenAI-的”自主编码-Agent”" class="headerlink" title="Codex CLI：OpenAI 的”自主编码 Agent”"></a>Codex CLI：OpenAI 的”自主编码 Agent”</h3><p>Codex CLI 是 OpenAI 推出的终端 AI Agent，强调”自主编码”能力。</p><p>主要特点：</p><ul><li>能在选定目录中读取、修改、运行代码</li><li>支持多步骤工作流规划</li><li>强调”autonomous coding agent”定位</li><li>与 OpenAI 生态深度整合</li><li>支持 AGENTS.md 配置文件</li></ul><p>适合场景：</p><ul><li>快速原型开发</li><li>独立项目或小团队项目</li><li>已经重度使用 OpenAI 生态的团队</li><li>需要从零搭建新项目</li></ul><h3 id="Gemini-CLI：Google-的”开源终端-Agent”"><a href="#Gemini-CLI：Google-的”开源终端-Agent”" class="headerlink" title="Gemini CLI：Google 的”开源终端 Agent”"></a>Gemini CLI：Google 的”开源终端 Agent”</h3><p>Gemini CLI 是 Google 推出的开源终端 AI Agent，定位稍有不同。</p><p>主要特点：</p><ul><li>完全开源，可自主部署和定制</li><li>使用 ReAct loop 配合内置工具和 MCP servers</li><li>与 Google Cloud 生态整合</li><li>强调可扩展性和开放性</li><li>支持本地和远程 MCP servers</li></ul><p>适合场景：</p><ul><li>需要深度定制 Agent 行为</li><li>希望掌控完整工具链</li><li>已在 Google Cloud 生态内建设</li><li>对开源和自托管有强需求</li></ul><h2 id="三、从三个维度看差异"><a href="#三、从三个维度看差异" class="headerlink" title="三、从三个维度看差异"></a>三、从三个维度看差异</h2><p>如果只看功能列表，这三款工具好像都差不多。但从实际使用角度，差异主要体现在三个维度。</p><h3 id="1-生态绑定程度"><a href="#1-生态绑定程度" class="headerlink" title="1. 生态绑定程度"></a>1. 生态绑定程度</h3><ul><li>Claude Code：与 Anthropic 生态深度绑定，底层模型是 Claude 系列</li><li>Codex CLI：与 OpenAI 生态深度绑定，底层模型是 GPT 系列</li><li>Gemini CLI：与 Google Cloud 生态绑定，也可接入本地模型</li></ul><p>如果你已经重度依赖某个云平台的模型和服务，选对应工具的迁移成本最低。</p><h3 id="2-开放性与可控性"><a href="#2-开放性与可控性" class="headerlink" title="2. 开放性与可控性"></a>2. 开放性与可控性</h3><ul><li>Claude Code：闭源，但提供丰富的配置和扩展能力</li><li>Codex CLI：闭源，强调开箱即用</li><li>Gemini CLI：开源，可自主定制和部署</li></ul><p>如果你需要完全掌控工具链，或对数据隐私有极高要求，Gemini CLI 是唯一选择。</p><h3 id="3-企业级能力"><a href="#3-企业级能力" class="headerlink" title="3. 企业级能力"></a>3. 企业级能力</h3><ul><li>Claude Code：权限控制、审计日志、合规能力最完善</li><li>Codex CLI：偏个人开发者和小团队</li><li>Gemini CLI：介于两者之间，可通过自托管增强企业级能力</li></ul><p>如果是在企业环境部署，Claude Code 的安全能力更成熟。</p><h2 id="四、不同场景的选择建议"><a href="#四、不同场景的选择建议" class="headerlink" title="四、不同场景的选择建议"></a>四、不同场景的选择建议</h2><h3 id="场景-1：个人开发者，快速出原型"><a href="#场景-1：个人开发者，快速出原型" class="headerlink" title="场景 1：个人开发者，快速出原型"></a>场景 1：个人开发者，快速出原型</h3><p>推荐：Codex CLI 或 Gemini CLI</p><p>理由：</p><ul><li>这两款工具对个人开发者更友好</li><li>开箱即用，配置简单</li><li>Gemini CLI 免费额度更友好</li></ul><h3 id="场景-2：中大型项目，长期维护"><a href="#场景-2：中大型项目，长期维护" class="headerlink" title="场景 2：中大型项目，长期维护"></a>场景 2：中大型项目，长期维护</h3><p>推荐：Claude Code</p><p>理由：</p><ul><li>项目级配置沉淀能力（CLAUDE.md）</li><li>跨文件、跨模块重构能力强</li><li>subagent 机制可处理复杂任务</li><li>权限和审计能力完善</li></ul><h3 id="场景-3：团队协作，需要统一规范"><a href="#场景-3：团队协作，需要统一规范" class="headerlink" title="场景 3：团队协作，需要统一规范"></a>场景 3：团队协作，需要统一规范</h3><p>推荐：Claude Code</p><p>理由：</p><ul><li>AGENTS.md &#x2F; CLAUDE.md 机制可将规则版本化</li><li>支持共享 skills 和 scripts</li><li>配合 GitHub Action 可实现自动化流程</li></ul><h3 id="场景-4：强安全合规要求"><a href="#场景-4：强安全合规要求" class="headerlink" title="场景 4：强安全合规要求"></a>场景 4：强安全合规要求</h3><p>推荐：Claude Code（云）或 Gemini CLI（自托管）</p><p>理由：</p><ul><li>Claude Code 的权限和审计能力最强</li><li>如果要完全自托管，只能选 Gemini CLI</li></ul><h3 id="场景-5：需要深度定制-Agent-行为"><a href="#场景-5：需要深度定制-Agent-行为" class="headerlink" title="场景 5：需要深度定制 Agent 行为"></a>场景 5：需要深度定制 Agent 行为</h3><p>推荐：Gemini CLI</p><p>理由：</p><ul><li>完全开源，可改源码</li><li>可自主扩展工具和协议</li><li>不受商业限制</li></ul><h3 id="场景-6：已经在用某个大厂生态"><a href="#场景-6：已经在用某个大厂生态" class="headerlink" title="场景 6：已经在用某个大厂生态"></a>场景 6：已经在用某个大厂生态</h3><p>推荐：选对应家的工具</p><p>理由：</p><ul><li>减少账号体系和 API 管理</li><li>认证和权限可复用</li><li>调用链路更短</li></ul><h2 id="五、一个简单的选择决策图"><a href="#五、一个简单的选择决策图" class="headerlink" title="五、一个简单的选择决策图"></a>五、一个简单的选择决策图</h2><p>如果你还在犹豫，可以按这个流程判断：</p><ol><li><p>需要完全自托管吗？</p><ul><li>是 → Gemini CLI</li><li>否 → 继续</li></ul></li><li><p>是企业级项目吗？</p><ul><li>是 → Claude Code</li><li>否 → 继续</li></ul></li><li><p>主要用哪家模型？</p><ul><li>Claude → Claude Code</li><li>GPT → Codex CLI</li><li>Gemini &#x2F; 其他 → Gemini CLI</li></ul></li></ol><p>这个判断不绝对，但能帮你快速缩小范围。</p><h2 id="六、三款工具共同的限制和问题"><a href="#六、三款工具共同的限制和问题" class="headerlink" title="六、三款工具共同的限制和问题"></a>六、三款工具共同的限制和问题</h2><p>虽然这三款工具都很强，但一些问题依然存在。</p><h3 id="1-长任务的稳定性"><a href="#1-长任务的稳定性" class="headerlink" title="1. 长任务的稳定性"></a>1. 长任务的稳定性</h3><p>让 AI Agent 长时间自主执行任务，仍然存在：</p><ul><li>中途偏离目标</li><li>遇到异常不知道如何处理</li><li>文件版本混乱</li><li>循环操作消耗大量 Token</li></ul><p>这不是某一款工具的问题，而是当前 Agent 能力的边界。</p><h3 id="2-权限和安全的两难"><a href="#2-权限和安全的两难" class="headerlink" title="2. 权限和安全的两难"></a>2. 权限和安全的两难</h3><p>权限控制越严格，Agent 能做的事越少；权限放得越开，风险越大。</p><p>目前三款工具都在尝试用分类器、白名单、沙箱等方式平衡，但没有完美方案。</p><h3 id="3-成本问题"><a href="#3-成本问题" class="headerlink" title="3. 成本问题"></a>3. 成本问题</h3><p>终端 AI Agent 调用量大，Token 消耗远超普通对话。长期使用的成本需要注意。</p><h3 id="4-学习成本"><a href="#4-学习成本" class="headerlink" title="4. 学习成本"></a>4. 学习成本</h3><p>能用好这些工具，不只是会敲命令，更需要：</p><ul><li>理解 Agent 工作机制</li><li>会写配置文件和 rules</li><li>能判断什么时候该干预</li><li>能设计可被 Agent 理解的项目结构</li></ul><p>这不是换个工具就能解决的问题，而是需要时间积累。</p><h2 id="七、一个容易被忽略的事实"><a href="#七、一个容易被忽略的事实" class="headerlink" title="七、一个容易被忽略的事实"></a>七、一个容易被忽略的事实</h2><p>很多人以为用了终端 AI Agent 就能大幅提升效率，但实际效果往往取决于：</p><ul><li>你的项目结构是否清晰</li><li>你的代码是否容易被理解</li><li>你的任务是否边界明确</li><li>你是否知道怎么给 AI 下指令</li></ul><p>换句话说：<strong>工具只是放大器，前提是你得有清晰的东西可放。</strong></p><p>如果你的项目乱糟糟，任务说不清，那用什么 Agent 都不会有质的提升。</p><h2 id="八、什么时候说明你选对了"><a href="#八、什么时候说明你选对了" class="headerlink" title="八、什么时候说明你选对了"></a>八、什么时候说明你选对了</h2><p>可以用这几个信号判断：</p><ul><li>相比手动操作，AI 完成重复任务明显更快</li><li>AI 的修改不需要你反复返工</li><li>项目级规则沉淀下来后，新任务执行质量稳定</li><li>团队成员能复用同一套配置</li></ul><p>如果这些都不满足，可能不是工具选错了，而是你的项目还没准备好被 Agent 化。</p><h2 id="九、结语：工具选对只是第一步"><a href="#九、结语：工具选对只是第一步" class="headerlink" title="九、结语：工具选对只是第一步"></a>九、结语：工具选对只是第一步</h2><p>Claude Code、Codex CLI、Gemini CLI 代表了 AI 编程的新阶段：从”补全代码”到”执行任务”。</p><p>但工具选对只是第一步。真正能发挥价值的，是：</p><ul><li>清晰的项目结构</li><li>明确的任务定义</li><li>可沉淀的规则和配置</li><li>懂得如何指挥 AI 的开发者</li></ul><p>把这句话压缩成一行：</p><p><strong>终端 AI Agent 不是银弹，它能放大的是你已经理清楚的东西。</strong></p><h2 id="摘要建议"><a href="#摘要建议" class="headerlink" title="摘要建议"></a>摘要建议</h2><p>这篇文章对比了 Claude Code、Codex CLI、Gemini CLI 三款终端 AI Agent 工具，分析了各自的核心定位、生态绑定程度、开放性与可控性、企业级能力等维度差异，并针对个人开发者、中大型项目、团队协作、安全合规、深度定制等不同场景给出选择建议。文章同时指出三款工具的共同限制，以及开发者真正发挥工具价值需要具备的条件。</p><h2 id="关键词建议"><a href="#关键词建议" class="headerlink" title="关键词建议"></a>关键词建议</h2><ul><li>Claude Code</li><li>Codex CLI</li><li>Gemini CLI</li><li>AI Agent 对比</li><li>终端 AI 工具</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> AI开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Claude Code </tag>
+            
+            <tag> Codex CLI </tag>
+            
+            <tag> Gemini CLI </tag>
+            
+            <tag> AI Agent </tag>
+            
+            <tag> 开发工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>从一个失败 Agent 项目里学到的架构教训：过度抽象和多工具调用的代价</title>
       <link href="/2026/03/27/agent-project-architecture-lessons/"/>
       <url>/2026/03/27/agent-project-architecture-lessons/</url>
@@ -22,11 +55,11 @@
             
             <tag> Agent </tag>
             
+            <tag> AI开发 </tag>
+            
             <tag> 架构设计 </tag>
             
             <tag> 工具调用 </tag>
-            
-            <tag> AI开发 </tag>
             
             <tag> 项目复盘 </tag>
             
@@ -55,11 +88,11 @@
             
             <tag> Agent </tag>
             
+            <tag> AI开发 </tag>
+            
             <tag> 架构设计 </tag>
             
             <tag> 工具调用 </tag>
-            
-            <tag> AI开发 </tag>
             
             <tag> MCP </tag>
             
@@ -253,11 +286,11 @@
       
         <tags>
             
+            <tag> AI Agent </tag>
+            
             <tag> OpenClaw </tag>
             
             <tag> NemoClaw </tag>
-            
-            <tag> AI Agent </tag>
             
             <tag> 企业落地 </tag>
             
@@ -290,9 +323,9 @@
             
             <tag> AI开发 </tag>
             
-            <tag> 工具设计 </tag>
-            
             <tag> 教程 </tag>
+            
+            <tag> 工具设计 </tag>
             
         </tags>
       
@@ -480,9 +513,9 @@
             
             <tag> Agent </tag>
             
-            <tag> AI </tag>
-            
             <tag> MCP </tag>
+            
+            <tag> AI </tag>
             
             <tag> OpenAI </tag>
             

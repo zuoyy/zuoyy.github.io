@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="多 Agent 工作流什么时候值得做，什么时候别做？, AI, AI教程, MCP, Agent, 大模型, OpenAI, Claude, 编程, 程序员, 效率工具">
+    <meta name="keywords" content="Claude Code、Codex CLI、Gemini CLI：三大终端 AI Agent 怎么选，各自适合什么场景, AI, AI教程, MCP, Agent, 大模型, OpenAI, Claude, 编程, 程序员, 效率工具">
     <meta name="description" content="用写代码的严谨，记录AI时代的每一个脚印。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>多 Agent 工作流什么时候值得做，什么时候别做？ | 左哥AI笔记</title>
+    <title>Claude Code、Codex CLI、Gemini CLI：三大终端 AI Agent 怎么选，各自适合什么场景 | 左哥AI笔记</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">多 Agent 工作流什么时候值得做，什么时候别做？</h1>
+                    <h1 class="description center-align post-title">Claude Code、Codex CLI、Gemini CLI：三大终端 AI Agent 怎么选，各自适合什么场景</h1>
                 </div>
             </div>
         </div>
@@ -324,20 +324,24 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Agent/">
-                                <span class="chip bg-color">Agent</span>
+                            <a href="/tags/Claude-Code/">
+                                <span class="chip bg-color">Claude Code</span>
                             </a>
                         
-                            <a href="/tags/AI%E5%BC%80%E5%8F%91/">
-                                <span class="chip bg-color">AI开发</span>
+                            <a href="/tags/Codex-CLI/">
+                                <span class="chip bg-color">Codex CLI</span>
                             </a>
                         
-                            <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                <span class="chip bg-color">教程</span>
+                            <a href="/tags/Gemini-CLI/">
+                                <span class="chip bg-color">Gemini CLI</span>
                             </a>
                         
-                            <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/">
-                                <span class="chip bg-color">工作流</span>
+                            <a href="/tags/AI-Agent/">
+                                <span class="chip bg-color">AI Agent</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+                                <span class="chip bg-color">开发工具</span>
                             </a>
                         
                     </div>
@@ -348,8 +352,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/AI%E6%95%99%E7%A8%8B/" class="post-category">
-                                AI教程
+                            <a href="/categories/AI%E5%BC%80%E5%8F%91/" class="post-category">
+                                AI开发
                             </a>
                         
                     </div>
@@ -361,7 +365,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2026-03-17
+                    2026-03-30
                 </div>
                 
 
@@ -370,7 +374,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    2.3k
                 </div>
                 
 
@@ -390,126 +394,219 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>面向正在考虑多 Agent 架构的工程师：这篇文章不推荐任何框架，也不讲具体实现，而是帮你回答一个核心问题——什么时候应该用多 Agent 工作流，什么时候不该用。</p>
-</blockquote>
-<hr>
-<h2 id="一、先泼一盆冷水"><a href="#一、先泼一盆冷水" class="headerlink" title="一、先泼一盆冷水"></a>一、先泼一盆冷水</h2><p>过去一年，很多人对多 Agent 工作流非常兴奋：</p>
+                <p>2026 年，AI 编程工具的主战场已经从 IDE 插件转移到了终端。Claude Code、OpenAI Codex CLI、Google Gemini CLI 三款终端 AI Agent 几乎同期发力，都在强调同一个方向：让 AI 能在真实环境里持续推进任务，而不只是帮你补全几行代码。</p>
+<p>这篇文章不讲虚的，重点回答一个问题：<strong>这三款工具各自适合什么场景，开发者该怎么选。</strong></p>
+<p>读完你会得到三样东西：</p>
+<ol>
+<li>理解三款工具的核心定位和差异</li>
+<li>知道不同使用场景下该优先选哪一个</li>
+<li>一套判断自己是否需要终端 AI Agent 的方法</li>
+</ol>
+<h2 id="一、先说结论：不是谁都需要终端-AI-Agent"><a href="#一、先说结论：不是谁都需要终端-AI-Agent" class="headerlink" title="一、先说结论：不是谁都需要终端 AI Agent"></a>一、先说结论：不是谁都需要终端 AI Agent</h2><p>在比较这三款工具之前，先要回答一个更根本的问题：<strong>你真的需要终端 AI Agent 吗？</strong></p>
+<p>如果你只是：</p>
 <ul>
-<li>把任务拆成多个 Agent</li>
-<li>每个 Agent 负责一部分</li>
-<li>最后组合起来完成复杂任务</li>
+<li>偶尔写写脚本</li>
+<li>改改配置文件</li>
+<li>补全代码片段</li>
+<li>需要解释某段代码</li>
 </ul>
-<p>听起来很美好，但实际做下来，很多团队发现：</p>
+<p>那传统 IDE 插件或网页版 AI 已经够用。</p>
+<p>终端 AI Agent 的价值，主要体现在这些场景：</p>
 <ul>
-<li>复杂度飙升</li>
-<li>调试困难</li>
-<li>效果不一定比单 Agent 好</li>
+<li>需要长时间、多步骤推进开发任务</li>
+<li>需要读写整个仓库、跨文件修改</li>
+<li>需要执行命令、跑测试、看结果再调整</li>
+<li>需要 7×24 小时无人值守运行</li>
 </ul>
-<p>这篇文章的核心目的，是帮你避免这个坑。</p>
-<hr>
-<h2 id="二、什么时候该用多-Agent"><a href="#二、什么时候该用多-Agent" class="headerlink" title="二、什么时候该用多 Agent"></a>二、什么时候该用多 Agent</h2><h3 id="1）任务天然可以拆分，且拆分后能独立执行"><a href="#1）任务天然可以拆分，且拆分后能独立执行" class="headerlink" title="1）任务天然可以拆分，且拆分后能独立执行"></a>1）任务天然可以拆分，且拆分后能独立执行</h3><p>这是最理想的情况。</p>
-<p>如果你的任务：</p>
+<p>如果你没有这些需求，强行上终端 AI Agent，反而会增加学习成本。</p>
+<h2 id="二、三款工具的定位差异"><a href="#二、三款工具的定位差异" class="headerlink" title="二、三款工具的定位差异"></a>二、三款工具的定位差异</h2><h3 id="Claude-Code：Anthropic-的”工程化-Agent”"><a href="#Claude-Code：Anthropic-的”工程化-Agent”" class="headerlink" title="Claude Code：Anthropic 的”工程化 Agent”"></a>Claude Code：Anthropic 的”工程化 Agent”</h3><p>Claude Code 是 Anthropic 官方推出的终端 AI 编程工具。它的核心定位非常明确：<strong>让 Claude 在真实开发环境中执行复杂任务。</strong></p>
+<p>主要特点：</p>
 <ul>
-<li>可以清晰地分成几个独立子任务</li>
-<li>每个子任务的输入输出都明确</li>
-<li>子任务之间不需要太强的依赖</li>
+<li>能读取整个代码仓库</li>
+<li>能修改文件、执行命令</li>
+<li>内置 MCP 支持，可接入外部工具和数据源</li>
+<li>支持 CLAUDE.md 配置文件，沉淀项目级规则</li>
+<li>支持 subagent 机制，可拆分子任务并行处理</li>
+<li>强调权限控制和审计能力</li>
 </ul>
-<p>那用多 Agent 是合理的。</p>
-<h3 id="2）不同子任务需要不同的能力"><a href="#2）不同子任务需要不同的能力" class="headerlink" title="2）不同子任务需要不同的能力"></a>2）不同子任务需要不同的能力</h3><p>比如：</p>
+<p>适合场景：</p>
 <ul>
-<li>一个 Agent 负责理解用户意图</li>
-<li>一个 Agent 负责调用工具执行</li>
-<li>一个 Agent 负责检查结果</li>
+<li>中大型项目的长期维护</li>
+<li>需要跨文件、跨模块重构</li>
+<li>需要将开发规则沉淀到仓库中</li>
+<li>对安全性和审计有要求的企业环境</li>
 </ul>
-<p>每个 Agent 的专长不同，组合起来各发挥优势。</p>
-<h3 id="3）需要不同上下文"><a href="#3）需要不同上下文" class="headerlink" title="3）需要不同上下文"></a>3）需要不同上下文</h3><p>有些信息只在特定环节需要。</p>
-<p>如果混在一个 Agent 里，会污染上下文，用多 Agent 可以让每个 Agent 只看到它需要的信息。</p>
-<h3 id="4）需要不同工具集合"><a href="#4）需要不同工具集合" class="headerlink" title="4）需要不同工具集合"></a>4）需要不同工具集合</h3><p>如果每个子任务需要的工具完全不同，强行放在一起会导致：</p>
+<h3 id="Codex-CLI：OpenAI-的”自主编码-Agent”"><a href="#Codex-CLI：OpenAI-的”自主编码-Agent”" class="headerlink" title="Codex CLI：OpenAI 的”自主编码 Agent”"></a>Codex CLI：OpenAI 的”自主编码 Agent”</h3><p>Codex CLI 是 OpenAI 推出的终端 AI Agent，强调”自主编码”能力。</p>
+<p>主要特点：</p>
 <ul>
-<li>工具描述冗长</li>
-<li>模型选择困难</li>
-<li>错误率上升</li>
+<li>能在选定目录中读取、修改、运行代码</li>
+<li>支持多步骤工作流规划</li>
+<li>强调”autonomous coding agent”定位</li>
+<li>与 OpenAI 生态深度整合</li>
+<li>支持 AGENTS.md 配置文件</li>
 </ul>
-<hr>
-<h2 id="三、什么时候不该用多-Agent"><a href="#三、什么时候不该用多-Agent" class="headerlink" title="三、什么时候不该用多 Agent"></a>三、什么时候不该用多 Agent</h2><h3 id="1）一个-Agent-就能搞定"><a href="#1）一个-Agent-就能搞定" class="headerlink" title="1）一个 Agent 就能搞定"></a>1）一个 Agent 就能搞定</h3><p>这是最常见的过度设计。</p>
-<p>如果单 Agent 加上合适的 prompt 和工具就能完成，就不要拆。</p>
-<p>多 Agent 的协调成本比想象中高得多。</p>
-<h3 id="2）任务之间的依赖很强"><a href="#2）任务之间的依赖很强" class="headerlink" title="2）任务之间的依赖很强"></a>2）任务之间的依赖很强</h3><p>如果子任务之间：</p>
+<p>适合场景：</p>
 <ul>
-<li>需要大量信息传递</li>
-<li>前一个的输出直接影响下一个的输入</li>
-<li>需要很强的上下文一致性</li>
+<li>快速原型开发</li>
+<li>独立项目或小团队项目</li>
+<li>已经重度使用 OpenAI 生态的团队</li>
+<li>需要从零搭建新项目</li>
 </ul>
-<p>那强行拆成多个 Agent 会让简单问题变复杂。</p>
-<h3 id="3）协调成本不可控"><a href="#3）协调成本不可控" class="headerlink" title="3）协调成本不可控"></a>3）协调成本不可控</h3><p>多 Agent 最大的问题不是“能不能做”，而是：</p>
+<h3 id="Gemini-CLI：Google-的”开源终端-Agent”"><a href="#Gemini-CLI：Google-的”开源终端-Agent”" class="headerlink" title="Gemini CLI：Google 的”开源终端 Agent”"></a>Gemini CLI：Google 的”开源终端 Agent”</h3><p>Gemini CLI 是 Google 推出的开源终端 AI Agent，定位稍有不同。</p>
+<p>主要特点：</p>
 <ul>
-<li>Agent 之间的通信怎么设计</li>
-<li>错误怎么传导和处理</li>
-<li>结果怎么汇总和验证</li>
-<li>出了问题怎么定位</li>
+<li>完全开源，可自主部署和定制</li>
+<li>使用 ReAct loop 配合内置工具和 MCP servers</li>
+<li>与 Google Cloud 生态整合</li>
+<li>强调可扩展性和开放性</li>
+<li>支持本地和远程 MCP servers</li>
 </ul>
-<p>这些协调成本经常被低估。</p>
-<h3 id="4）你还在验证阶段"><a href="#4）你还在验证阶段" class="headerlink" title="4）你还在验证阶段"></a>4）你还在验证阶段</h3><p>如果你还在做 Demo、MVP、或者探索可行性，先用单 Agent 跑通。</p>
-<p>过早引入多 Agent 架构会让你：</p>
+<p>适合场景：</p>
 <ul>
-<li>难以迭代</li>
-<li>难以定位问题</li>
-<li>难以判断是架构问题还是单点问题</li>
+<li>需要深度定制 Agent 行为</li>
+<li>希望掌控完整工具链</li>
+<li>已在 Google Cloud 生态内建设</li>
+<li>对开源和自托管有强需求</li>
 </ul>
-<hr>
-<h2 id="四、一个简单的判断标准"><a href="#四、一个简单的判断标准" class="headerlink" title="四、一个简单的判断标准"></a>四、一个简单的判断标准</h2><p>直接回答三个问题：</p>
-<h3 id="问题-1：一个-Agent-真的搞不定吗？"><a href="#问题-1：一个-Agent-真的搞不定吗？" class="headerlink" title="问题 1：一个 Agent 真的搞不定吗？"></a>问题 1：一个 Agent 真的搞不定吗？</h3><ul>
-<li>能搞定 → 单 Agent</li>
-<li>搞不定 → 继续看</li>
+<h2 id="三、从三个维度看差异"><a href="#三、从三个维度看差异" class="headerlink" title="三、从三个维度看差异"></a>三、从三个维度看差异</h2><p>如果只看功能列表，这三款工具好像都差不多。但从实际使用角度，差异主要体现在三个维度。</p>
+<h3 id="1-生态绑定程度"><a href="#1-生态绑定程度" class="headerlink" title="1. 生态绑定程度"></a>1. 生态绑定程度</h3><ul>
+<li>Claude Code：与 Anthropic 生态深度绑定，底层模型是 Claude 系列</li>
+<li>Codex CLI：与 OpenAI 生态深度绑定，底层模型是 GPT 系列</li>
+<li>Gemini CLI：与 Google Cloud 生态绑定，也可接入本地模型</li>
 </ul>
-<h3 id="问题-2：拆分后的子任务真的需要不同能力吗？"><a href="#问题-2：拆分后的子任务真的需要不同能力吗？" class="headerlink" title="问题 2：拆分后的子任务真的需要不同能力吗？"></a>问题 2：拆分后的子任务真的需要不同能力吗？</h3><ul>
-<li>不需要 → 单 Agent</li>
-<li>需要 → 继续看</li>
+<p>如果你已经重度依赖某个云平台的模型和服务，选对应工具的迁移成本最低。</p>
+<h3 id="2-开放性与可控性"><a href="#2-开放性与可控性" class="headerlink" title="2. 开放性与可控性"></a>2. 开放性与可控性</h3><ul>
+<li>Claude Code：闭源，但提供丰富的配置和扩展能力</li>
+<li>Codex CLI：闭源，强调开箱即用</li>
+<li>Gemini CLI：开源，可自主定制和部署</li>
 </ul>
-<h3 id="问题-3：你准备好处理协调成本了吗？"><a href="#问题-3：你准备好处理协调成本了吗？" class="headerlink" title="问题 3：你准备好处理协调成本了吗？"></a>问题 3：你准备好处理协调成本了吗？</h3><ul>
-<li>没准备好 → 单 Agent</li>
-<li>准备好了 → 可以考虑多 Agent</li>
+<p>如果你需要完全掌控工具链，或对数据隐私有极高要求，Gemini CLI 是唯一选择。</p>
+<h3 id="3-企业级能力"><a href="#3-企业级能力" class="headerlink" title="3. 企业级能力"></a>3. 企业级能力</h3><ul>
+<li>Claude Code：权限控制、审计日志、合规能力最完善</li>
+<li>Codex CLI：偏个人开发者和小团队</li>
+<li>Gemini CLI：介于两者之间，可通过自托管增强企业级能力</li>
 </ul>
-<hr>
-<h2 id="五、如果真的要做，需要注意什么"><a href="#五、如果真的要做，需要注意什么" class="headerlink" title="五、如果真的要做，需要注意什么"></a>五、如果真的要做，需要注意什么</h2><h3 id="1）从两三个-Agent-开始"><a href="#1）从两三个-Agent-开始" class="headerlink" title="1）从两三个 Agent 开始"></a>1）从两三个 Agent 开始</h3><p>不要一开始就想搞十个八个人的 Agent 团队。</p>
-<p>从最简单的两三个开始，先验证协调链路是否跑得通。</p>
-<h3 id="2）明确每个-Agent-的职责"><a href="#2）明确每个-Agent-的职责" class="headerlink" title="2）明确每个 Agent 的职责"></a>2）明确每个 Agent 的职责</h3><p>每个 Agent 应该有：</p>
+<p>如果是在企业环境部署，Claude Code 的安全能力更成熟。</p>
+<h2 id="四、不同场景的选择建议"><a href="#四、不同场景的选择建议" class="headerlink" title="四、不同场景的选择建议"></a>四、不同场景的选择建议</h2><h3 id="场景-1：个人开发者，快速出原型"><a href="#场景-1：个人开发者，快速出原型" class="headerlink" title="场景 1：个人开发者，快速出原型"></a>场景 1：个人开发者，快速出原型</h3><p>推荐：Codex CLI 或 Gemini CLI</p>
+<p>理由：</p>
 <ul>
-<li>清晰的输入定义</li>
-<li>清晰的输出定义</li>
-<li>明确的边界</li>
+<li>这两款工具对个人开发者更友好</li>
+<li>开箱即用，配置简单</li>
+<li>Gemini CLI 免费额度更友好</li>
 </ul>
-<p>别让 Agent 之间职责重叠。</p>
-<h3 id="3）设计好通信协议"><a href="#3）设计好通信协议" class="headerlink" title="3）设计好通信协议"></a>3）设计好通信协议</h3><p>Agent 之间怎么传递信息：</p>
+<h3 id="场景-2：中大型项目，长期维护"><a href="#场景-2：中大型项目，长期维护" class="headerlink" title="场景 2：中大型项目，长期维护"></a>场景 2：中大型项目，长期维护</h3><p>推荐：Claude Code</p>
+<p>理由：</p>
 <ul>
-<li>直接传输出</li>
-<li>通过第三方存储</li>
-<li>通过主控 Agent 中转</li>
+<li>项目级配置沉淀能力（CLAUDE.md）</li>
+<li>跨文件、跨模块重构能力强</li>
+<li>subagent 机制可处理复杂任务</li>
+<li>权限和审计能力完善</li>
 </ul>
-<p>这个设计要一开始就定清楚。</p>
-<h3 id="4）处理异常传导"><a href="#4）处理异常传导" class="headerlink" title="4）处理异常传导"></a>4）处理异常传导</h3><p>当一个 Agent 出错了，下一步怎么办：</p>
+<h3 id="场景-3：团队协作，需要统一规范"><a href="#场景-3：团队协作，需要统一规范" class="headerlink" title="场景 3：团队协作，需要统一规范"></a>场景 3：团队协作，需要统一规范</h3><p>推荐：Claude Code</p>
+<p>理由：</p>
 <ul>
-<li>整个链路停止？</li>
-<li>尝试重试？</li>
-<li>跳过继续执行？</li>
-<li>回退到之前的状态？</li>
+<li>AGENTS.md &#x2F; CLAUDE.md 机制可将规则版本化</li>
+<li>支持共享 skills 和 scripts</li>
+<li>配合 GitHub Action 可实现自动化流程</li>
 </ul>
-<p>这些要有明确的处理策略。</p>
-<h3 id="5）做好可观测性"><a href="#5）做好可观测性" class="headerlink" title="5）做好可观测性"></a>5）做好可观测性</h3><p>多 Agent 链路一旦出问题，定位起来比单 Agent 复杂很多。</p>
-<p>从一开始就做好日志和追踪。</p>
-<hr>
-<h2 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h2><p>多 Agent 工作流是一个被过度炒作的概念。</p>
-<p>它不是银弹，也不是必须。</p>
-<p><strong>能用单 Agent 解决问题的场景，永远不要为了“酷”而用多 Agent。</strong></p>
-<p>只有在确实需要、且你愿意付出协调成本的情况下，才考虑多 Agent 架构。</p>
-<hr>
+<h3 id="场景-4：强安全合规要求"><a href="#场景-4：强安全合规要求" class="headerlink" title="场景 4：强安全合规要求"></a>场景 4：强安全合规要求</h3><p>推荐：Claude Code（云）或 Gemini CLI（自托管）</p>
+<p>理由：</p>
+<ul>
+<li>Claude Code 的权限和审计能力最强</li>
+<li>如果要完全自托管，只能选 Gemini CLI</li>
+</ul>
+<h3 id="场景-5：需要深度定制-Agent-行为"><a href="#场景-5：需要深度定制-Agent-行为" class="headerlink" title="场景 5：需要深度定制 Agent 行为"></a>场景 5：需要深度定制 Agent 行为</h3><p>推荐：Gemini CLI</p>
+<p>理由：</p>
+<ul>
+<li>完全开源，可改源码</li>
+<li>可自主扩展工具和协议</li>
+<li>不受商业限制</li>
+</ul>
+<h3 id="场景-6：已经在用某个大厂生态"><a href="#场景-6：已经在用某个大厂生态" class="headerlink" title="场景 6：已经在用某个大厂生态"></a>场景 6：已经在用某个大厂生态</h3><p>推荐：选对应家的工具</p>
+<p>理由：</p>
+<ul>
+<li>减少账号体系和 API 管理</li>
+<li>认证和权限可复用</li>
+<li>调用链路更短</li>
+</ul>
+<h2 id="五、一个简单的选择决策图"><a href="#五、一个简单的选择决策图" class="headerlink" title="五、一个简单的选择决策图"></a>五、一个简单的选择决策图</h2><p>如果你还在犹豫，可以按这个流程判断：</p>
+<ol>
+<li><p>需要完全自托管吗？</p>
+<ul>
+<li>是 → Gemini CLI</li>
+<li>否 → 继续</li>
+</ul>
+</li>
+<li><p>是企业级项目吗？</p>
+<ul>
+<li>是 → Claude Code</li>
+<li>否 → 继续</li>
+</ul>
+</li>
+<li><p>主要用哪家模型？</p>
+<ul>
+<li>Claude → Claude Code</li>
+<li>GPT → Codex CLI</li>
+<li>Gemini &#x2F; 其他 → Gemini CLI</li>
+</ul>
+</li>
+</ol>
+<p>这个判断不绝对，但能帮你快速缩小范围。</p>
+<h2 id="六、三款工具共同的限制和问题"><a href="#六、三款工具共同的限制和问题" class="headerlink" title="六、三款工具共同的限制和问题"></a>六、三款工具共同的限制和问题</h2><p>虽然这三款工具都很强，但一些问题依然存在。</p>
+<h3 id="1-长任务的稳定性"><a href="#1-长任务的稳定性" class="headerlink" title="1. 长任务的稳定性"></a>1. 长任务的稳定性</h3><p>让 AI Agent 长时间自主执行任务，仍然存在：</p>
+<ul>
+<li>中途偏离目标</li>
+<li>遇到异常不知道如何处理</li>
+<li>文件版本混乱</li>
+<li>循环操作消耗大量 Token</li>
+</ul>
+<p>这不是某一款工具的问题，而是当前 Agent 能力的边界。</p>
+<h3 id="2-权限和安全的两难"><a href="#2-权限和安全的两难" class="headerlink" title="2. 权限和安全的两难"></a>2. 权限和安全的两难</h3><p>权限控制越严格，Agent 能做的事越少；权限放得越开，风险越大。</p>
+<p>目前三款工具都在尝试用分类器、白名单、沙箱等方式平衡，但没有完美方案。</p>
+<h3 id="3-成本问题"><a href="#3-成本问题" class="headerlink" title="3. 成本问题"></a>3. 成本问题</h3><p>终端 AI Agent 调用量大，Token 消耗远超普通对话。长期使用的成本需要注意。</p>
+<h3 id="4-学习成本"><a href="#4-学习成本" class="headerlink" title="4. 学习成本"></a>4. 学习成本</h3><p>能用好这些工具，不只是会敲命令，更需要：</p>
+<ul>
+<li>理解 Agent 工作机制</li>
+<li>会写配置文件和 rules</li>
+<li>能判断什么时候该干预</li>
+<li>能设计可被 Agent 理解的项目结构</li>
+</ul>
+<p>这不是换个工具就能解决的问题，而是需要时间积累。</p>
+<h2 id="七、一个容易被忽略的事实"><a href="#七、一个容易被忽略的事实" class="headerlink" title="七、一个容易被忽略的事实"></a>七、一个容易被忽略的事实</h2><p>很多人以为用了终端 AI Agent 就能大幅提升效率，但实际效果往往取决于：</p>
+<ul>
+<li>你的项目结构是否清晰</li>
+<li>你的代码是否容易被理解</li>
+<li>你的任务是否边界明确</li>
+<li>你是否知道怎么给 AI 下指令</li>
+</ul>
+<p>换句话说：<strong>工具只是放大器，前提是你得有清晰的东西可放。</strong></p>
+<p>如果你的项目乱糟糟，任务说不清，那用什么 Agent 都不会有质的提升。</p>
+<h2 id="八、什么时候说明你选对了"><a href="#八、什么时候说明你选对了" class="headerlink" title="八、什么时候说明你选对了"></a>八、什么时候说明你选对了</h2><p>可以用这几个信号判断：</p>
+<ul>
+<li>相比手动操作，AI 完成重复任务明显更快</li>
+<li>AI 的修改不需要你反复返工</li>
+<li>项目级规则沉淀下来后，新任务执行质量稳定</li>
+<li>团队成员能复用同一套配置</li>
+</ul>
+<p>如果这些都不满足，可能不是工具选错了，而是你的项目还没准备好被 Agent 化。</p>
+<h2 id="九、结语：工具选对只是第一步"><a href="#九、结语：工具选对只是第一步" class="headerlink" title="九、结语：工具选对只是第一步"></a>九、结语：工具选对只是第一步</h2><p>Claude Code、Codex CLI、Gemini CLI 代表了 AI 编程的新阶段：从”补全代码”到”执行任务”。</p>
+<p>但工具选对只是第一步。真正能发挥价值的，是：</p>
+<ul>
+<li>清晰的项目结构</li>
+<li>明确的任务定义</li>
+<li>可沉淀的规则和配置</li>
+<li>懂得如何指挥 AI 的开发者</li>
+</ul>
+<p>把这句话压缩成一行：</p>
+<p><strong>终端 AI Agent 不是银弹，它能放大的是你已经理清楚的东西。</strong></p>
+<h2 id="摘要建议"><a href="#摘要建议" class="headerlink" title="摘要建议"></a>摘要建议</h2><p>这篇文章对比了 Claude Code、Codex CLI、Gemini CLI 三款终端 AI Agent 工具，分析了各自的核心定位、生态绑定程度、开放性与可控性、企业级能力等维度差异，并针对个人开发者、中大型项目、团队协作、安全合规、深度定制等不同场景给出选择建议。文章同时指出三款工具的共同限制，以及开发者真正发挥工具价值需要具备的条件。</p>
 <h2 id="关键词建议"><a href="#关键词建议" class="headerlink" title="关键词建议"></a>关键词建议</h2><ul>
-<li>多 Agent 工作流</li>
-<li>Agent 架构</li>
-<li>Agent 设计模式</li>
+<li>Claude Code</li>
+<li>Codex CLI</li>
+<li>Gemini CLI</li>
+<li>AI Agent 对比</li>
+<li>终端 AI 工具</li>
 </ul>
-<h2 id="摘要建议"><a href="#摘要建议" class="headerlink" title="摘要建议"></a>摘要建议</h2><p>多 Agent 工作流是当前的热门概念，但这篇文章帮你冷静分析什么时候该用、什么时候不该用，以及如果真的要做需要注意什么。</p>
 
                 
             </div>
@@ -536,7 +633,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zuoyy.com/2026/03/17/multi-agent-workflow-when-to-use/">https://zuoyy.com/2026/03/17/multi-agent-workflow-when-to-use/</a>
+                    <a href="https://zuoyy.com/2026/03/30/claude-code-codex-gemini-cli-comparison/">https://zuoyy.com/2026/03/30/claude-code-codex-gemini-cli-comparison/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -574,20 +671,24 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Agent/">
-                                    <span class="chip bg-color">Agent</span>
+                                <a href="/tags/Claude-Code/">
+                                    <span class="chip bg-color">Claude Code</span>
                                 </a>
                             
-                                <a href="/tags/AI%E5%BC%80%E5%8F%91/">
-                                    <span class="chip bg-color">AI开发</span>
+                                <a href="/tags/Codex-CLI/">
+                                    <span class="chip bg-color">Codex CLI</span>
                                 </a>
                             
-                                <a href="/tags/%E6%95%99%E7%A8%8B/">
-                                    <span class="chip bg-color">教程</span>
+                                <a href="/tags/Gemini-CLI/">
+                                    <span class="chip bg-color">Gemini CLI</span>
                                 </a>
                             
-                                <a href="/tags/%E5%B7%A5%E4%BD%9C%E6%B5%81/">
-                                    <span class="chip bg-color">工作流</span>
+                                <a href="/tags/AI-Agent/">
+                                    <span class="chip bg-color">AI Agent</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+                                    <span class="chip bg-color">开发工具</span>
                                 </a>
                             
                         </div>
@@ -757,17 +858,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2026/03/17/agent-tool-design-mistakes/">
+                <a href="/2026/03/30/claude-code-codex-gemini-cli-comparison/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="工具越多越好吗？Agent 工具设计的 5 个误区">
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="Claude Code、Codex CLI、Gemini CLI：三大终端 AI Agent 怎么选，各自适合什么场景">
                         
-                        <span class="card-title">工具越多越好吗？Agent 工具设计的 5 个误区</span>
+                        <span class="card-title">Claude Code、Codex CLI、Gemini CLI：三大终端 AI Agent 怎么选，各自适合什么场景</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -777,38 +879,43 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2026-03-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/AI%E6%95%99%E7%A8%8B/" class="post-category">
-                                    AI教程
+                            <a href="/categories/AI%E5%BC%80%E5%8F%91/" class="post-category">
+                                    AI开发
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Agent/">
-                        <span class="chip bg-color">Agent</span>
+                    <a href="/tags/Claude-Code/">
+                        <span class="chip bg-color">Claude Code</span>
                     </a>
                     
-                    <a href="/tags/AI%E5%BC%80%E5%8F%91/">
-                        <span class="chip bg-color">AI开发</span>
+                    <a href="/tags/Codex-CLI/">
+                        <span class="chip bg-color">Codex CLI</span>
                     </a>
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
+                    <a href="/tags/Gemini-CLI/">
+                        <span class="chip bg-color">Gemini CLI</span>
                     </a>
                     
-                    <a href="/tags/%E5%B7%A5%E5%85%B7%E8%AE%BE%E8%AE%A1/">
-                        <span class="chip bg-color">工具设计</span>
+                    <a href="/tags/AI-Agent/">
+                        <span class="chip bg-color">AI Agent</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
+                        <span class="chip bg-color">开发工具</span>
                     </a>
                     
                 </div>
@@ -822,13 +929,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2026/03/16/agent-looks-good-but-not-useful/">
+                <a href="/2026/03/27/agent-project-architecture-lessons/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="为什么你的 Agent 总是“看起来很强，实际不好用”？">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="从一个失败 Agent 项目里学到的架构教训：过度抽象和多工具调用的代价">
                         
-                        <span class="card-title">为什么你的 Agent 总是“看起来很强，实际不好用”？</span>
+                        <span class="card-title">从一个失败 Agent 项目里学到的架构教训：过度抽象和多工具调用的代价</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -839,14 +946,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-27
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/AI%E6%95%99%E7%A8%8B/" class="post-category">
-                                    AI教程
+                            <a href="/categories/AI%E5%BC%80%E5%8F%91/" class="post-category">
+                                    AI开发
                                 </a>
                             
                             
@@ -864,12 +971,16 @@
                         <span class="chip bg-color">AI开发</span>
                     </a>
                     
-                    <a href="/tags/%E6%95%99%E7%A8%8B/">
-                        <span class="chip bg-color">教程</span>
+                    <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">
+                        <span class="chip bg-color">架构设计</span>
                     </a>
                     
-                    <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%AE%9E%E8%B7%B5/">
-                        <span class="chip bg-color">工程实践</span>
+                    <a href="/tags/%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8/">
+                        <span class="chip bg-color">工具调用</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">
+                        <span class="chip bg-color">项目复盘</span>
                     </a>
                     
                 </div>
