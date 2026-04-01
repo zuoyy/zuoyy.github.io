@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="从一个失败 Agent 项目里学到的架构教训：过度抽象和多工具调用的代价, AI, AI教程, MCP, Agent, 大模型, OpenAI, Claude, 编程, 程序员, 效率工具">
+    <meta name="keywords" content="Agent 代码写完怎么测？给开发者的评测基准和回归检查清单, AI, AI教程, MCP, Agent, 大模型, OpenAI, Claude, 编程, 程序员, 效率工具">
     <meta name="description" content="用写代码的严谨，记录AI时代的每一个脚印。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>从一个失败 Agent 项目里学到的架构教训：过度抽象和多工具调用的代价 | 左哥AI笔记</title>
+    <title>Agent 代码写完怎么测？给开发者的评测基准和回归检查清单 | 左哥AI笔记</title>
     <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -203,12 +203,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">从一个失败 Agent 项目里学到的架构教训：过度抽象和多工具调用的代价</h1>
+                    <h1 class="description center-align post-title">Agent 代码写完怎么测？给开发者的评测基准和回归检查清单</h1>
                 </div>
             </div>
         </div>
@@ -324,24 +324,24 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Agent/">
-                                <span class="chip bg-color">Agent</span>
+                            <a href="/tags/AI-Agent/">
+                                <span class="chip bg-color">AI Agent</span>
                             </a>
                         
-                            <a href="/tags/AI%E5%BC%80%E5%8F%91/">
-                                <span class="chip bg-color">AI开发</span>
+                            <a href="/tags/Agent%E6%B5%8B%E8%AF%95/">
+                                <span class="chip bg-color">Agent测试</span>
                             </a>
                         
-                            <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">
-                                <span class="chip bg-color">架构设计</span>
+                            <a href="/tags/%E8%AF%84%E6%B5%8B%E5%9F%BA%E5%87%86/">
+                                <span class="chip bg-color">评测基准</span>
                             </a>
                         
-                            <a href="/tags/%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8/">
-                                <span class="chip bg-color">工具调用</span>
+                            <a href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/">
+                                <span class="chip bg-color">回归测试</span>
                             </a>
                         
-                            <a href="/tags/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">
-                                <span class="chip bg-color">项目复盘</span>
+                            <a href="/tags/Agent%E5%B7%A5%E7%A8%8B%E5%8C%96/">
+                                <span class="chip bg-color">Agent工程化</span>
                             </a>
                         
                     </div>
@@ -365,7 +365,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2026-03-27
+                    2026-04-01
                 </div>
                 
 
@@ -374,7 +374,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.6k
+                    2.4k
                 </div>
                 
 
@@ -394,190 +394,130 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>过去一年，我参与过一个 Agent 项目，最终效果不理想。不是模型不行，不是数据不够，而是架构设计从一开始就埋下了问题。</p>
-<p>这篇文章不讲具体产品，只复盘这个项目里最致命的几个架构错误。如果你正在做 Agent 项目，这些教训可能帮你少走一些弯路。</p>
-<p>读完你会得到三样东西：</p>
+                <p>你花了一周搭好一个 Agent：它能调用工具、能理解意图、能返回结果。跑几个 demo 看起来都不错。然后上线第一天，用户就问：”为什么它删了我的文件？”</p>
+<p><strong>Agent 的测试和传统代码不是一个游戏。</strong></p>
+<p>传统代码的输入输出是确定的，你写测试用例跑一遍就知道对不对。Agent 的输入输出不固定——同样的问题，它今天回答 A，明天回答 B，后天可能决定调一个你不认识的 API。</p>
+<p>这篇文章不聊学术评测指标，只解决一件事：<strong>你的 Agent 上线前，应该做哪些测试，怎么测，测什么。</strong></p>
+<p>读完你会得到：</p>
 <ol>
-<li>理解”过度抽象”在 Agent 项目里具体长什么样</li>
-<li>知道多工具调用为什么容易变成系统的最大隐患</li>
-<li>一套在早期就能识别架构风险的检查方法</li>
+<li>一套覆盖 Agent 核心能力的测试分类框架</li>
+<li>每个类别下可执行的测试方法和清单</li>
+<li>一份可以直接复制跑的回归检查单</li>
 </ol>
-<h2 id="一、先说结论：这个项目失败在”想做的事太多”"><a href="#一、先说结论：这个项目失败在”想做的事太多”" class="headerlink" title="一、先说结论：这个项目失败在”想做的事太多”"></a>一、先说结论：这个项目失败在”想做的事太多”</h2><p>这个项目的原始目标很清晰：做一个能帮助企业用户自动化处理日常事务的 Agent。</p>
-<p>但到项目后期，这个 Agent 变成了：</p>
+<h2 id="一、Agent-测试为什么难"><a href="#一、Agent-测试为什么难" class="headerlink" title="一、Agent 测试为什么难"></a>一、Agent 测试为什么难</h2><p>先承认一个基本事实：<strong>你不可能穷尽所有输入。</strong></p>
+<p>Agent 的核心难点在于三个不确定性：</p>
 <ul>
-<li>能接 20 多个工具</li>
-<li>能处理多种任务类型</li>
-<li>能在不同场景下切换不同模式</li>
-<li>支持多种输出格式</li>
-<li>内置多轮对话记忆</li>
-<li>还要兼顾权限控制和审计日志</li>
+<li><strong>意图理解不确定</strong>：用户说”帮我整理下这份资料”，Agent 到底理解成什么？</li>
+<li><strong>工具调用不确定</strong>：同一个意图，它这次调工具 A，下次可能调工具 B，或者干脆不调。</li>
+<li><strong>输出格式不确定</strong>：你让它返回 JSON，它可能偶尔返回带解释的 Markdown 包裹 JSON。</li>
 </ul>
-<p>听起来很完整，但实际运行时，用户最常用的功能只有两三个。而这两三个功能，被其他”完整能力”拖得越来越难用。</p>
-<p>问题不是”功能做多了”，而是<strong>架构过度服务于”可能的扩展”，而不是”当前的价值”。</strong></p>
-<h2 id="二、第一个教训：过早的抽象层"><a href="#二、第一个教训：过早的抽象层" class="headerlink" title="二、第一个教训：过早的抽象层"></a>二、第一个教训：过早的抽象层</h2><p>项目早期，团队做了一个决定：为了未来能支持多种模型、多种工具、多种场景，先搭一套”通用 Agent 框架”。</p>
-<p>这个框架包括：</p>
+<p>这些不确定性导致传统单元测试的方法——写一个输入，断言一个输出——在 Agent 身上直接退化成”碰运气”。</p>
+<p>但这不意味着不能测。你需要换一套思路：<strong>不测”它说了什么”，测”它做对了什么事、没做不该做的事”。</strong></p>
+<h2 id="二、Agent-测试的四个层级"><a href="#二、Agent-测试的四个层级" class="headerlink" title="二、Agent 测试的四个层级"></a>二、Agent 测试的四个层级</h2><p>我把 Agent 的测试分成四个层级，从底层到表层，每一层覆盖不同维度的风险。</p>
+<h3 id="层级-1：意图路由测试"><a href="#层级-1：意图路由测试" class="headerlink" title="层级 1：意图路由测试"></a>层级 1：意图路由测试</h3><p>这一层回答一个最基本的问题：<strong>Agent 能不能正确识别用户的真实意图？</strong></p>
+<p>你需要覆盖的场景：</p>
 <ul>
-<li>统一的工具注册接口</li>
-<li>统一的任务调度层</li>
-<li>统一的上下文管理器</li>
-<li>统一的输出格式转换器</li>
-<li>统一的权限校验钩子</li>
+<li><strong>正常意图</strong>：用户表达明确，比如”帮我总结这篇文档的前三个要点”。</li>
+<li><strong>模糊意图</strong>：用户表达不明确，比如”看看这个”（附了一个文件链接）。</li>
+<li><strong>多意图叠加</strong>：一个请求里包含多个任务，比如”先总结这篇，然后把关键词翻译成英文”。</li>
+<li><strong>越界意图</strong>：用户请求超出 Agent 的能力范围，比如让一个文档总结 Agent 去改写代码。</li>
 </ul>
-<p>每一层都设计得很”通用”，但每一层都缺乏真实场景打磨。</p>
-<p>三个月后，我们发现：</p>
+<p><strong>测试方法：</strong></p>
+<p>准备 20-30 条代表性输入（不需要几百条，但必须覆盖上述四类），对每条输入判断：</p>
+<ol>
+<li>Agent 是否正确识别了意图？</li>
+<li>识别的意图是否对应了正确的下游动作？</li>
+<li>对越界意图，Agent 是否拒绝了而不是硬着头皮做？</li>
+</ol>
+<p><strong>通过标准：</strong> 正常意图和模糊意图的正确识别率 ≥ 90%；越界意图的拒绝率 &#x3D; 100%。</p>
+<h3 id="层级-2：工具调用安全测试"><a href="#层级-2：工具调用安全测试" class="headerlink" title="层级 2：工具调用安全测试"></a>层级 2：工具调用安全测试</h3><p>这一层回答：<strong>Agent 调用的工具对不对？调得安全吗？</strong></p>
+<p>这是最容易出安全事故的一层。你的 Agent 可能有权限读文件、写文件、调 API、发邮件。一旦工具调用错了，后果不可逆。</p>
+<p>你需要测试的场景：</p>
 <ul>
-<li>工具注册接口改了四次，每次都是因为新工具接入时发现”通用接口不够通用”</li>
-<li>任务调度层在单任务场景下几乎没用，只是为了”未来多任务”存在</li>
-<li>上下文管理器处理不了长对话，最后又加了一层补充逻辑</li>
-<li>输出格式转换器在一种格式稳定前，就试图支持三种格式</li>
+<li><strong>工具选择正确性</strong>：给定明确的意图，Agent 是否调用了正确的工具？（比如用户问天气，它调了天气 API 而不是搜索引擎。）</li>
+<li><strong>工具参数正确性</strong>：调用工具时传的参数是否合理？有没有缺参数或多传敏感信息？</li>
+<li><strong>工具的幂等性保护</strong>：用户连续发同样的请求，Agent 会不会重复执行破坏性操作？（比如删文件、发邮件。）</li>
+<li><strong>工具的权限边界</strong>：有没有工具被调了但它本不该有权限调用？</li>
 </ul>
-<p><strong>抽象层的问题不是”没有价值”，而是”价值还没验证就先做了完整实现”。</strong></p>
-<p>正确的做法应该是：</p>
-<p><strong>先让一个模型、一个工具、一个场景跑通，再基于真实痛点逐步抽象。</strong></p>
-<p>而不是先猜想”未来可能需要”，把架构搭得很大再往下填内容。</p>
-<h2 id="三、第二个教训：工具数量不是能力，是复杂度"><a href="#三、第二个教训：工具数量不是能力，是复杂度" class="headerlink" title="三、第二个教训：工具数量不是能力，是复杂度"></a>三、第二个教训：工具数量不是能力，是复杂度</h2><p>这个项目最开始的工具只有三个：日程查询、邮件发送、文档检索。</p>
-<p>用了两个月后，团队开始加工具：</p>
+<p><strong>测试方法：</strong></p>
+<ol>
+<li>为每个工具写 3-5 条测试用例，覆盖正常调用、边界调用和异常调用。</li>
+<li>对破坏性工具（删除、发送、写入），必须测试幂等性和二次确认机制。</li>
+<li>在隔离环境（沙箱、mock API）中跑测试，绝对不能连生产。</li>
+</ol>
+<p><strong>通过标准：</strong> 工具选择正确率 ≥ 95%；破坏性操作的重复触发必须被拦截；所有工具调用必须符合权限矩阵。</p>
+<h3 id="层级-3：输出质量测试"><a href="#层级-3：输出质量测试" class="headerlink" title="层级 3：输出质量测试"></a>层级 3：输出质量测试</h3><p>这一层回答：<strong>Agent 的输出在质量上能不能用？</strong></p>
+<p>不是”它有没有回答问题”，而是”它回答得好不好、有没有遗漏、有没有幻觉”。</p>
+<p>你需要关注的维度：</p>
 <ul>
-<li>又接了数据库查询</li>
-<li>又接了浏览器自动化</li>
-<li>又接了代码执行</li>
-<li>又接了外部 API 调用</li>
-<li>还有一个”万能工具”可以执行任意命令</li>
+<li><strong>事实准确性</strong>：回答中涉及事实的部分，能不能追溯到可靠的来源？有没有编造？</li>
+<li><strong>格式一致性</strong>：输出格式是否稳定？如果你要 JSON，它是否每次都返回合法的 JSON？</li>
+<li><strong>完整性</strong>：是否遗漏了用户请求中的关键约束？（比如用户说”用中文回答”，它用了英文。）</li>
+<li><strong>长度控制</strong>：有没有过度输出（几千字的废话）或输出不足（一两句打发了）？</li>
 </ul>
-<p>最后工具数量超过 20 个。</p>
-<p>问题是：</p>
-<p><strong>工具越多，Agent 越难选对工具。</strong></p>
-<p>用户问一个简单问题，Agent 可能在多个相似工具之间反复试探，甚至选错工具后进入错误路径。</p>
-<p>更严重的是：</p>
+<p><strong>测试方法：</strong></p>
+<ol>
+<li>准备一组”黄金标准”问题（10-20 个），对每个问题准备人工验证的预期答案或评分标准。</li>
+<li>用 LLM 作为评分器（LLM-as-a-Judge）做初步质量打分，然后人工抽查。</li>
+<li>对格式类要求，直接写自动化断言（JSON Schema 校验、关键词检查等）。</li>
+</ol>
+<p><strong>通过标准：</strong> 事实准确率 ≥ 95%（不能有编造）；格式一致性 ≥ 98%；人类评分均值 ≥ 4&#x2F;5。</p>
+<h3 id="层级-4：回归与性能测试"><a href="#层级-4：回归与性能测试" class="headerlink" title="层级 4：回归与性能测试"></a>层级 4：回归与性能测试</h3><p>最后一层回答：<strong>Agent 改了 prompt、换了模型或加了新工具之后，旧功能还在吗？</strong></p>
+<p>这是 Agent 开发中最大的坑：<strong>你以为只是”微调了一下提示词”，结果之前能用的功能全废了。</strong></p>
+<p>你需要测试：</p>
 <ul>
-<li>工具之间的依赖关系没人管</li>
-<li>工具描述重叠，模型难以区分</li>
-<li>有的工具功能相似，但参数结构不同</li>
-<li>工具失败后的 fallback 逻辑不统一</li>
+<li><strong>Prompt 变更回归</strong>：每次修改系统 prompt 后，跑一遍核心测试用例集，确认没有功能倒退。</li>
+<li><strong>模型切换回归</strong>：更换底层模型时，跑同样的测试集，比较性能差异。</li>
+<li><strong>新工具集成回归</strong>：加了一个新工具后，确认现有工具调用没有被干扰。</li>
+<li><strong>性能退化</strong>：响应时间是否有明显增长？Token 消耗是否暴涨？</li>
 </ul>
-<p>最后的结果是：用户最常见的请求，反而因为工具太多而被”淹没”在选项里。</p>
-<p><strong>工具数量增加带来的不是能力提升，而是决策难度提升和稳定性下降。</strong></p>
-<p>正确的做法应该是：</p>
-<p><strong>只保留高频、稳定、差异化的工具，其他能力通过组合或外部系统解决。</strong></p>
-<p>不是所有能力都必须塞进 Agent 的工具列表里。</p>
-<h2 id="四、第三个教训：没有清晰的”完成条件”定义"><a href="#四、第三个教训：没有清晰的”完成条件”定义" class="headerlink" title="四、第三个教训：没有清晰的”完成条件”定义"></a>四、第三个教训：没有清晰的”完成条件”定义</h2><p>这个项目还有一个问题：几乎每个任务都没有清晰的”完成条件”。</p>
-<p>比如用户说”帮我整理一下这周的会议纪要”，Agent 会：</p>
+<p><strong>测试方法：</strong></p>
+<ol>
+<li>维护一个核心回归测试集（10-15 条关键用例），每次变更前跑一遍。</li>
+<li>记录关键指标基线：响应时间、Token 消耗、任务成功率。</li>
+<li>设置阈值：任意指标偏离基线超过 20% 时，必须人工审查原因。</li>
+</ol>
+<p><strong>通过标准：</strong> 核心用例零失败；性能指标在基线 ±20% 以内。</p>
+<h2 id="三、一份可以直接跑的回归检查清单"><a href="#三、一份可以直接跑的回归检查清单" class="headerlink" title="三、一份可以直接跑的回归检查清单"></a>三、一份可以直接跑的回归检查清单</h2><p>下面是我日常使用的回归检查单。每次 Agent 有 code&#x2F;prompt&#x2F;模型变更时，逐条跑一遍。</p>
+<h3 id="发布前检查"><a href="#发布前检查" class="headerlink" title="发布前检查"></a>发布前检查</h3><ul>
+<li><input disabled="" type="checkbox"> <strong>意图识别测试</strong>：20-30 条测试输入，正确识别率 ≥ 90%</li>
+<li><input disabled="" type="checkbox"> <strong>越界意图拒绝</strong>：所有越界请求均被正确拒绝（无硬执行）</li>
+<li><input disabled="" type="checkbox"> <strong>工具选择正确性</strong>：每个工具 3-5 条用例，正确率 ≥ 95%</li>
+<li><input disabled="" type="checkbox"> <strong>破坏性操作保护</strong>：幂等性测试通过，重复请求不触发二次执行</li>
+<li><input disabled="" type="checkbox"> <strong>权限矩阵验证</strong>：所有工具调用均在授权范围内</li>
+<li><input disabled="" type="checkbox"> <strong>事实准确性抽查</strong>：回答中事实部分可追溯或标注待确认</li>
+<li><input disabled="" type="checkbox"> <strong>格式一致性验证</strong>：JSON&#x2F;结构化输出通过 Schema 校验</li>
+<li><input disabled="" type="checkbox"> <strong>约束遵守</strong>：语言、长度、格式等用户约束均未被忽略</li>
+<li><input disabled="" type="checkbox"> <strong>回归测试集通过</strong>：核心 10-15 条用例全部通过</li>
+<li><input disabled="" type="checkbox"> <strong>性能基线对比</strong>：响应时间和 Token 消耗在基线 ±20% 以内</li>
+</ul>
+<h3 id="变更时追加"><a href="#变更时追加" class="headerlink" title="变更时追加"></a>变更时追加</h3><ul>
+<li><input disabled="" type="checkbox"> Prompt 变更已记录新旧版本差异</li>
+<li><input disabled="" type="checkbox"> 模型切换已记录新旧模型名称和版本</li>
+<li><input disabled="" type="checkbox"> 新工具已添加对应测试用例</li>
+<li><input disabled="" type="checkbox"> 旧工具的测试用例已更新（如果接口有变动）</li>
+</ul>
+<h2 id="四、测试工具和自动化"><a href="#四、测试工具和自动化" class="headerlink" title="四、测试工具和自动化"></a>四、测试工具和自动化</h2><p>Agent 测试不一定要写一堆测试框架。我推荐的工具链：</p>
 <ul>
-<li>先检索会议记录</li>
-<li>再尝试从邮件里补充信息</li>
-<li>再去日历里确认时间</li>
-<li>还可能从文档库里找相关资料</li>
+<li><strong>用例管理</strong>：一个简单的 Markdown&#x2F;JSON 文件就能维护，不需要重型工具。</li>
+<li><strong>自动化断言</strong>：Pytest + JSON Schema 校验，足够覆盖格式和结构类测试。</li>
+<li><strong>LLM-as-a-Judge</strong>：用同一个模型或更强的模型做质量打分，但必须配合人工抽查。</li>
+<li><strong>沙箱环境</strong>：工具调用测试必须在隔离环境中进行，可以用 mock server 或本地临时目录。</li>
+<li><strong>持续集成</strong>：把回归测试集接入 CI&#x2F;CD，每次 commit 后自动跑，失败则阻止合并。</li>
 </ul>
-<p>每一步都可能触发新的子任务，每个子任务又可能调用新的工具。</p>
-<p>结果就是：</p>
+<p>关键原则：<strong>不要把所有测试都交给 LLM 做判断。结构化、可自动断言的部分，用脚本；主观质量部分，用 LLM + 人工校验。</strong></p>
+<h2 id="五、什么时候可以算”测够了”"><a href="#五、什么时候可以算”测够了”" class="headerlink" title="五、什么时候可以算”测够了”"></a>五、什么时候可以算”测够了”</h2><p>实话实说，Agent 永远测不完。但以下信号出现时，你可以更有信心地发布：</p>
+<ol>
+<li>核心回归测试集连续 3 次变更无失败。</li>
+<li>破坏性操作的保护机制在所有测试用例中生效。</li>
+<li>你能够清楚地列出 Agent 不能做什么（能力边界清单）。</li>
+<li>你有一份最近一次回归测试的通过记录，而不是凭感觉说”最近没出过问题”。</li>
+</ol>
+<p>发布不是终点，而是监控的起点。下一篇我会写 Agent 上线后的运维和监控该怎么做。</p>
+<hr>
+<p><strong>待确认：</strong></p>
 <ul>
-<li>用户等很久</li>
-<li>Agent 做了很多事，但不确定什么时候该停</li>
-<li>最后输出很冗长，但核心信息被淹没</li>
-</ul>
-<p><strong>没有清晰的”完成条件”，意味着没有边界。</strong></p>
-<p>正确的做法应该是：</p>
-<p><strong>在任务开始前就明确：这次调用要做到什么程度就算完成。</strong></p>
-<p>可以通过：</p>
-<ul>
-<li>明确输出格式</li>
-<li>明确信息范围</li>
-<li>明确步骤上限</li>
-<li>明确时间限制</li>
-</ul>
-<p>让 Agent 知道什么时候该收敛，而不是无限展开。</p>
-<h2 id="五、第四个教训：错误处理链条太长"><a href="#五、第四个教训：错误处理链条太长" class="headerlink" title="五、第四个教训：错误处理链条太长"></a>五、第四个教训：错误处理链条太长</h2><p>系统有这么多层，每一层都可能出错。但我们早期的错误处理非常简陋。</p>
-<p>典型情况：</p>
-<ul>
-<li>工具调用失败 → 重试 → 再失败 → 再重试 → 超时</li>
-<li>子任务失败 → 返回空 → 上层以为成功 → 最终输出不完整</li>
-<li>外部服务异常 → 异常被吞掉 → 用户只看到”处理失败”</li>
-</ul>
-<p>后来我们花了大量时间补日志、补状态追踪、补错误分类。</p>
-<p>但这恰恰说明：<strong>架构越复杂，错误处理成本越高。</strong></p>
-<p>如果一开始就控制复杂度，错误处理链条不会这么长。</p>
-<h2 id="六、第五个教训：把”可扩展”当成了”必须实现”"><a href="#六、第五个教训：把”可扩展”当成了”必须实现”" class="headerlink" title="六、第五个教训：把”可扩展”当成了”必须实现”"></a>六、第五个教训：把”可扩展”当成了”必须实现”</h2><p>项目中途，团队经常说：”这个可能以后会用到，先把接口留出来。”</p>
-<p>比如：</p>
-<ul>
-<li>留多语言接口，但其实只用中文</li>
-<li>留多租户接口，但其实只有一个客户</li>
-<li>留分布式调度接口，但其实只跑单实例</li>
-</ul>
-<p>这些”预留”带来的问题是：</p>
-<ul>
-<li>代码里到处是占位逻辑</li>
-<li>测试要覆盖很多不存在的场景</li>
-<li>每次重构都要考虑”会不会影响未来扩展”</li>
-</ul>
-<p><strong>“可扩展”不是”现在就实现所有扩展点”。</strong></p>
-<p>正确的做法应该是：</p>
-<p><strong>先让当前价值跑通，等真实需求出现再扩展。</strong></p>
-<p>扩展性是结果，不是预设。</p>
-<h2 id="七、这些教训背后有一个共同问题"><a href="#七、这些教训背后有一个共同问题" class="headerlink" title="七、这些教训背后有一个共同问题"></a>七、这些教训背后有一个共同问题</h2><p>回顾这五个教训，背后其实有一个共同的根因：</p>
-<p><strong>架构服务于”想象中的未来”，而不是”真实的当前价值”。</strong></p>
-<p>团队在设计时，想的是：</p>
-<ul>
-<li>万一以后要支持多模型怎么办</li>
-<li>万一工具越来越多怎么办</li>
-<li>万一场景越来越复杂怎么办</li>
-</ul>
-<p>但实际的约束条件是：</p>
-<ul>
-<li>用户只关心两三个核心功能</li>
-<li>每个功能的调用路径很简单</li>
-<li>系统稳定性远比功能数量重要</li>
-</ul>
-<p><strong>架构的目标不是”看起来完整”，而是”稳定交付当前价值”。</strong></p>
-<h2 id="八、如果重来一遍，我会怎么做"><a href="#八、如果重来一遍，我会怎么做" class="headerlink" title="八、如果重来一遍，我会怎么做"></a>八、如果重来一遍，我会怎么做</h2><p>如果现在重新做这个项目，我会按这个顺序来：</p>
-<h3 id="第一步：只选一个核心场景"><a href="#第一步：只选一个核心场景" class="headerlink" title="第一步：只选一个核心场景"></a>第一步：只选一个核心场景</h3><p>不要追求”通用 Agent”，先做一个”能解决某一件具体事的 Agent”。</p>
-<p>比如：</p>
-<ul>
-<li>只做会议纪要整理</li>
-<li>只做日报生成</li>
-<li>只做文档问答</li>
-</ul>
-<h3 id="第二步：只接两三个工具"><a href="#第二步：只接两三个工具" class="headerlink" title="第二步：只接两三个工具"></a>第二步：只接两三个工具</h3><p>足够覆盖当前场景就好，不要提前接”可能有用”的工具。</p>
-<h3 id="第三步：先定义完成条件"><a href="#第三步：先定义完成条件" class="headerlink" title="第三步：先定义完成条件"></a>第三步：先定义完成条件</h3><p>在写代码之前，先定义清楚：</p>
-<ul>
-<li>输入是什么</li>
-<li>输出是什么</li>
-<li>什么情况算完成</li>
-<li>什么情况算失败</li>
-<li>失败后怎么处理</li>
-</ul>
-<h3 id="第四步：等真实痛点出现再抽象"><a href="#第四步：等真实痛点出现再抽象" class="headerlink" title="第四步：等真实痛点出现再抽象"></a>第四步：等真实痛点出现再抽象</h3><p>不要提前搭框架，先让系统跑起来。</p>
-<p>等发现真正的重复逻辑、真正的扩展需求时，再做抽象。</p>
-<h3 id="第五步：每加一层都问三个问题"><a href="#第五步：每加一层都问三个问题" class="headerlink" title="第五步：每加一层都问三个问题"></a>第五步：每加一层都问三个问题</h3><p>每次要引入新层时，问：</p>
-<ul>
-<li>这一层解决什么具体问题？</li>
-<li>这个问题现在真的存在吗？</li>
-<li>有没有更简单的方式解决？</li>
-</ul>
-<p>如果答案不够清晰，就不要加这一层。</p>
-<h2 id="九、一个判断架构是否过度复杂的方法"><a href="#九、一个判断架构是否过度复杂的方法" class="headerlink" title="九、一个判断架构是否过度复杂的方法"></a>九、一个判断架构是否过度复杂的方法</h2><p>如果你在做一个 Agent 项目，可以用下面这些问题自查：</p>
-<ul>
-<li>你的 Agent 有几个核心使用场景？用户最常来做什么？</li>
-<li>你的工具列表里，有多少工具是真正被高频调用的？</li>
-<li>你的架构里有多少层是”为未来预留”的？</li>
-<li>用户一个请求，平均要经过多少步才能得到结果？</li>
-<li>系统里有多少代码是处理”理论上可能发生”的情况？</li>
-</ul>
-<p>如果这些问题的答案让你觉得”好像确实有点多了”，那大概率就是过度了。</p>
-<h2 id="十、结语：让架构服务于价值，而不是可能性"><a href="#十、结语：让架构服务于价值，而不是可能性" class="headerlink" title="十、结语：让架构服务于价值，而不是可能性"></a>十、结语：让架构服务于价值，而不是可能性</h2><p>这个项目最核心的教训，其实就一句话：</p>
-<p><strong>架构设计的目标，是让当前价值交付更稳定、更简单，而不是让系统看起来更完整、更通用。</strong></p>
-<p>过度抽象和多工具调用，本质上是把”可能性”放到了”价值”前面。</p>
-<p>但现实中，系统能稳定解决一个具体问题，比”理论上能解决很多问题”重要得多。</p>
-<p>下次你在做架构决策时，可以问自己一个问题：</p>
-<p><strong>这一层&#x2F;这个工具&#x2F;这个抽象，是为了解决真实痛点，还是为了满足想象中的完整性？</strong></p>
-<p>把这句话压缩成一行：</p>
-<p><strong>架构越简单，价值越容易兑现；复杂度要等到真正的痛点来敲门时再加。</strong></p>
-<h2 id="摘要建议"><a href="#摘要建议" class="headerlink" title="摘要建议"></a>摘要建议</h2><p>这篇文章复盘了一个失败 Agent 项目的架构教训，重点列举了五大问题：过早抽象、工具数量失控、缺乏完成条件定义、错误处理链条过长、把”可扩展”当成”必须实现”。文章指出这些问题的共同根因是架构服务于”想象中的未来”而非”真实的当前价值”，并给出了更健康的设计顺序和自查方法。</p>
-<h2 id="关键词建议"><a href="#关键词建议" class="headerlink" title="关键词建议"></a>关键词建议</h2><ul>
-<li>Agent 架构</li>
-<li>过度抽象</li>
-<li>工具调用设计</li>
-<li>AI 项目架构</li>
-<li>Agent 项目复盘</li>
+<li>文中标注的通过率标准（90%、95%、98%）为经验建议，具体数值需根据实际项目调整。</li>
 </ul>
 
                 
@@ -605,7 +545,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://zuoyy.com/2026/03/27/agent-project-architecture-lessons/">https://zuoyy.com/2026/03/27/agent-project-architecture-lessons/</a>
+                    <a href="https://zuoyy.com/2026/04/01/agent-testing-and-evaluation-checklist/">https://zuoyy.com/2026/04/01/agent-testing-and-evaluation-checklist/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -643,24 +583,24 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Agent/">
-                                    <span class="chip bg-color">Agent</span>
+                                <a href="/tags/AI-Agent/">
+                                    <span class="chip bg-color">AI Agent</span>
                                 </a>
                             
-                                <a href="/tags/AI%E5%BC%80%E5%8F%91/">
-                                    <span class="chip bg-color">AI开发</span>
+                                <a href="/tags/Agent%E6%B5%8B%E8%AF%95/">
+                                    <span class="chip bg-color">Agent测试</span>
                                 </a>
                             
-                                <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">
-                                    <span class="chip bg-color">架构设计</span>
+                                <a href="/tags/%E8%AF%84%E6%B5%8B%E5%9F%BA%E5%87%86/">
+                                    <span class="chip bg-color">评测基准</span>
                                 </a>
                             
-                                <a href="/tags/%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8/">
-                                    <span class="chip bg-color">工具调用</span>
+                                <a href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/">
+                                    <span class="chip bg-color">回归测试</span>
                                 </a>
                             
-                                <a href="/tags/%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/">
-                                    <span class="chip bg-color">项目复盘</span>
+                                <a href="/tags/Agent%E5%B7%A5%E7%A8%8B%E5%8C%96/">
+                                    <span class="chip bg-color">Agent工程化</span>
                                 </a>
                             
                         </div>
@@ -830,9 +770,76 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2026/04/01/agent-testing-and-evaluation-checklist/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Agent 代码写完怎么测？给开发者的评测基准和回归检查清单">
+                        
+                        <span class="card-title">Agent 代码写完怎么测？给开发者的评测基准和回归检查清单</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-04-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AI%E5%BC%80%E5%8F%91/" class="post-category">
+                                    AI开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/AI-Agent/">
+                        <span class="chip bg-color">AI Agent</span>
+                    </a>
+                    
+                    <a href="/tags/Agent%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">Agent测试</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AF%84%E6%B5%8B%E5%9F%BA%E5%87%86/">
+                        <span class="chip bg-color">评测基准</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">回归测试</span>
+                    </a>
+                    
+                    <a href="/tags/Agent%E5%B7%A5%E7%A8%8B%E5%8C%96/">
+                        <span class="chip bg-color">Agent工程化</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2026/03/30/claude-code-codex-gemini-cli-comparison/">
                     <div class="card-image">
@@ -850,9 +857,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2026-03-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -886,71 +893,6 @@
                     
                     <a href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">
                         <span class="chip bg-color">开发工具</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2026/03/23/why-not-all-agents-need-mcp/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="为什么不建议所有 Agent 都接 MCP：从架构视角看工具调用边界">
-                        
-                        <span class="card-title">为什么不建议所有 Agent 都接 MCP：从架构视角看工具调用边界</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2026-03-23
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/AI%E5%BC%80%E5%8F%91/" class="post-category">
-                                    AI开发
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/Agent/">
-                        <span class="chip bg-color">Agent</span>
-                    </a>
-                    
-                    <a href="/tags/AI%E5%BC%80%E5%8F%91/">
-                        <span class="chip bg-color">AI开发</span>
-                    </a>
-                    
-                    <a href="/tags/MCP/">
-                        <span class="chip bg-color">MCP</span>
-                    </a>
-                    
-                    <a href="/tags/%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1/">
-                        <span class="chip bg-color">架构设计</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8/">
-                        <span class="chip bg-color">工具调用</span>
                     </a>
                     
                 </div>
