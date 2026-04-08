@@ -1,0 +1,1528 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Dobby 实验解析：用 Agent 替代手机 App 的技术路径, AI, AI教程, MCP, Agent, 大模型, OpenAI, Claude, 编程, 程序员, 效率工具">
+    <meta name="description" content="用写代码的严谨，记录AI时代的每一个脚印。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Dobby 实验解析：用 Agent 替代手机 App 的技术路径 | 左哥AI笔记</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/atom.xml" title="左哥AI笔记" type="application/atom+xml">
+</head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    <span class="logo-span">
+                        左哥AI笔记
+                    </span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+  <div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+      
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+          <div class="logo-name">
+            左哥AI笔记
+          </div>
+          <div class="logo-desc">
+            
+              用写代码的严谨，记录AI时代的每一个脚印。
+                
+          </div>
+    </div>
+
+    
+
+      <ul class="menu-list mobile-menu-list">
+        
+          <li class="m-nav-item">
+            
+              <a href="/" class="waves-effect waves-light">
+                
+                  <i class="fa-fw fas fa-home"></i>
+                  
+                      首页
+              </a>
+              
+          </li>
+          
+          <li class="m-nav-item">
+            
+              <a href="/tags" class="waves-effect waves-light">
+                
+                  <i class="fa-fw fas fa-tags"></i>
+                  
+                      标签
+              </a>
+              
+          </li>
+          
+          <li class="m-nav-item">
+            
+              <a href="/categories" class="waves-effect waves-light">
+                
+                  <i class="fa-fw fas fa-bookmark"></i>
+                  
+                      分类
+              </a>
+              
+          </li>
+          
+          <li class="m-nav-item">
+            
+              <a href="/archives" class="waves-effect waves-light">
+                
+                  <i class="fa-fw fas fa-archive"></i>
+                  
+                      归档
+              </a>
+              
+          </li>
+          
+          <li class="m-nav-item">
+            
+              <a href="/about" class="waves-effect waves-light">
+                
+                  <i class="fa-fw fas fa-user-circle"></i>
+                  
+                      关于
+              </a>
+              
+          </li>
+          
+            
+      </ul>
+  </div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Dobby 实验解析：用 Agent 替代手机 App 的技术路径</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/AI-Agent/">
+                                <span class="chip bg-color">AI Agent</span>
+                            </a>
+                        
+                            <a href="/tags/OpenClaw/">
+                                <span class="chip bg-color">OpenClaw</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%8A%9F%E8%83%BD%E9%9B%86%E6%88%90/">
+                                <span class="chip bg-color">功能集成</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%8D%8F%E8%AE%AE%E9%80%86%E5%90%91/">
+                                <span class="chip bg-color">协议逆向</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/">
+                                <span class="chip bg-color">智能家居</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Agent/" class="post-category">
+                                Agent
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-04-08
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.8k
+                </div>
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="为什么这件事值得看"><a href="#为什么这件事值得看" class="headerlink" title="为什么这件事值得看"></a>为什么这件事值得看</h2><p>2026 年 3 月，Andrej Karpathy 发了一个实验演示：用 OpenClaw 写了一个叫 Dobby 的 Agent，只用自然语言，就控制了家里所有设备——扫描网络、发现设备、逆向未文档化的协议、调 Sonos、开关灯。整个过程没有打开任何 App，纯靠 Agent 跑。</p>
+<p>这件事值得细看，不是因为它”震撼”——说实话，智能音箱也能做到类似的事。值得看的是：<strong>这是一个完整的、可复现的技术路径</strong>。它把 App 的 UI 层抹掉，让 Agent 直接操作底层协议。</p>
+<p>这篇文章会聚焦在技术层面：Agent 替代 App，到底是怎么做到的？你如果要复现一个类似系统，需要哪些关键技术？有哪些坑是必踩的？</p>
+<hr>
+<h2 id="1-Agent-替代-App：不是”调用-API”，是”打穿协议层”"><a href="#1-Agent-替代-App：不是”调用-API”，是”打穿协议层”" class="headerlink" title="1. Agent 替代 App：不是”调用 API”，是”打穿协议层”"></a>1. Agent 替代 App：不是”调用 API”，是”打穿协议层”</h2><p>大多数人理解 Agent 替代 App，会想到”一个 Agent 调用一堆 API”。比如你让 Agent 帮你订外卖，它背后调美团外卖的 API。</p>
+<p>但 Dobby 做的事情不一样：<strong>它不是在调用开放 API，而是在逆向设备协议</strong>。Sonos 没有公开”用自然语言放歌”的 API，Dobby 是先扫描网络、发现 Sonos 设备、找到了 UPnP 控制接口，然后直接对设备发包。</p>
+<p>这带来的技术难度完全不同：</p>
+<ul>
+<li>开放 API：Agent 只需理解文档、正确调用</li>
+<li>协议逆向：Agent 需要发现设备、分析协议、构造报文、处理异常</li>
+</ul>
+<p>Dobby 的技术价值在于：<strong>它证明了当下最强的 Agent，已经能在一定程度上自己完成协议层打通</strong>。这不是”调用能力”，而是”探索能力”。</p>
+<hr>
+<h2 id="2-核心技术分解：Dobby-做对了什么"><a href="#2-核心技术分解：Dobby-做对了什么" class="headerlink" title="2. 核心技术分解：Dobby 做对了什么"></a>2. 核心技术分解：Dobby 做对了什么</h2><h3 id="2-1-网络扫描与设备发现"><a href="#2-1-网络扫描与设备发现" class="headerlink" title="2.1 网络扫描与设备发现"></a>2.1 网络扫描与设备发现</h3><p>Dobby 的第一件事：扫描本地网络，发现所有可交互设备。</p>
+<p>这部分的典型技术栈：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 使用 nmap 快速扫描局域网设备</span>
+nmap <span class="token parameter variable">-sn</span> <span class="token number">192.168</span>.1.0/24  <span class="token comment"># 扫描整个网段，快速发现存活主机</span>
+
+<span class="token comment"># 识别设备类型（通过 MAC 厂商前缀）</span>
+nmap <span class="token parameter variable">-O</span> <span class="token number">192.168</span>.1.100    <span class="token comment"># 尝试识别操作系统和设备类型</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Agent 需要做的不是手动敲 nmap，而是：</p>
+<ol>
+<li>自动判断网段范围</li>
+<li>对每个存活 IP 做服务探测</li>
+<li>根据开放端口推测设备类型（如 1400 端口常见于 UPnP 设备）</li>
+</ol>
+<p>一个简单的设备发现逻辑（伪代码）：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">discover_devices</span><span class="token punctuation">(</span>network_range<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""扫描网络，返回设备列表"""</span>
+    devices <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    alive_ips <span class="token operator">=</span> nmap_ping_scan<span class="token punctuation">(</span>network_range<span class="token punctuation">)</span>  <span class="token comment"># 快速 ping 扫描</span>
+    
+    <span class="token keyword">for</span> ip <span class="token keyword">in</span> alive_ips<span class="token punctuation">:</span>
+        services <span class="token operator">=</span> nmap_service_scan<span class="token punctuation">(</span>ip<span class="token punctuation">,</span> ports<span class="token operator">=</span><span class="token punctuation">[</span><span class="token number">1400</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">,</span> <span class="token number">443</span><span class="token punctuation">,</span> <span class="token number">8080</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> services<span class="token punctuation">:</span>
+            device_type <span class="token operator">=</span> infer_device_type<span class="token punctuation">(</span>services<span class="token punctuation">)</span>
+            devices<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+                <span class="token string">'ip'</span><span class="token punctuation">:</span> ip<span class="token punctuation">,</span>
+                <span class="token string">'services'</span><span class="token punctuation">:</span> services<span class="token punctuation">,</span>
+                <span class="token string">'type'</span><span class="token punctuation">:</span> device_type  <span class="token comment"># 'sonos', 'hue', 'unknown' 等</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">return</span> devices<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里的核心难点不是扫描本身——工具都很成熟——而是：<strong>如何让 Agent 在拿到扫描结果后，能自己做判断</strong>：这个设备是什么？有什么可能的控制方式？</p>
+<h3 id="2-2-协议逆向：Agent-怎么”猜”出控制方法"><a href="#2-2-协议逆向：Agent-怎么”猜”出控制方法" class="headerlink" title="2.2 协议逆向：Agent 怎么”猜”出控制方法"></a>2.2 协议逆向：Agent 怎么”猜”出控制方法</h3><p>Dobby 的第二个关键能力：对发现到的设备，自己摸索出控制协议。</p>
+<p>以 Sonos 为例，它的控制接口是基于 UPnP 的 SOAP 协议。文档存在，但分散且复杂。真正实用的做法是：<strong>抓包 + 推断</strong>。</p>
+<p>Agent 在这个阶段需要做：</p>
+<ol>
+<li><strong>抓取已有 App 的通信流量</strong>：如果能让 Agent 监听到你用官方 App 操作时的流量,它就能看到”点击播放”对应的是哪个 HTTP 请求</li>
+<li><strong>分析协议结构</strong>：识别出这是 SOAP 还是 REST,请求格式是什么</li>
+<li><strong>尝试构造控制命令</strong>：根据抓包结果,自己生成类似的请求</li>
+</ol>
+<p>一个抓包 + 分析的示例流程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 中间人代理抓取 HTTPS 流量</span>
+mitmproxy <span class="token parameter variable">--mode</span> transparent <span class="token parameter variable">--showhost</span>
+
+<span class="token comment"># 或者用 tcpdump 抓未加密流量</span>
+tcpdump <span class="token parameter variable">-i</span> any port <span class="token number">1400</span> <span class="token parameter variable">-w</span> sonos_traffic.pcap<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>协议逆向的精简示例（伪代码）：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">reverse_engineer_protocol</span><span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""尝试推断设备的控制协议"""</span>
+    <span class="token comment"># 判断是否是已知的协议类型</span>
+    <span class="token keyword">if</span> has_upnp_service<span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># UPnP 设备通常有设备描述文件</span>
+        desc_url <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"http://</span><span class="token interpolation"><span class="token punctuation">&#123;</span>device<span class="token punctuation">.</span>ip<span class="token punctuation">&#125;</span></span><span class="token string">:1400/xml/device_description.xml"</span></span>
+        desc <span class="token operator">=</span> fetch<span class="token punctuation">(</span>desc_url<span class="token punctuation">)</span>
+        
+        <span class="token comment"># 解析可用动作（Play, Pause, SetVolume 等）</span>
+        actions <span class="token operator">=</span> parse_upnp_actions<span class="token punctuation">(</span>desc<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'upnp'</span><span class="token punctuation">,</span> <span class="token string">'actions'</span><span class="token punctuation">:</span> actions<span class="token punctuation">&#125;</span>
+    
+    <span class="token comment"># 如果不是已知协议，尝试抓包分析</span>
+    traffic <span class="token operator">=</span> capture_traffic<span class="token punctuation">(</span>device<span class="token punctuation">.</span>ip<span class="token punctuation">,</span> duration<span class="token operator">=</span><span class="token number">60</span><span class="token punctuation">)</span>
+    patterns <span class="token operator">=</span> analyze_patterns<span class="token punctuation">(</span>traffic<span class="token punctuation">)</span>
+    
+    <span class="token keyword">return</span> <span class="token punctuation">&#123;</span><span class="token string">'type'</span><span class="token punctuation">:</span> <span class="token string">'unknown'</span><span class="token punctuation">,</span> <span class="token string">'patterns'</span><span class="token punctuation">:</span> patterns<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>难点在这里</strong>：Agent 需要有足够的”协议知识”，才能判断一个设备的控制方式。比如看到 1400 端口 + SSDP 广播，要能联想到 UPnP。当前的 Agent 还做不到完全自动，需要一定的人类提示或预置知识。</p>
+<h3 id="2-3-自然语言到控制命令的映射"><a href="#2-3-自然语言到控制命令的映射" class="headerlink" title="2.3 自然语言到控制命令的映射"></a>2.3 自然语言到控制命令的映射</h3><p>Dobby 的第三步：把你的自然语言指令，转换成具体的协议命令。</p>
+<p>这里的核心是：<strong>结构化指令生成</strong>。不是”让 Agent 猜”，而是”让 Agent 知道有哪些可执行动作，然后选一个”。</p>
+<p>典型的做法：</p>
+<ol>
+<li>维护一个”动作库”：对于发现的设备，记录它支持的动作（如 Sonos 支持 Play, Pause, SetVolume 等）</li>
+<li>接收用户指令后，让 LLM 在动作库中选择合适的动作 + 参数</li>
+</ol>
+<p>示例（伪代码）：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 动作库示例</span>
+DEVICE_ACTIONS <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+    <span class="token string">'sonos'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'play'</span><span class="token punctuation">,</span> <span class="token string">'params'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'pause'</span><span class="token punctuation">,</span> <span class="token string">'params'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'set_volume'</span><span class="token punctuation">,</span> <span class="token string">'params'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'level'</span><span class="token punctuation">,</span> <span class="token string">'range'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token string">'hue'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'turn_on'</span><span class="token punctuation">,</span> <span class="token string">'params'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'light_id'</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'turn_off'</span><span class="token punctuation">,</span> <span class="token string">'params'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'light_id'</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'set_color'</span><span class="token punctuation">,</span> <span class="token string">'params'</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'light_id'</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token string">'name'</span><span class="token punctuation">:</span> <span class="token string">'color'</span><span class="token punctuation">&#125;</span><span class="token punctuation">]</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">def</span> <span class="token function">parse_user_command</span><span class="token punctuation">(</span>command<span class="token punctuation">,</span> devices<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""将自然语言指令解析为具体动作"""</span>
+    prompt <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"""
+    用户指令：</span><span class="token interpolation"><span class="token punctuation">&#123;</span>command<span class="token punctuation">&#125;</span></span><span class="token string">
+    
+    可用设备：</span><span class="token interpolation"><span class="token punctuation">&#123;</span>devices<span class="token punctuation">&#125;</span></span><span class="token string">
+    可用动作：</span><span class="token interpolation"><span class="token punctuation">&#123;</span>DEVICE_ACTIONS<span class="token punctuation">&#125;</span></span><span class="token string">
+    
+    请选择最合适的动作和参数，以 JSON 格式返回。
+    """</span></span>
+    
+    action <span class="token operator">=</span> llm_call<span class="token punctuation">(</span>prompt<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> action  <span class="token comment"># 例如: &#123;"device": "sonos", "action": "set_volume", "params": &#123;"level": 50&#125;&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这一步的难点：<strong>参数提取</strong>。用户说”放首周杰伦的歌”，Agent 需要识别出”播放”动作，同时知道 Sonos 的播放接口需要 URI 参数，然后去音乐源搜索”周杰伦”，拿到 URI 再调用。这个链条一旦拉长，出错概率就会急剧上升。</p>
+<hr>
+<h2 id="3-可复现的技术架构"><a href="#3-可复现的技术架构" class="headerlink" title="3. 可复现的技术架构"></a>3. 可复现的技术架构</h2><p>如果你要自己搭一个类似的系统，整体架构大概是这样：</p>
+<pre class="line-numbers language-none"><code class="language-none">[用户自然语言指令] 
+       ↓
+[意图理解层] —— 解析用户要干什么
+       ↓
+[设备管理层] —— 维护已发现设备 + 可用动作
+       ↓
+[协议执行层] —— 具体调用 HTTP &#x2F; WebSocket &#x2F; SOAP 等
+       ↓
+[设备]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>关键技术选型：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>推荐技术</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>意图理解</td>
+<td>OpenAI GPT &#x2F; Claude</td>
+<td>多轮对话 + 指令解析</td>
+</tr>
+<tr>
+<td>设备发现</td>
+<td>nmap + SSDP + mDNS</td>
+<td>三种方式覆盖大部分设备</td>
+</tr>
+<tr>
+<td>协议逆向</td>
+<td>mitmproxy + Wireshark</td>
+<td>初期可用，后期可以固化协议知识</td>
+</tr>
+<tr>
+<td>协议执行</td>
+<td>Python requests &#x2F; aiohttp</td>
+<td>UPnP 用 upnpclient 库</td>
+</tr>
+</tbody></table>
+<p>一个最小可行架构示意图：</p>
+<pre class="line-numbers language-none"><code class="language-none">┌─────────────────────────────────────────────┐
+│           用户接口（语音&#x2F;文本）              │
+└─────────────────┬───────────────────────────┘
+                  ↓
+┌─────────────────────────────────────────────┐
+│   Agent 核心（LLM + 任务规划 + 记忆）       │
+└─────────────────┬───────────────────────────┘
+                  ↓
+┌─────────────────────────────────────────────┐
+│   设备抽象层（统一的设备操作接口）          │
+│   - play(device_id)                         │
+│   - set_brightness(device_id, level)        │
+│   - scan_network()                          │
+└─────────────────┬───────────────────────────┘
+                  ↓
+┌────────────┬────────────┬────────────┐
+│  UPnP 客户端│ HTTP 客户端│ 其他协议   │
+└────────────┴────────────┴────────────┘
+                  ↓
+            [物理设备]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<!-- Excalidraw: 这里适合插入一个更详细的架构图，展示各层之间的数据流向 -->
+
+<hr>
+<h2 id="4-必须面对的工程问题"><a href="#4-必须面对的工程问题" class="headerlink" title="4. 必须面对的工程问题"></a>4. 必须面对的工程问题</h2><p>Dobby 是一个实验，距离生产可用还有几道坎。</p>
+<h3 id="4-1-协议逆向不等于稳定接口"><a href="#4-1-协议逆向不等于稳定接口" class="headerlink" title="4.1 协议逆向不等于稳定接口"></a>4.1 协议逆向不等于稳定接口</h3><p>逆向出来的协议，随时可能变。厂家一次固件升级，你的 Agent 就可能失效。</p>
+<p>现实做法：<strong>需要有一层适配层</strong>，把协议细节封装起来，设备变了只需改适配代码，不用动 Agent 逻辑。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">DeviceAdapter</span><span class="token punctuation">(</span>ABC<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token triple-quoted-string string">"""设备适配器基类"""</span>
+    
+    <span class="token decorator annotation punctuation">@abstractmethod</span>
+    <span class="token keyword">def</span> <span class="token function">play</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    
+    <span class="token decorator annotation punctuation">@abstractmethod</span>
+    <span class="token keyword">def</span> <span class="token function">pause</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+
+<span class="token keyword">class</span> <span class="token class-name">SonosAdapter</span><span class="token punctuation">(</span>DeviceAdapter<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> ip<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>client <span class="token operator">=</span> UpnpClient<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"http://</span><span class="token interpolation"><span class="token punctuation">&#123;</span>ip<span class="token punctuation">&#125;</span></span><span class="token string">:1400"</span></span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">def</span> <span class="token function">play</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment"># 调用 Sonos 的 Play 动作</span>
+        self<span class="token punctuation">.</span>client<span class="token punctuation">.</span>action<span class="token punctuation">(</span><span class="token string">'Play'</span><span class="token punctuation">,</span> InstanceID<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> Speed<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+    
+    <span class="token keyword">def</span> <span class="token function">pause</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>client<span class="token punctuation">.</span>action<span class="token punctuation">(</span><span class="token string">'Pause'</span><span class="token punctuation">,</span> InstanceID<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="4-2-多设备的协调问题"><a href="#4-2-多设备的协调问题" class="headerlink" title="4.2 多设备的协调问题"></a>4.2 多设备的协调问题</h3><p>Dobby 演示的是单个设备控制。但现实中,你可能一句话要协调多个设备：说”准备睡觉”,需要关灯、拉窗帘、调低空调、把音乐改成白噪音。</p>
+<p>这里涉及：<strong>场景编排</strong>。Agent 需要知道”场景”的概念，而不是一个指令一个指令地发。</p>
+<p>一个场景定义示例：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token comment"># scenes.yaml</span>
+<span class="token key atrule">sleep</span><span class="token punctuation">:</span>
+  <span class="token key atrule">description</span><span class="token punctuation">:</span> <span class="token string">"准备睡觉"</span>
+  <span class="token key atrule">actions</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">device</span><span class="token punctuation">:</span> hue_light_1
+      <span class="token key atrule">action</span><span class="token punctuation">:</span> turn_off
+    <span class="token punctuation">-</span> <span class="token key atrule">device</span><span class="token punctuation">:</span> hue_light_2
+      <span class="token key atrule">action</span><span class="token punctuation">:</span> turn_off
+    <span class="token punctuation">-</span> <span class="token key atrule">device</span><span class="token punctuation">:</span> living_room_ac
+      <span class="token key atrule">action</span><span class="token punctuation">:</span> set_temperature
+      <span class="token key atrule">params</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token key atrule">temperature</span><span class="token punctuation">:</span> <span class="token number">26</span><span class="token punctuation">&#125;</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">device</span><span class="token punctuation">:</span> bedroom_sonos
+      <span class="token key atrule">action</span><span class="token punctuation">:</span> play_playlist
+      <span class="token key atrule">params</span><span class="token punctuation">:</span> <span class="token punctuation">&#123;</span><span class="token key atrule">playlist</span><span class="token punctuation">:</span> <span class="token string">"white_noise"</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>Agent 在解析”准备睡觉”时，需要能映射到这个场景定义，然后逐个执行。</p>
+<h3 id="4-3-错误处理与回滚"><a href="#4-3-错误处理与回滚" class="headerlink" title="4.3 错误处理与回滚"></a>4.3 错误处理与回滚</h3><p>Agent 控制设备，有一个致命问题：<strong>错了怎么办</strong>。</p>
+<p>你让 Agent”把客厅灯关了”，它不小心关成了书房灯。这时候需要：</p>
+<ul>
+<li>用户反馈机制（”你关错了”）</li>
+<li>回滚能力（记录操作历史，能撤销）</li>
+</ul>
+<p>目前 Dobby 没有展示这方面的能力，但生产环境必须处理。</p>
+<hr>
+<h2 id="5-你能直接上手的技术路径"><a href="#5-你能直接上手的技术路径" class="headerlink" title="5. 你能直接上手的技术路径"></a>5. 你能直接上手的技术路径</h2><p>如果你看完想自己试一下，可以按这个顺序：</p>
+<p><strong>第一步：能控制一个设备</strong></p>
+<p>选一个你家里已有的设备，先做到能用代码控制。比如：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 用 Python 控制 Yeelight（支持标准协议）</span>
+<span class="token keyword">from</span> pywizlight <span class="token keyword">import</span> wizlight
+
+light <span class="token operator">=</span> wizlight<span class="token punctuation">(</span><span class="token string">"192.168.1.100"</span><span class="token punctuation">)</span>
+<span class="token keyword">await</span> light<span class="token punctuation">.</span>turn_on<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">await</span> light<span class="token punctuation">.</span>set_brightness<span class="token punctuation">(</span><span class="token number">128</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>第二步：加上自然语言接口</strong></p>
+<p>用一个简单的指令解析：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> openai
+
+openai<span class="token punctuation">.</span>api_key <span class="token operator">=</span> <span class="token string">"你的 key"</span>
+
+<span class="token keyword">def</span> <span class="token function">control_by_voice</span><span class="token punctuation">(</span>command<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    prompt <span class="token operator">=</span> <span class="token string-interpolation"><span class="token string">f"""
+    用户指令：</span><span class="token interpolation"><span class="token punctuation">&#123;</span>command<span class="token punctuation">&#125;</span></span><span class="token string">
+    
+    可用动作：
+    - turn_on_light()
+    - turn_off_light()
+    - set_brightness(level: 0-255)
+    
+    请返回要执行的 Python 函数调用。
+    """</span></span>
+    
+    response <span class="token operator">=</span> openai<span class="token punctuation">.</span>ChatCompletion<span class="token punctuation">.</span>create<span class="token punctuation">(</span>
+        model<span class="token operator">=</span><span class="token string">"gpt-4"</span><span class="token punctuation">,</span>
+        messages<span class="token operator">=</span><span class="token punctuation">[</span><span class="token punctuation">&#123;</span><span class="token string">"role"</span><span class="token punctuation">:</span> <span class="token string">"user"</span><span class="token punctuation">,</span> <span class="token string">"content"</span><span class="token punctuation">:</span> prompt<span class="token punctuation">&#125;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">)</span>
+    
+    <span class="token comment"># 执行返回的函数</span>
+    <span class="token builtin">eval</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>choices<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>message<span class="token punctuation">.</span>content<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>第三步：加上设备发现</strong></p>
+<p>用 nmap 或 SSDP 自动发现设备：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> subprocess
+
+<span class="token keyword">def</span> <span class="token function">discover_upnp_devices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token comment"># 发送 SSDP 发现消息</span>
+    msg <span class="token operator">=</span> <span class="token punctuation">(</span>
+        <span class="token string">'M-SEARCH * HTTP/1.1\r\n'</span>
+        <span class="token string">'HOST: 239.255.255.250:1900\r\n'</span>
+        <span class="token string">'MAN: "ssdp:discover"\r\n'</span>
+        <span class="token string">'MX: 1\r\n'</span>
+        <span class="token string">'ST: upnp:rootdevice\r\n'</span>
+        <span class="token string">'\r\n'</span>
+    <span class="token punctuation">)</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    
+    sock <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_DGRAM<span class="token punctuation">)</span>
+    sock<span class="token punctuation">.</span>sendto<span class="token punctuation">(</span>msg<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'239.255.255.250'</span><span class="token punctuation">,</span> <span class="token number">1900</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+    
+    devices <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            data<span class="token punctuation">,</span> addr <span class="token operator">=</span> sock<span class="token punctuation">.</span>recvfrom<span class="token punctuation">(</span><span class="token number">2048</span><span class="token punctuation">)</span>
+            devices<span class="token punctuation">.</span>append<span class="token punctuation">(</span>addr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span> socket<span class="token punctuation">.</span>timeout<span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+    
+    <span class="token keyword">return</span> devices<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个顺序的好处：从小处验证，逐步扩展，不会一开始就卡在复杂协议逆向上。</p>
+<hr>
+<h2 id="6-这件事到底意味着什么"><a href="#6-这件事到底意味着什么" class="headerlink" title="6. 这件事到底意味着什么"></a>6. 这件事到底意味着什么</h2><p>Dobby 的技术路径如果走通，影响的不是”App 消失”，而是”交互入口改变”。</p>
+<p>手机 App 的本质：厂家给你一个 UI，你通过 UI 操作设备。Agent 替代 App，本质是：<strong>把交互的入口从 UI 变成了自然语言</strong>。背后的协议层还是那个协议层。</p>
+<p>这不是说 App 会死——大量的复杂操作、信息展示、多步骤流程，App 依然是最优解。但对于”一个动作就可以完成的事”，Agent 会吃掉这部分入口。</p>
+<p>真正值得关注的是：<strong>Agent 能做到什么程度的协议逆向，以及对未知设备的自适应能力</strong>。Dobby 今天能做到的，还是”已知协议类型的设备 + 少量人类辅助”。距离”自动搞懂任何设备”，还有一段路。</p>
+<p>但对于开发者来说，这条技术路径已经清晰：<strong>设备抽象层 + 意图解析层 + 协议执行层</strong>。现在就可以开始试。</p>
+<hr>
+<h2 id="关键词建议"><a href="#关键词建议" class="headerlink" title="关键词建议"></a>关键词建议</h2><p>Agent 协议逆向、OpenClaw、设备自动化、自然语言交互、智能家居</p>
+<h2 id="摘要建议"><a href="#摘要建议" class="headerlink" title="摘要建议"></a>摘要建议</h2><p>Dobby 实验展示了 Agent 如何通过协议逆向替代手机 App。本文拆解了其核心技术：网络发现、协议推断、自然语言到控制命令的映射，提供了可复现的技术架构和代码示例。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">左哥</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://zuoyy.com/2026/04/08/dobby-agent-app/">https://zuoyy.com/2026/04/08/dobby-agent-app/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">左哥</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/AI-Agent/">
+                                    <span class="chip bg-color">AI Agent</span>
+                                </a>
+                            
+                                <a href="/tags/OpenClaw/">
+                                    <span class="chip bg-color">OpenClaw</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%8A%9F%E8%83%BD%E9%9B%86%E6%88%90/">
+                                    <span class="chip bg-color">功能集成</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%8D%8F%E8%AE%AE%E9%80%86%E5%90%91/">
+                                    <span class="chip bg-color">协议逆向</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/">
+                                    <span class="chip bg-color">智能家居</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.png" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2026/04/08/dobby-agent-app/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Dobby 实验解析：用 Agent 替代手机 App 的技术路径">
+                        
+                        <span class="card-title">Dobby 实验解析：用 Agent 替代手机 App 的技术路径</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-04-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Agent/" class="post-category">
+                                    Agent
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/AI-Agent/">
+                        <span class="chip bg-color">AI Agent</span>
+                    </a>
+                    
+                    <a href="/tags/OpenClaw/">
+                        <span class="chip bg-color">OpenClaw</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8A%9F%E8%83%BD%E9%9B%86%E6%88%90/">
+                        <span class="chip bg-color">功能集成</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8D%8F%E8%AE%AE%E9%80%86%E5%90%91/">
+                        <span class="chip bg-color">协议逆向</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85/">
+                        <span class="chip bg-color">智能家居</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2026/04/01/agent-testing-and-evaluation-checklist/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="Agent 代码写完怎么测？给开发者的评测基准和回归检查清单">
+                        
+                        <span class="card-title">Agent 代码写完怎么测？给开发者的评测基准和回归检查清单</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-04-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/AI%E5%BC%80%E5%8F%91/" class="post-category">
+                                    AI开发
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/AI-Agent/">
+                        <span class="chip bg-color">AI Agent</span>
+                    </a>
+                    
+                    <a href="/tags/Agent%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">Agent测试</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AF%84%E6%B5%8B%E5%9F%BA%E5%87%86/">
+                        <span class="chip bg-color">评测基准</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">回归测试</span>
+                    </a>
+                    
+                    <a href="/tags/Agent%E5%B7%A5%E7%A8%8B%E5%8C%96/">
+                        <span class="chip bg-color">Agent工程化</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: 左哥AI笔记<br />'
+            + '文章作者: 左哥<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- Prism.js 需要在代码块处理之前加载 -->
+
+<script src="/libs/prism/prism.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+            
+                <div class="container row center-align" style="margin-bottom: 10px !important;">
+                    <div class="col s12 m8 l8 copy-right">
+                        Copyright&nbsp;&copy;
+                        
+                                <span id="year">2026</span>
+                                
+                                    <a href="/about" target="_blank">左哥</a>
+                                    
+                                        &nbsp;|&nbsp;
+                                        <span id="icp"><img
+                                                src="/medias/icp.png"
+                                                style="vertical-align: text-bottom;" />
+                                            <a href="https://beian.miit.gov.cn/" target="_blank">
+                                                陕ICP备2026001586号-2
+                                            </a>
+                                        </span>
+                                        
+                                            
+
+                                                
+                    </div>
+                    <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/zuoyy" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zuoge@live.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=11043150" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 11043150" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+
+                    </div>
+                </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
